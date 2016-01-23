@@ -5,9 +5,9 @@
         <ul class="bs-docs-footer-links text-muted">
             <li>当前版本： v1.0.0</li>
             <li>·</li>
-            <li><a href="https://git.oschina.net/lakche/timeCMS-free.git">开源中国仓库</a></li>
+            <li><a href="https://git.oschina.net/lakche/timeCMS-free.git" target="_blank">开源中国仓库</a></li>
             <li>·</li>
-            <li><a href="#">github仓库</a></li>
+            <li><a href="https://github.com/lakche/timeCMS-free.git" target="_blank">github仓库</a></li>
         </ul>
     </div>
 </footer>
