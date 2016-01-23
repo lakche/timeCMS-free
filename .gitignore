@@ -6,3 +6,4 @@ Homestead.json
 /.idea
 /composer.lock
 /public/uploads
+/resources/views/errors/404.blade.php
