@@ -1,0 +1,13 @@
+body { font-family: 'Microsoft YaHei', '微软雅黑';}
+a { color: #333;}
+a:hover { text-decoration: none;}
+
+/*页头*/
+.navbar-brand { font-weight: bold;}
+
+/*页脚*/
+footer { color: #666; margin-top: 15px; border-top: 2px solid #eee; padding-top: 15px;}
+footer a { color: #666;}
+.bs-docs-footer-links { padding-left: 0; margin-top: 20px; }
+.bs-docs-footer-links li { display: inline; padding: 0 2px; }
+.bs-docs-footer-links li:first-child { padding-left: 0; }
