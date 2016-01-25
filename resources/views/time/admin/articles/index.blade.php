@@ -1,5 +1,6 @@
 @extends($theme.'.layouts.app')
 @section('content')
+    <link rel="stylesheet" type="text/css" href="{{ asset($theme.'/css/admin.css') }}"/>
     <script type="text/javascript" src="{{ asset($theme.'/js/admin.js') }}"></script>
     <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
     <div class="container-fluid" id="main">
@@ -42,7 +43,7 @@
                                         <td>{{ $article->id }}</td>
                                         <td><a href="{{ url('article', [$article->id]) }}"
                                                target="_blank">{{ $article->title }}</a></td>
-                                        <td><a href="{{ url('admin/articles/type',$article->article_category_id) }}">{{ $article->articleCategory->title }}</a></td>
+                                        <td><a href="{{ url('admin/articles/type',$article->category_id) }}">{{ $article->category->title }}</a></td>
                                         <td>
                                             <a href="{{ url('admin/articles/edit', [$article->id]) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑文章"></i>

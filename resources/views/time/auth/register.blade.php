@@ -40,7 +40,4 @@
             </div>
         </div>
     </div>
-    <style>
-        .bg-danger { color: #f00; padding: 4px 6px;}
-    </style>
 @endsection

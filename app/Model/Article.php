@@ -22,9 +22,9 @@ class Article extends Model
     return $query->orderBy($key);
   }
 
-  public function articleCategory()
+  public function category()
   {
-    return $this->belongsTo('App\Model\ArticleCategory');
+    return $this->belongsTo('App\Model\Category');
   }
 
   public function gallery()

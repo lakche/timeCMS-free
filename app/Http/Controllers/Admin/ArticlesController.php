@@ -26,7 +26,7 @@ class ArticlesController extends Controller
   public function getType($id)
   {
     $id = intval($id);
-    $articles = Article::where('article_category_id',$id)->sortByDesc('id')->paginate(20);
+    $articles = Article::where('category_id',$id)->sortByDesc('id')->paginate(20);
     $categories = Category::where('is_nav_show','>','0' )->sortByDesc('id')->get();
     $type = Category::find($id);
     return Theme::view('admin.articles.index',compact(['articles','categories','type']));
@@ -107,7 +107,6 @@ class ArticlesController extends Controller
       $article->title = strip_tags($input['title']);
       $article->category_id = $input['category_id'];
       $article->sort = $input['sort'];
-      $article->gallery_id = 0;
       $article->views = $input['views'];
       $article->tag = json_encode(explode(',',strip_tags($input['tag'])));
       $article->is_recommend = $input['is_recommend'] ? 1 : 0;

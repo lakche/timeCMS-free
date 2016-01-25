@@ -8,7 +8,7 @@
     <meta content="{{ $description or config('system.description') }}" name="description" />
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{{ asset('timecms/css/css.css') }}">
+    <link rel="stylesheet" href="{{ asset($theme.'/css/css.css') }}">
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
