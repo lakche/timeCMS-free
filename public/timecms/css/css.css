@@ -4,6 +4,7 @@ a:hover { text-decoration: none;}
 
 /*页头*/
 .navbar-brand { font-weight: bold;}
+.navbar-header .navbar-toggle .icon-bar { background-color: #666;}
 
 /*页脚*/
 footer { color: #666; margin-top: 15px; border-top: 2px solid #eee; padding-top: 15px;}

@@ -21,6 +21,9 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (auth()->check())
                     <li><a href="">{{ str_limit(auth()->user()->name,10,'...') }}</a></li>
+                    @if (Auth::user()->is_admin)
+                        <li><a href="{{ url("admin") }}">系统管理</a></li>
+                    @endif
                     <li><a href="{{ url("auth/logout") }}">退出登录</a></li>
                 @else
                     <li><a href="{{ asset('auth/register') }}">注册</a></li>
