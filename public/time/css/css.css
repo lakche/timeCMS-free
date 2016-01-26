@@ -13,3 +13,6 @@ footer a { color: #666;}
 .bs-docs-footer-links { padding-left: 0; margin-top: 20px; }
 .bs-docs-footer-links li { display: inline; padding: 0 2px; }
 .bs-docs-footer-links li:first-child { padding-left: 0; }
+
+/*提示*/
+#message a { margin: 0 4px;}

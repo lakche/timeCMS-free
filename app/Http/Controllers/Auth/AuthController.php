@@ -58,7 +58,7 @@ class AuthController extends Controller
         ];
         $validator = Validator::make($input, $rules, $messages, $attributes);
         if ($validator->fails()) {
-            return Redirect::back()->withInput()->withErrors($validator->errors());
+            return Redirect::back()->withInput()->withErrors($validator);
         } else {
             if (auth()->attempt(['name' => $input['name'], 'password' => $input['password']])) {
                 if($input['remember']) {
@@ -99,7 +99,7 @@ class AuthController extends Controller
             $attributes
         );
         if ($validator->fails()) {
-            return Redirect::back()->withInput()->withErrors($validator->errors());
+            return Redirect::back()->withInput()->withErrors($validator);
         }
 
         $user = new User();

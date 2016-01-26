@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">重复密码</label>
-                        <input type="password" id="password" class="form-control" name="password_confirmation"
+                        <input type="password" id="password_confirmation" class="form-control" name="password_confirmation"
                                tabindex="6"
                                placeholder="请重复密码">
                     </div>
