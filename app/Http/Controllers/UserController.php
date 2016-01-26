@@ -65,7 +65,7 @@ class UserController extends Controller
 
     auth()->logout();
     $message = '密码已变更，请重新登陆！';
-    $url = ['返回首页'=>url('/'),'重新登陆'=>url('auth/login')];
+    $url = ['返回首页'=>['url'=>url('/'),'style'=>'primary'],'重新登陆'=>['url'=>url('auth/login'),'style'=>'default']];
     return Theme::view('message.show',compact(['message','url']));
 
   }
