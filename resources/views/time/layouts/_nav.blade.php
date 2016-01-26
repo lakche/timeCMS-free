@@ -11,8 +11,8 @@
         </div>
         <nav id="bs-navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="">技术漫谈</a></li>
-                <li><a href="">说天道地</a></li>
+                <li><a href="{{ url('category',1) }}">技术漫谈</a></li>
+                <li><a href="{{ url('category',2) }}">说天道地</a></li>
                 <li><a href="">荣誉殿堂</a></li>
                 <li><a href="">作品展示</a></li>
                 <li><a href="">静思堂</a></li>

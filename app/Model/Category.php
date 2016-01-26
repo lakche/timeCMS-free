@@ -9,7 +9,7 @@ class Category extends Model
 {
   use SoftDeletes;
 
-  protected $hidden = ['deleted_at', 'created_at', 'updated_at'];
+  protected $hidden = ['deleted_at', 'created_at'];
 
   public function scopeSortByDesc($query,$key)
   {
@@ -19,6 +19,11 @@ class Category extends Model
   public function scopeSortBy($query,$key)
   {
     return $query->orderBy($key);
+  }
+
+  public function scopeIsNavShow($query)
+  {
+    return $query->where('is_nav_show',1);
   }
 
   public function subs()
@@ -34,5 +39,10 @@ class Category extends Model
   public function parent()
   {
     return $this->belongsTo('App\Model\Category','parent_id','id');
+  }
+
+  public function articles()
+  {
+    return $this->hasMany('App\Model\Article');
   }
 }

@@ -16,3 +16,11 @@ footer a { color: #666;}
 
 /*提示*/
 #message a { margin: 0 4px;}
+
+/*分页*/
+.pagination { margin: 0;}
+.panel-heading a { color: #fff;}
+.panel-body p.info { text-indent: 2em;}
+.page-body {  border-bottom: 1px solid #eee; padding: 0 15px 15px; margin-bottom: 15px;}
+.page-footer {  padding: 0 15px 15px;}
+.page-footer a { display: block; margin-bottom: 6px;}

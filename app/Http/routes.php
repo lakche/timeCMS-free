@@ -9,6 +9,8 @@ Route::controllers([
 // 前台
 Route::get('/', 'WelcomeController@index');
 Route::controller('user', 'UserController');
+Route::resource('category', 'CategoryController',['only'=>['index','show']]);
+Route::resource('article', 'ArticleController',['only'=>['index','show']]);
 
 //管理系统
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth','isadmin']], function () {

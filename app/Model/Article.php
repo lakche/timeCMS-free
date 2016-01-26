@@ -27,16 +27,6 @@ class Article extends Model
     return $this->belongsTo('App\Model\Category');
   }
 
-  public function gallery()
-  {
-    return $this->belongsTo('App\Model\Gallery');
-  }
-
-  public function galleries()
-  {
-    return $this->hasMany('App\Model\Gallery');
-  }
-
   public function setCover($project = null)
   {
     if($this->is_json($project)){
