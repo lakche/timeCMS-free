@@ -11,12 +11,12 @@ class ArticleController extends Controller
 {
   public function index()
   {
-    Redirect::to('/');
+    return Redirect::to('/');
   }
 
   public function show($id = 0)
   {
-    if($id != intval($id)) return Redirect::to('/');
+    if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
     $article = Article::find($id);
     if(empty($article)) return Redirect::to('/');

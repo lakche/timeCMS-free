@@ -17,7 +17,7 @@ class CategoryController extends Controller
 
   public function show($id = 0)
   {
-    if($id != intval($id)) return Redirect::to('/');
+    if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
     $type = Category::find($id);
     if(empty($type)) return Redirect::to('/');
