@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 
@@ -198,6 +199,7 @@ return [
 
         'Theme'      => App\Libs\Theme::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 

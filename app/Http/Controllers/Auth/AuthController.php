@@ -44,17 +44,20 @@ class AuthController extends Controller
 
     public function postLogin()
     {
-        $input = Request::only(['name', 'password','remember']);
+        $input = Request::only(['name', 'password','remember','captcha']);
         $rules = [
             'name' => 'required',
             'password' => 'required',
+            'captcha' => 'required|captcha'
         ];
         $messages = [
             'required' => ':attribute 不能为空',
+            'captcha' => ':attribute 不正确',
         ];
         $attributes = [
             "name" => '用户名',
             'password' => '用户密码',
+            'captcha' => '验证码',
         ];
         $validator = Validator::make($input, $rules, $messages, $attributes);
         if ($validator->fails()) {
@@ -146,5 +149,11 @@ class AuthController extends Controller
     {
         auth()->logout();
         return Redirect::to('/');
+    }
+
+    public function getCaptcha()
+    {
+        $captcha = captcha_src();
+        return ['error'=>0,'captcha'=>$captcha,'message'=>''];
     }
 }

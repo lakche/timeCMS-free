@@ -16,6 +16,7 @@ footer a { color: #666;}
 
 /*提示*/
 #message a { margin: 0 4px;}
+.captcha { cursor: pointer;}
 
 /*分页*/
 .pagination { margin: 0;}

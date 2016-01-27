@@ -24,6 +24,17 @@
                             <p class="bg-danger">{{ $errors->first('password') }}</p>
                         @endif
                     </div>
+                    <div class="form-group">
+                        <label>验证码</label>
+                        <div class="form-inline">
+                            <input type="text" id="captcha" class="form-control" name="captcha" tabindex="6"
+                               placeholder="请输入验证码">
+                            <label class="captcha">{!! captcha_img() !!}[点击刷新]</label>
+                        </div>
+                        @if($errors->first('captcha'))
+                            <p class="bg-danger">{{ $errors->first('captcha') }}</p>
+                        @endif
+                    </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" id="remember" value="" checked="checked" name="remember"> 记住我
@@ -31,11 +42,11 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <input type="submit" class="btn btn-primary btn-block" tabindex="6"
+                            <input type="submit" class="btn btn-primary btn-block" tabindex="7"
                                    value="登 &nbsp; &nbsp; 录">
                         </div>
                         <div class="col-xs-6">
-                            <input type="button" class="btn btn-success btn-block" tabindex="7"
+                            <input type="button" class="btn btn-success btn-block" tabindex="8"
                                    onclick="javascript:window.location='{{ asset('/') }}';" value="返回首页">
                         </div>
                     </div>
@@ -47,4 +58,20 @@
             </div>
         </div>
     </div>
+    <script>
+        $('.captcha').on('click',function(){
+            $.ajax({
+                type: 'GET',
+                url: "/auth/captcha",
+                success: function (data) {
+                    if(data.error == 0){
+                        $('.captcha img').attr('src',data.captcha);
+                    }
+                },
+                error: function (data) {
+                    alert(data.message);
+                }
+            });
+            });
+    </script>
 @endsection
