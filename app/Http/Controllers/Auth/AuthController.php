@@ -62,7 +62,7 @@ class AuthController extends Controller
         } else {
             if (auth()->attempt(['name' => $input['name'], 'password' => $input['password']])) {
                 if($input['remember']) {
-                    return Redirect::to('/')->withCookie(cookie('remember_name', $input['email'], 60*24*15));
+                    return Redirect::to('/')->withCookie(cookie('remember_name', $input['name'], 60*24*15));
                 }
                 else {
                     return Redirect::to('/')->withCookie(cookie('remember_name'));
