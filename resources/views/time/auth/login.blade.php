@@ -10,7 +10,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">用户名</label>
-                        <input type="text" id="name" class="form-control" name="name" tabindex="4" value="{{ old('name') }}"
+                        <input type="text" id="name" class="form-control" name="name" tabindex="4" value="{{ old('name') or Cookie::get('remember_name') }}"
                                placeholder="请输入用户名">
                         @if($errors->first('name'))
                             <p class="bg-danger">{{ $errors->first('name') }}</p>
