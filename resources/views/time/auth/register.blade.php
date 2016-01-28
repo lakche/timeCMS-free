@@ -34,10 +34,22 @@
                                placeholder="请重复密码">
                     </div>
                     <div class="form-group">
+                        <label>验证码</label>
+                        <div class="form-inline">
+                            <input type="text" id="captcha" class="form-control" name="captcha" tabindex="6"
+                                   placeholder="请输入验证码">
+                            <label class="captcha">{!! captcha_img() !!}[点击刷新]</label>
+                        </div>
+                        @if($errors->first('captcha'))
+                            <p class="bg-danger">{{ $errors->first('captcha') }}</p>
+                        @endif
+                    </div>
+                    <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-block" value="注 &nbsp; &nbsp; 册">
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <script src="{{ asset($theme.'/js/captcha.js') }}"></script>
 @endsection

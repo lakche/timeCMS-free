@@ -48,7 +48,7 @@ class AuthController extends Controller
         $rules = [
             'name' => 'required',
             'password' => 'required',
-            'captcha' => 'required|captcha'
+            'captcha' => 'required|captcha',
         ];
         $messages = [
             'required' => ':attribute 不能为空',
@@ -59,6 +59,7 @@ class AuthController extends Controller
             'password' => '用户密码',
             'captcha' => '验证码',
         ];
+
         $validator = Validator::make($input, $rules, $messages, $attributes);
         if ($validator->fails()) {
             return Redirect::back()->withInput()->withErrors($validator);
@@ -77,23 +78,24 @@ class AuthController extends Controller
 
     public function postRegister()
     {
+        $input = Request::only(['name', 'password', 'password_confirmation','captcha']);
         $rules = array(
             'name' => 'required|between:1,20|unique:users',
             'password' => 'required|confirmed|between:6,20',
+            'captcha' => 'required|captcha',
         );
         $message = array(
             'password.confirmed' => '重复密码不一致',
             "required"           => ":attribute 不能为空",
             "unique"           => ":attribute 已被使用",
-            "between"            => ":attribute 长度必须在 :min 和 :max 之间"
+            "between"            => ":attribute 长度必须在 :min 和 :max 之间",
+            'captcha' => ':attribute 不正确',
         );
-
         $attributes = array(
             "name" => '用户名',
             'password' => '用户密码',
+            'captcha' => '验证码',
         );
-
-        $input = Request::only(['name', 'password', 'password_confirmation']);
 
         $validator = Validator::make(
             $input,
@@ -117,17 +119,20 @@ class AuthController extends Controller
 
     public function postAjaxLogin()
     {
-        $input = Input::only(['name', 'password','remember']);
+        $input = Input::only(['name', 'password','remember','captcha']);
         $rules = [
             'name' => 'required',
             'password' => 'required',
+            'captcha' => 'required|captcha',
         ];
         $messages = [
             'required' => ':attribute 不能为空',
+            'captcha' => ':attribute 不正确',
         ];
         $attributes = [
             "name" => '用户名',
             'password' => '用户密码',
+            'captcha' => '验证码',
         ];
         $validator = Validator::make($input, $rules, $messages, $attributes);
         if ($validator->fails()) {

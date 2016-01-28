@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-sm-9 panel panel-default">
+                <div class="col-sm-9" id="article">
                     <div class="page-header text-center">
                         <h2>{{ $article->title }}</h2>
                         <span>发布时间：{{ $article->updated_at->format('Y-m-d') }} 浏览量：{{ $article->views }}</span>
