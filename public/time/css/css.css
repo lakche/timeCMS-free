@@ -61,3 +61,9 @@ footer a { color: #666;}
 /*广告*/
 .ads { width: 100%; height: auto; overflow: hidden; margin-bottom: 20px; border-radius: 4px;}
 .ads img { width: 100%; height: auto;}
+
+/*幻灯*/
+.carousel-control { background-image: none !important;}
+.carousel-indicators { bottom: -25px;}
+.carousel-indicators li { background-color: #333;}
+.carousel-indicators .active { background-color: #333;}
