@@ -1,4 +1,4 @@
-@if($type && $type->cover)
+@if(isset($type) && $type->cover)
     <div class="ads">
         <img src="{{ $type->thumb == '' ? $type->cover : $type->thumb }}" alt="{{ $type->title }}">
     </div>
