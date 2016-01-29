@@ -119,7 +119,7 @@ class AuthController extends Controller
 
     public function postAjaxLogin()
     {
-        $input = Input::only(['name', 'password','remember','captcha']);
+        $input = Request::only(['name', 'password','remember','captcha']);
         $rules = [
             'name' => 'required',
             'password' => 'required',

@@ -9,7 +9,6 @@ use App\Libs\Uploader;
 use App\Libs\Plupload;
 use Response;
 use Validator;
-use Input;
 use Redirect;
 use Image;
 use Theme;
@@ -95,7 +94,7 @@ class ArticlesController extends Controller
         'keywords' => 'seo关键字',
         'description' => 'seo描述',
     );
-    $input = Input::only(['title','category_id','sort','gallery_id','views','is_recommend','is_show','info','tag','url','text','cover','thumb','subtitle','author','source','keywords','description']);
+    $input = Request::only(['title','category_id','sort','gallery_id','views','is_recommend','is_show','info','tag','url','text','cover','thumb','subtitle','author','source','keywords','description']);
 
     $validator = Validator::make($input, $rules, $messages,$attributes);
     if ($validator->fails()) {
@@ -156,7 +155,7 @@ class ArticlesController extends Controller
   public function postSaveCover()
   {
     $filePath = '/uploads/articles/covers/'.date( "Ymd" ).'/';
-    if (Input::hasFile('file')) {
+    if (Request::hasFile('file')) {
       $plupload = new Plupload();
       $fileName = date("_YmdHis") . rand(1000, 9999) . '.';
       $response = $plupload->process('file', function ($file) use (&$fileName,&$filePath) {

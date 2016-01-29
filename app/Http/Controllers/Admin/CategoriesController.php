@@ -7,7 +7,6 @@ use App\Model\Category;
 use App\Libs\Plupload;
 use Response;
 use Requests;
-use Input;
 use Validator;
 use Redirect;
 use Image;
@@ -64,7 +63,7 @@ class CategoriesController extends Controller
         'title.required' => '栏目标题不能为空',
         'sort.integer' => '栏目排序只能为整数',
     ];
-    $input = Input::only(['title','info','sort','cover','thumb','is_nav_show','parent_id','keywords','description','templet_all','templet_nosub','templet_article']);
+    $input = Request::only(['title','info','sort','cover','thumb','is_nav_show','parent_id','keywords','description','templet_all','templet_nosub','templet_article']);
 
     $validator = Validator::make($input, $rules, $messages);
     if ($validator->fails()) {
@@ -105,7 +104,7 @@ class CategoriesController extends Controller
   public function postSaveCover()
   {
     $filePath = '/uploads/categories/covers/';
-    if (Input::hasFile('file')) {
+    if (Request::hasFile('file')) {
       $plupload = new Plupload();
       $fileName = date("_YmdHis") . rand(1000, 9999) . '.';
       $response = $plupload->process('file', function ($file) use (&$fileName,&$filePath) {

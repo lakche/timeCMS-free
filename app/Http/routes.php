@@ -17,4 +17,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
     Route::get('', 'DashController@index');
     Route::controller('categories', 'CategoriesController');
     Route::controller('articles', 'ArticlesController');
+    Route::controller('system', 'SystemController');
 });
