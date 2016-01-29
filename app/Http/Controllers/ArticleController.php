@@ -27,6 +27,13 @@ class ArticleController extends Controller
     ++$article->views;
     $article->save();
 
-    return Theme::view('article.show',compact('article','type'));
+    $keywords = $article->keywords;
+    $description = $article->description;
+
+    if($article->url != '') return Redirect::to($article->url);
+
+    $templet = 'show';
+    if($type->templet_article != '') $templet = $type->templet_article;
+    return Theme::view('article.'.$templet,compact('article','type','keywords','description'));
   }
 }

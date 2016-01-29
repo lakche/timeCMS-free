@@ -7,6 +7,9 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">{{ $type->title }}</div>
                         <div class="panel-body">
+                            @if($type->info != '')
+                                <div class="alert alert-success" role="alert">{{ $type->info }}</div>
+                            @endif
                             <div class="list-group">
                             @foreach($articles as $article)
                                     <a href="{{ url('article',$article->id) }}" class="list-group-item">{{ $article->title }}<span class="pull-right">{{ $article->updated_at->format('Y-m-d') }}</span></a>

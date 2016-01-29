@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>{{ $title or config('system.title') }}</title>
-    <meta content="{{ $keywords or config('system.keywords') }}" name="keywords" />
-    <meta content="{{ $description or config('system.description') }}" name="description" />
+    <meta name="keywords" content="{{ $keywords or config('system.keywords') }}" />
+    <meta name="description" content="{{ $description or config('system.description') }}" />
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{{ asset($theme.'/css/css.css') }}">

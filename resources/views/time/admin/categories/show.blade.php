@@ -52,6 +52,26 @@
 
                                     <div class="input-group-addon btn btn-primary" id="categorie_cover">上传封面</div>
                                 </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">seo关键字</div>
+                                    <input type="text" class="form-control" name="keywords" value="{{ $type->keywords }}">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">seo描述</div>
+                                    <input type="text" class="form-control" name="description" value="{{ $type->description }}">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">带子分类模板</div>
+                                    <input type="text" class="form-control" name="templet_all" value="{{ $type->templet_all }}">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">不带子分类模板</div>
+                                    <input type="text" class="form-control" name="templet_nosub" value="{{ $type->templet_nosub }}">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">文章模板</div>
+                                    <input type="text" class="form-control" name="templet_article" value="{{ $type->templet_article }}">
+                                </div>
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">导航显示</div>
                                     <input type="checkbox" name="is_nav_show" value="1"

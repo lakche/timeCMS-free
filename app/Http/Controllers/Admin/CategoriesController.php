@@ -64,7 +64,7 @@ class CategoriesController extends Controller
         'title.required' => '栏目标题不能为空',
         'sort.integer' => '栏目排序只能为整数',
     ];
-    $input = Input::only(['title','info','sort','cover','thumb','is_nav_show','parent_id']);
+    $input = Input::only(['title','info','sort','cover','thumb','is_nav_show','parent_id','keywords','description','templet_all','templet_nosub','templet_article']);
 
     $validator = Validator::make($input, $rules, $messages);
     if ($validator->fails()) {
@@ -85,11 +85,21 @@ class CategoriesController extends Controller
       $type->cover = strip_tags($input['cover']);
       $type->thumb = strip_tags($input['thumb']);
       $type->is_nav_show = intval($input['is_nav_show']) ? 1 : 0;
+      $type->keywords = strip_tags($input['keywords']);
+      $type->description = strip_tags($input['description']);
+      $type->templet_all = strip_tags($input['templet_all']);
+      $type->templet_nosub = strip_tags($input['templet_nosub']);
+      $type->templet_article = strip_tags($input['templet_article']);
       $type->save();
     }
 
-    if($parent_id > 0) return Redirect::to('/admin/categories/subs/'.$parent_id);
-    return Redirect::to('/admin/categories');
+    $message = '栏目设置成功，请选择操作！';
+    $url = [];
+    $url['返回根栏目'] = ['url'=>url('admin/categories')];
+    if($parent_id > 0) $url['返回子栏目'] = ['url'=>url('admin/categories/subs',$type->parent_id)];
+    $url['继续编辑'] = ['url'=>url('admin/categories/edit',$type->id)];
+    $url['查看栏目'] = ['url'=>url('category',$type->id)];
+    return Theme::view('admin.message.show',compact(['message','url']));
   }
 
   public function postSaveCover()

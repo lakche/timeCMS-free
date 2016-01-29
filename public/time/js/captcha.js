@@ -1,6 +1,5 @@
 //验证码刷新
-$('.captcha').on('click',function(){
-    $.ajax({
+$('.captcha').on('click',function(){$.ajax({
         type: 'GET',
         url: "/auth/captcha",
         success: function (data) {

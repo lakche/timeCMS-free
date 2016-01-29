@@ -29,7 +29,7 @@
                         <div class="form-inline">
                             <input type="text" id="captcha" class="form-control" name="captcha" tabindex="6"
                                placeholder="请输入验证码">
-                            <label class="captcha">{!! captcha_img() !!}[点击刷新]</label>
+                            <label class="captcha">{!! captcha_img() !!} <span class="glyphicon glyphicon-refresh"></span>点击刷新</label>
                         </div>
                         @if($errors->first('captcha'))
                             <p class="bg-danger">{{ $errors->first('captcha') }}</p>

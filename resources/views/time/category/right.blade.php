@@ -1,3 +1,9 @@
+@if($type && $type->cover)
+    <div class="ads">
+        <img src="{{ $type->thumb == '' ? $type->cover : $type->thumb }}" alt="{{ $type->title }}">
+    </div>
+@endif
+
 <div class="panel panel-primary">
     <div class="panel-heading">关于荣誉殿堂</div>
     <div class="panel-body">

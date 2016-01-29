@@ -36,6 +36,13 @@
                                     <p class="bg-danger">{{ $errors->first('title') }}</p>
                                 @endif
                                 <div class="input-group">
+                                    <div class="input-group-addon">　副标题</div>
+                                    <input type="text" class="form-control" name="subtitle" value="{{ old('subtitle') ? old('subtitle') : $article->subtitle }}">
+                                </div>
+                                @if($errors->first('subtitle'))
+                                    <p class="bg-danger">{{ $errors->first('subtitle') }}</p>
+                                @endif
+                                <div class="input-group">
                                     <div class="input-group-addon">文章分类</div>
                                     <select name="category_id" id="category_id" class="form-control">
                                         {!! $categoryTree !!}
@@ -64,6 +71,20 @@
                                 </div>
                                 @if($errors->first('tag'))
                                     <p class="bg-danger">{{ $errors->first('tag') }}</p>
+                                @endif
+                                <div class="input-group">
+                                    <div class="input-group-addon">文章作者</div>
+                                    <input type="text" class="form-control" name="author" value="{{ old('author') ? old('author') : $article->author }}">
+                                </div>
+                                @if($errors->first('author'))
+                                    <p class="bg-danger">{{ $errors->first('author') }}</p>
+                                @endif
+                                <div class="input-group">
+                                    <div class="input-group-addon">文章来源</div>
+                                    <input type="text" class="form-control" name="source" value="{{ old('source') ? old('source') : $article->source }}">
+                                </div>
+                                @if($errors->first('source'))
+                                    <p class="bg-danger">{{ $errors->first('source') }}</p>
                                 @endif
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">是否推荐</div>
@@ -106,12 +127,26 @@
                                     <p class="bg-danger">{{ $errors->first('url') }}</p>
                                 @endif
                                 <div class="input-group">
-                                    <div class="input-group-addon">文章详情</div>
-                                    <script type="text/plain" id="content" name="description"
-                                            style="width:800px;height:240px;">{!! old('description') ? old('description') : $article->description !!}</script>
+                                    <div class="input-group-addon">seo关键字</div>
+                                    <input type="text" class="form-control" name="keywords" value="{{ old('keywords') ? old('keywords') : $article->keywords }}">
+                                </div>
+                                @if($errors->first('keywords'))
+                                    <p class="bg-danger">{{ $errors->first('keywords') }}</p>
+                                @endif
+                                <div class="input-group">
+                                    <div class="input-group-addon">seo描述</div>
+                                    <input type="text" class="form-control" name="description" value="{{ old('description') ? old('description') : $article->description }}">
                                 </div>
                                 @if($errors->first('description'))
                                     <p class="bg-danger">{{ $errors->first('description') }}</p>
+                                @endif
+                                <div class="input-group">
+                                    <div class="input-group-addon">文章详情</div>
+                                    <script type="text/plain" id="content" name="text"
+                                            style="width:800px;height:240px;">{!! old('text') ? old('text') : $article->text !!}</script>
+                                </div>
+                                @if($errors->first('text'))
+                                    <p class="bg-danger">{{ $errors->first('text') }}</p>
                                 @endif
                                 <div class="input-group col-sm-12">
                                     <button type="submit" class="btn btn-primary pull-left">保存文章</button>

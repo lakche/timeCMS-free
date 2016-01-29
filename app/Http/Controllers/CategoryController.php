@@ -22,8 +22,20 @@ class CategoryController extends Controller
     $type = Category::find($id);
     if(empty($type)) return Redirect::to('/');
 
-    $articles = Article::where('category_id',$id)->sortByDesc('id')->paginate(20);
-    return Theme::view('category.show',compact('type','articles'));
+    $keywords = $type->keywords;
+    $description = $type->description;
+
+    $subs = $type->subs()->get();
+    if(count($subs)>0){
+      $templet = 'sub';
+      if($type->templet_all != '') $templet = $type->templet_all;
+      return Theme::view('category.'.$templet,compact('type','subs','keywords','description'));
+    } else {
+      $templet = 'show';
+      if($type->templet_nosub != '') $templet = $type->templet_nosub;
+      $articles = Article::where('category_id',$id)->sortByDesc('id')->paginate(20);
+      return Theme::view('category.'.$templet,compact('type','articles','keywords','description'));
+    }
   }
 
 }

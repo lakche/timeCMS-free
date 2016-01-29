@@ -88,9 +88,14 @@ class ArticlesController extends Controller
         "url" => '外链网址',
         "cover" => '封面图',
         "thumb" => '封面微缩图',
-        'description' => '文章详情'
+        'text' => '文章详情',
+        'subtitle' => '副标题',
+        'author' => '文章作者',
+        'source' => '文章来源',
+        'keywords' => 'seo关键字',
+        'description' => 'seo描述',
     );
-    $input = Input::only(['title','category_id','sort','gallery_id','views','is_recommend','is_show','info','tag','url','description','cover','thumb']);
+    $input = Input::only(['title','category_id','sort','gallery_id','views','is_recommend','is_show','info','tag','url','text','cover','thumb','subtitle','author','source','keywords','description']);
 
     $validator = Validator::make($input, $rules, $messages,$attributes);
     if ($validator->fails()) {
@@ -115,10 +120,22 @@ class ArticlesController extends Controller
       $article->url = strip_tags($input['url']);
       $article->cover = strip_tags($input['cover']);
       $article->thumb = strip_tags($input['thumb']);
-      $article->description = $input['description'] ? $input['description'] : '';
+      $article->text = $input['text'] ? $input['text'] : '';
+      $article->subtitle = strip_tags($input['subtitle']);
+      $article->author = strip_tags($input['author']);
+      $article->source = strip_tags($input['source']);
+      $article->keywords = strip_tags($input['keywords']);
+      $article->description = strip_tags($input['description']);
       $article->save();
     }
-    return Redirect::to('/admin/articles');
+
+    $message = '文章发布成功，请选择操作！';
+    $url = [];
+    $url['返回文章列表'] = ['url'=>url('admin/articles')];
+    if($article->category_id > 0) $url['返回栏目文章列表'] = ['url'=>url('admin/articles/type',$article->category_id)];
+    $url['继续编辑'] = ['url'=>url('admin/articles/edit',$article->id)];
+    $url['查看文章'] = ['url'=>url('article',$article->id)];
+    return Theme::view('admin.message.show',compact(['message','url']));
   }
 
   public function postUpdateImage()
