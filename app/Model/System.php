@@ -23,10 +23,11 @@ class System extends Model
   public static function saveValue($date = []){
     if(is_array($date)){
       foreach($date as $key => $value){
+        $key = strip_tags($key);
         $option = System::where('key',$key)->first();
         if(!$option) $option = new System;
         $option->key = $key;
-        $option->value = $value;
+        $option->value = strip_tags($value);
         $option->save();
       }
     }

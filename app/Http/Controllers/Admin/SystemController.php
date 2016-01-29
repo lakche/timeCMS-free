@@ -18,8 +18,12 @@ class SystemController extends Controller
 
     public function postSave()
     {
-        $input = Request::only(['title','keywords','description']);
+        $input = Request::only(['title','keywords','description','copyright','record','is_open','qq','wechat','weibo']);
+        $input['is_open'] = $input['is_open'] ? 1 : 0;
+
         System::saveValue($input);
-        return Redirect::to('/admin/system');
+        $system = System::getValue();
+        $message = '参数设置成功！';
+        return Theme::view('admin.system.index',compact('system','message'));
     }
 }
