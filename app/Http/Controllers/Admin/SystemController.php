@@ -18,7 +18,7 @@ class SystemController extends Controller
 
     public function postSave()
     {
-        $input = Request::only(['title','keywords','description','copyright','record','is_open','qq','wechat','weibo']);
+        $input = Request::only(['title','keywords','description','copyright','record','is_open','qq','wechat','weibo','theme','subtitle']);
         $input['is_open'] = $input['is_open'] ? 1 : 0;
 
         System::saveValue($input);

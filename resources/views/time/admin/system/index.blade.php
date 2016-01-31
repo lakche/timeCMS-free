@@ -28,6 +28,11 @@
                                            value="{{ $system['title'] or ''  }}">
                                 </div>
                                 <div class="input-group">
+                                    <div class="input-group-addon">标题附加字</div>
+                                    <input type="text" class="form-control" name="subtitle"
+                                           value="{{ $system['subtitle'] or ''  }}">
+                                </div>
+                                <div class="input-group">
                                     <div class="input-group-addon">seo关键字</div>
                                     <input type="text" class="form-control" name="keywords"
                                            value="{{ $system['keywords'] or '' }}">
@@ -61,6 +66,11 @@
                                     <div class="input-group-addon">微博号</div>
                                     <input type="text" class="form-control" name="weibo"
                                            value="{{ $system['weibo'] or '' }}">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">网站模板</div>
+                                    <input type="text" class="form-control" name="theme"
+                                           value="{{ $system['theme'] or '' }}">
                                 </div>
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">网站是否开放</div>
