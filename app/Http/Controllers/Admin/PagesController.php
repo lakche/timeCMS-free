@@ -89,7 +89,7 @@ class PagesController extends Controller
     $url = [];
     $url['返回单页列表'] = ['url'=>url('admin/pages')];
     $url['继续编辑'] = ['url'=>url('admin/pages/edit',$page->id)];
-    $url['查看单页'] = ['url'=>url('page',$page->id)];
+    $url['查看单页'] = ['url'=>url('page',$page->url)];
     return Theme::view('admin.message.show',compact(['message','url']));
   }
 

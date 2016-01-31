@@ -11,19 +11,20 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">系统统计</div>
                         <div class="panel-body">
-                            <div class="col-sm-4">
-                                注册人数
-                                <span>0</span>
+                            <p></p>
+                            <div class="col-sm-6">
+                                <a href="#" class="list-group-item active">最近五个用户<span class="badge">共{{ $user_num }}个</span></a>
+                                @foreach($users as $user)
+                                    <a href="#" class="list-group-item">{{ $user->name }}</a>
+                                @endforeach
                             </div>
-                            <div class="col-sm-4">
-                                文章数量
-                                <span>0</span>
+                            <div class="col-sm-6">
+                                <a href="#" class="list-group-item active">最近五篇文章<span class="badge">共{{ $article_num }}篇</span></a>
+                                @foreach($articles as $article)
+                                    <a href="{{ url('article',$article->id) }}" class="list-group-item">{{ str_limit($article->title,32,'...') }}<span class="pull-right">{{ $article->updated_at->format('Y-m-d') }}</span></a>
+                                @endforeach
                             </div>
-                            <div class="col-sm-4">
-                                留言数量
-                                <span>0</span>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>

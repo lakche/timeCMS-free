@@ -21,4 +21,9 @@ class Page extends Model
   {
     return $query->orderBy($key);
   }
+
+  public function scopeIsOpen($query)
+  {
+    return $query->where('is_open','>',0);
+  }
 }

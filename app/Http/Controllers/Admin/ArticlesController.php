@@ -8,6 +8,7 @@ use App\Model\Category;
 use App\Libs\Uploader;
 use App\Libs\Plupload;
 use Response;
+use Request;
 use Validator;
 use Redirect;
 use Image;
