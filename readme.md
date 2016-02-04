@@ -1,6 +1,8 @@
 #timeCMS
-    开源协议：[MIT License](http://opensource.org/licenses/MIT)
-    演示网站：[探索者日志]（http://www.obday.com）
+    本系统主要为新手上手laravel的示例，完全免费开源，各位可以放心大胆的使用
+    本系统的主要功能是基础的CMS系统，将在这个基础之上根据大家的反馈进行扩展
+    开源协议：MIT License http://opensource.org/licenses/MIT
+    演示网站：探索者日志 http://www.obday.com
     时光CMS，基于laravel5.1的开源CMS系统。时光流逝那些朦胧的回忆，只留下最值得珍惜的瞬间。
 
 ###单元测试：
@@ -48,6 +50,8 @@
          php artisan migrate
      执行种子文件
          php artisan db:seed
+     如果执行种子文件提示类未找到，请执行
+         composer dumpautoload -o
      网站架设完成
         默认管理员账户：admin，密码：timecms
 
