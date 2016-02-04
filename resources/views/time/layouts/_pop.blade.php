@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                     <div class="list-group">
                         <a class="list-group-item" href="{{ url('category',1) }}">技术漫谈</a>
-                        <a class="list-group-item" href="{{ url('category',2) }}"">说天道地</a>
+                        <a class="list-group-item" href="{{ url('category',2) }}">说天道地</a>
                         <a class="list-group-item" href="#">荣誉殿堂</a>
                         <a class="list-group-item" href="#">作品展示</a>
                         <a class="list-group-item" href="#">静思堂</a>
@@ -63,10 +63,10 @@
         font-weight: bold;
     }
     .affix:hover {
-        -moz-animation: blinking 3s;
-        -webkit-animation: blinking 3s;
-        -o-animation: blinking 3s;
-        animation: blinking 3s linear 0s infinite alternate;
+        animation: blinking 3s linear 1s infinite alternate;
+        -moz-animation: blinking 3s linear 1s infinite alternate;
+        -webkit-animation: blinking 3s linear 1s infinite alternate;
+        -o-animation: blinking 3s linear 1s infinite alternate;
     }
     @keyframes blinking
     {
@@ -80,7 +80,7 @@
 <script>
     $('#pop').affix({
         offset: {
-            right: $('#nav').offset().right
+            right: $('#nav').offset().right,
             bottom: $('#nav').offset().bottom
         }
     });
