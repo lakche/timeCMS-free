@@ -47,8 +47,8 @@
 </div>
 <style>
     .affix {
-        right: 50px;
-        bottom: 50px;
+        right: 30px;
+        bottom: 30px;
         width: 50px;
         height: 50px;
         line-height: 50px;
