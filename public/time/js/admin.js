@@ -253,4 +253,68 @@ $(function () {
         }
     });
 
+    //人物头像上传
+    if( $("#person_head").length > 0 ) {
+        var uploaderPic = new plupload.Uploader({
+            runtimes: 'html5,flash,silverlight,html4',
+            browse_button: 'person_head',
+            container: document.getElementById('CPIC'),
+            url: '/admin/persons/save-head',
+            flash_swf_url: '../js/Moxie.swf',
+            silverlight_xap_url: '../js/Moxie.xap',
+            multipart_params: { _token: t },
+            multi_selection: true,
+            chunk_size: "1024kb",
+            filters: {
+                max_file_size: '10mb',
+                mime_types: [
+                    {title: "图片文件", extensions: "jpg,png,gif"}
+                ]
+            },
+            resize: {
+                quality: 70,
+                preserve_headers: true
+            },
+            init: {
+                FilesAdded: function (up, files) {
+                    uploaderPic.start();
+                },
+                Error: function (up, err) {
+                    alert(err.message);
+                },
+                FileUploaded: function (uploaderPic, file, info) {
+                    var obj = JSON.parse(info.response);
+                    if (obj.result) {
+                        $('#CPIC').val(obj.cover);
+                        $('#CPCP').val(obj.thumb);
+                        alert('图片上传成功.');
+                    } else {
+                        alert('图片上传失败.');
+                    }
+                }
+            }
+        });
+        uploaderPic.init();
+    }
+
+    //删除人物
+    $(".person_Del").on("click", function(){
+        if(confirm("是否删除")){
+            $.ajax({
+                type: 'POST',
+                url: "/admin/persons/delete/" + $(this).attr("data-id"),
+                data: { _token: t },
+                success: function (data) {
+                    alert(data.message);
+                    if(data.error==0){
+                        location.reload();
+                    }
+                },
+                error: function (data) {
+                    alert(data.message);
+                }
+            });
+        }
+    });
+
 })

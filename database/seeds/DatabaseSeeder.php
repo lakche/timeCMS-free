@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSetAdmin::class);
         $this->call(SystemsSetValue::class);
         $this->call(CategoriesSetValue::class);
+        $this->call(PagesSetValue::class);
 
         Model::reguard();
     }

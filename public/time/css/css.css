@@ -67,3 +67,6 @@ footer a { color: #666;}
 .carousel-indicators { bottom: -25px;}
 .carousel-indicators li { background-color: #333;}
 .carousel-indicators .active { background-color: #333;}
+
+/*人物*/
+#person h3 { margin:6px;}

@@ -22,7 +22,7 @@
                     <div class="item text-center">
                         <h1>时光如水 岁月如歌</h1>
                         <p>工作累了吧，进来休息休息吧</p>
-                        <p><a class="btn btn-primary" href="#">开始静思</a> <a class="btn btn-primary" href="#">开始缅怀</a></p>
+                        <p><a class="btn btn-primary" href="{{ url('page/building') }}">开始静思</a> <a class="btn btn-primary" href="{{ url('page/building') }}">开始缅怀</a></p>
                     </div>
                 </div>
                 <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">

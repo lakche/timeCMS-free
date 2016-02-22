@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Model\Page;
 use Redirect;
+use Theme;
 
 class PageController extends Controller
 {
@@ -16,7 +17,7 @@ class PageController extends Controller
       $page->save();
 
       if($page->openurl != '') return Redirect::to(strip_tags($page->openurl));
-      else return view('page.'.$page->view, array('page' => $page));
+      else return Theme::view('page.'.$page->view, array('page' => $page));
     } else {
       return Redirect::to('/');
     }
