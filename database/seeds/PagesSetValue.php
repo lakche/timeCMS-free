@@ -14,7 +14,7 @@ class PagesSetValue extends Seeder
     {
         $building = Page::where('url','building')->first();
         if(!$building){
-            $building = new User();
+            $building = new Page();
             $building->url = 'building';
             $building->view = 'building';
         }
