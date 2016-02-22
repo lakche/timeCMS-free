@@ -11,7 +11,10 @@
                                     @foreach($persons as $person)
                                         <div class="col-sm-6 col-md-4">
                                             <div class="thumbnail">
-                                                <a href="{{ url('person',$person->id) }}"><img src="{{ $person->getHead() }}" alt="{{ $person->name }}"></a>
+                                                <div class="pic">
+                                                    <a href="{{ url('person',$person->id) }}"><img src="{{ $person->getHead() }}" alt="{{ $person->name }}"></a>
+                                                    <span><s></s><div>{{ $person->point }}</div></span>
+                                                </div>
                                                 <div class="caption text-center">
                                                     <a href="{{ url('person',$person->id) }}"><h3>{{ $person->name }}</h3></a>
                                                     <p>{{ $person->title }}</p>

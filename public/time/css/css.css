@@ -69,4 +69,11 @@ footer a { color: #666;}
 .carousel-indicators .active { background-color: #333;}
 
 /*人物*/
-#person h3 { margin:6px;}
+#person h3 { margin:6px 6px 10px;}
+#person .pic { height: 240px; overflow: hidden; border-radius: 50%; position: relative;}
+#person .pic span { position: absolute; top: 44%; left: 0; width: 100%;}
+#person .pic span s { background: #000; width: 100%; height: 30px; position: absolute; top: 0; left: 0; filter:alpha(opacity=50); -moz-opacity:0.5; opacity:0.5;}
+#person .pic span div { width: 100%; height: 30px; line-height: 30px; text-align: center; color: #fff; font-size: 24px; font-weight: bold; position: absolute; top: 0; left: 0;}
+#person .page-body .info { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ccc; color: #666; font-size: 16px;}
+#person .page-body .info div.btn { margin: 4px !important; font-size: 16px;}
+#person .page-body .info div.btn span.badge { font-size: 16px;}
