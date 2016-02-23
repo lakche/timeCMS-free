@@ -27,24 +27,13 @@ class Article extends Model
     return $this->belongsTo('App\Model\Category');
   }
 
-  public function setCover($project = null)
+  public function getCover()
   {
-    if($this->is_json($project)){
-      if($project->gallery_id > 0){
-        if($project->gallery->thumb != ''){
-          return $project->gallery->thumb;
-        } else {
-          return $project->gallery->pic;
-        }
-      } else {
-        return 'jingzhou/images/no-cover.jpg';
-      }
+    if($this->thumb != ''){
+      return $this->thumb;
+    } else {
+      $this->cover;
     }
-    return 'jingzhou/images/no-cover.jpg';
   }
 
-  private function is_json($string) {
-    json_decode($string);
-    return (json_last_error() == JSON_ERROR_NONE);
-  }
 }

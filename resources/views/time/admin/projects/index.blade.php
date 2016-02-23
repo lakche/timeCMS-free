@@ -12,7 +12,7 @@
                 <div class="col-sm-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            文章管理 @if(isset($type)) - {{ $type->title }} @endif
+                            项目管理 @if(isset($type)) - {{ $type->title }} @endif
                         </div>
                         <div class="panel-body">
                             <table class="table table-striped">
@@ -27,9 +27,9 @@
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li><a href="{{ url('admin/articles') }}">全部</a></li>
+                                                <li><a href="{{ url('admin/projects') }}">全部</a></li>
                                                 @foreach($categories as $category)
-                                                    <li><a href="{{ url('admin/articles/type',$category->id) }}">{{ $category->title }}</a></li>
+                                                    <li><a href="{{ url('admin/projects/type',$category->id) }}">{{ $category->title }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -38,18 +38,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($articles as $article)
+                                @foreach($projects as $project)
                                     <tr>
-                                        <td>{{ $article->id }}</td>
-                                        <td><a href="{{ url('article', [$article->id]) }}"
-                                               target="_blank">{{ $article->title }}</a></td>
-                                        <td><a href="{{ url('admin/articles/type',$article->category_id) }}">{{ $article->category->title }}</a></td>
+                                        <td>{{ $project->id }}</td>
+                                        <td><a href="{{ url('project', [$project->id]) }}"
+                                               target="_blank">{{ $project->title }}</a></td>
+                                        <td><a href="{{ url('admin/projects/type',$project->category_id) }}">{{ $project->category->title }}</a></td>
                                         <td>
-                                            <a href="{{ url('admin/articles/edit', [$article->id]) }}">
-                                                <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑文章"></i>
+                                            <a href="{{ url('admin/projects/edit', [$project->id]) }}">
+                                                <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑项目"></i>
                                             </a>
-                                            <a href="javascript:void(0);" data-id="{{ $article->id }}" class="article_Del">
-                                                <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除文章"></i>
+                                            <a href="javascript:void(0);" data-id="{{ $project->id }}" class="project_Del">
+                                                <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除项目"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -59,12 +59,12 @@
                                 <tr>
                                     <td colspan="8">
                                         <div class="pagination"
-                                             style="text-align:center;">{!! $articles->render() !!}</div>
+                                             style="text-align:center;">{!! $projects->render() !!}</div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ url('admin/articles/add') }}"
-                                                       class="btn btn-info pull-right">添加文章</a></td>
+                                    <td colspan="8"><a href="{{ url('admin/projects/add') }}"
+                                                       class="btn btn-info pull-right">添加项目</a></td>
                                 </tr>
                                 </tfoot>
                             </table>

@@ -5,7 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Project extends Model
 {
   use SoftDeletes;
 
@@ -13,6 +13,7 @@ class Category extends Model
 
   public function scopeSortByDesc($query,$key)
   {
+    if($key != 'id') return $query->orderBy($key,'desc')->orderBy('id','desc');
     return $query->orderBy($key,'desc');
   }
 
@@ -21,29 +22,9 @@ class Category extends Model
     return $query->orderBy($key);
   }
 
-  public function scopeIsNavShow($query)
+  public function category()
   {
-    return $query->where('is_nav_show',1);
-  }
-
-  public function subs()
-  {
-    return $this->hasMany('App\Model\Category','parent_id','id');
-  }
-
-  public function root()
-  {
-    return $this->belongsTo('App\Model\Category','root_id','id');
-  }
-
-  public function parent()
-  {
-    return $this->belongsTo('App\Model\Category','parent_id','id');
-  }
-
-  public function articles()
-  {
-    return $this->hasMany('App\Model\Article');
+    return $this->belongsTo('App\Model\Category');
   }
 
   public function getCover()
@@ -54,4 +35,5 @@ class Category extends Model
       $this->cover;
     }
   }
+
 }

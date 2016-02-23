@@ -21,10 +21,10 @@
                 <div class="col-sm-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            项目管理
+                            文章管理
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ url('admin/projects/save',$article->id) }}"
+                            <form method="POST" action="{{ url('admin/articles/save',$article->id) }}"
                                   enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
                                 <input type="hidden" name="type" id="UPTYPE" value="article"/>
@@ -150,7 +150,7 @@
                                 @endif
                                 <div class="input-group col-sm-12">
                                     <button type="submit" class="btn btn-primary pull-left">保存文章</button>
-                                    <a href="{{ url('admin/projects') }}" class="btn btn-warning pull-right">返回列表</a>
+                                    <a href="{{ url('admin/articles') }}" class="btn btn-warning pull-right">返回列表</a>
                                 </div>
                             </form>
                         </div>
@@ -160,7 +160,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        var um = UM.getEditor('content',{imageUrl:"{{ url('admin/projects/update-image') }}"});
+        var um = UM.getEditor('content',{imageUrl:"{{ url('admin/articles/update-image') }}"});
         $.fn.bootstrapSwitch.defaults.onColor = 'primary';
         $.fn.bootstrapSwitch.defaults.offColor = 'danger';
         $("[type='checkbox']").bootstrapSwitch();

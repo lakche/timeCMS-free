@@ -23,4 +23,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
     Route::controller('pages', 'PagesController');
     Route::controller('users', 'UsersController');
     Route::controller('persons', 'PersonsController');
+    Route::controller('projects', 'ProjectsController');
 });

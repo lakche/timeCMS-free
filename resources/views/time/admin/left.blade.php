@@ -4,6 +4,7 @@
     <a class="list-group-item" href="{{ url('admin/system') }}">系统设置</a>
     <a class="list-group-item" href="{{ url('admin/categories') }}">分类管理</a>
     <a class="list-group-item" href="{{ url('admin/articles') }}">文章管理</a>
+    <a class="list-group-item" href="{{ url('admin/projects') }}">项目管理</a>
     <a class="list-group-item" href="{{ url('admin/persons') }}">人物管理</a>
     <a class="list-group-item" href="{{ url('admin/pages') }}">单页管理</a>
     <a class="list-group-item" href="{{ url('admin/users') }}">用户管理</a>
