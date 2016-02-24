@@ -80,6 +80,33 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-12 col-md-12" id="person">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">作品展示
+                                <span class="pull-right"><a href="{{ url('project') }}">更多>></a></span>
+                            </div>
+                            <div class="panel-body" id="project">
+                                @foreach($projects as $project)
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="thumbnail">
+                                            <div class="pic">
+                                                <p>
+                                                    <a href="{{ url('project',$project->id) }}">
+                                                        <img src="{{ $project->getCover() }}" alt="{{ $project->title }}">
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="caption text-center">
+                                                <a href="{{ url('project',$project->id) }}">
+                                                    <h3>{{ str_limit($project->title,14,'...') }}</h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                     <div class="clearfix">
                         <div class="col-sm-12 col-md-4">
                             <div class="panel panel-primary">
