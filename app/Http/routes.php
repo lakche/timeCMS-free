@@ -12,6 +12,8 @@ Route::controller('user', 'UserController');
 Route::resource('category', 'CategoryController',['only'=>['index','show']]);
 Route::resource('article', 'ArticleController',['only'=>['index','show']]);
 Route::resource('person', 'PersonController',['only'=>['index','show']]);
+Route::get('project/type/{id}', 'ProjectController@getType');
+Route::resource('project', 'ProjectController',['only'=>['index','show']]);
 Route::get('page/{id}', 'PageController@show');
 
 //管理系统

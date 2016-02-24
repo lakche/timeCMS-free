@@ -80,5 +80,12 @@ footer a { color: #666;}
 #person .pic span s { background: #000; width: 100%; height: 30px; position: absolute; top: 0; left: 0; filter:alpha(opacity=50); -moz-opacity:0.5; opacity:0.5;}
 #person .pic span div { width: 100%; height: 30px; line-height: 30px; text-align: center; color: #fff; font-size: 24px; font-weight: bold; position: absolute; top: 0; left: 0;}
 #person .page-body .info { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ccc; color: #666; font-size: 16px;}
-#person .page-body .info div.btn { margin: 4px !important; font-size: 16px;}
-#person .page-body .info div.btn span.badge { font-size: 16px;}
+#person .page-body .info div.btn { margin: 4px !important;}
+
+/*项目*/
+#project .pic { height: 240px; overflow: hidden; position: relative; background: #eee; border-radius: 8px;}
+#project .pic p{ height:240px; line-height:240px; text-align: center;}
+#project .pic p img{ *margin-top:expression((240 - this.height )/2); display: inline;}
+#project .info { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ccc; color: #666; font-size: 16px;}
+#project .info div.btn { margin: 4px !important;}
+.speed span { margin: 0 10px; color: #ccc;}

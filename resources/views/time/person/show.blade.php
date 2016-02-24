@@ -9,10 +9,12 @@
                     </div>
                     <div class="page-body">
                         <div class="info">
-                            <div class="btn btn-primary btn-lg">性别 <span class="badge">{{ $person->sex ? '女' : '男' }}</span></div>
-                            <div class="btn btn-primary btn-lg">从业时间 <span class="badge">{{ $person->age }}</span></div>
-                            <div class="btn btn-primary btn-lg">贡献 <span class="badge">{{ $person->point }}</span></div><br>
-                            @foreach( json_decode($person->tag) as $tag )<div class="btn btn-primary btn-lg">{{ $tag }}</div>@endforeach
+                            <div class="btn btn-primary">性别 <span class="badge">{{ $person->sex ? '女' : '男' }}</span></div>
+                            <div class="btn btn-primary">从业时间 <span class="badge">{{ $person->age }}</span></div>
+                            <div class="btn btn-primary">贡献 <span class="badge">{{ $person->point }}</span></div><br>
+                            @if($person->tag != '[""]')
+                                @foreach( json_decode($person->tag) as $tag )<div class="btn btn-primary">{{ $tag }}</div>@endforeach
+                            @endif
                         </div>
                         {!! $person->text !!}
                     </div>

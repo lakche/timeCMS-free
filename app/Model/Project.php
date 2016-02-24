@@ -51,5 +51,15 @@ class Project extends Model
     return implode(',',$person_name);
   }
 
+  public function persons()
+  {
+    $person_id = $this->person_id;
+
+    $person_id = json_decode($person_id);
+    $persons = Person::wherein('id',$person_id)->get();
+
+    return $persons;
+  }
+
 
 }

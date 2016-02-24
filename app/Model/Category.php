@@ -46,6 +46,11 @@ class Category extends Model
     return $this->hasMany('App\Model\Article');
   }
 
+  public function projects()
+  {
+    return $this->hasMany('App\Model\Project');
+  }
+
   public function getCover()
   {
     if($this->thumb != ''){

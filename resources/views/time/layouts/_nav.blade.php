@@ -14,7 +14,7 @@
                 <li><a href="{{ url('category',1) }}">技术漫谈</a></li>
                 <li><a href="{{ url('category',2) }}">说天道地</a></li>
                 <li><a href="{{ url('person') }}">荣誉殿堂</a></li>
-                <li><a href="{{ url('page/building') }}">作品展示</a></li>
+                <li><a href="{{ url('project') }}">作品展示</a></li>
                 <li><a href="{{ url('page/building') }}">静思堂</a></li>
                 <li><a href="{{ url('page/building') }}">通天塔</a></li>
               </ul>
