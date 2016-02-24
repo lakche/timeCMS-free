@@ -79,7 +79,6 @@ class ArticlesController extends Controller
         "title" => '文章标题',
         'category_id' => '文章分类',
         'sort' => '文章排序',
-        'gallery_id' => '封面图',
         'views' => '浏览量',
         'is_recommend' => '是否推荐',
         'is_show' => '是否显示',
@@ -95,7 +94,7 @@ class ArticlesController extends Controller
         'keywords' => 'seo关键字',
         'description' => 'seo描述',
     );
-    $input = Request::only(['title','category_id','sort','gallery_id','views','is_recommend','is_show','info','tag','url','text','cover','thumb','subtitle','author','source','keywords','description']);
+    $input = Request::only(['title','category_id','sort','views','is_recommend','is_show','info','tag','url','text','cover','thumb','subtitle','author','source','keywords','description']);
 
     $validator = Validator::make($input, $rules, $messages,$attributes);
     if ($validator->fails()) {

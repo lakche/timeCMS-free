@@ -63,8 +63,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ url('admin/projects/add') }}"
-                                                       class="btn btn-info pull-right">添加项目</a></td>
+                                    <td colspan="8"><a href="{{ url('admin/projects/add') }}" class="btn btn-info pull-right">添加项目</a></td>
                                 </tr>
                                 </tfoot>
                             </table>

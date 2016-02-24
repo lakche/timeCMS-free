@@ -24,7 +24,7 @@
                             项目管理
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ url('admin/projects/save',$article->id) }}"
+                            <form method="POST" action="{{ url('admin/articles/save',$article->id) }}"
                                   enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
                                 <input type="hidden" name="type" id="UPTYPE" value="article"/>
@@ -88,24 +88,20 @@
                                 @endif
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">是否推荐</div>
-                                    <input type="checkbox" name="is_recommend" value="1"
-                                           data-on-text="推荐中" data-off-text="不推荐"
-                                           @if($article->is_recommend) checked @endif />
+                                    <input type="checkbox" name="is_recommend" value="1" data-on-text="推荐中" data-off-text="不推荐" @if($article->is_recommend) checked @endif />
                                 </div>
                                 @if($errors->first('is_recommend'))
                                     <p class="bg-danger">{{ $errors->first('is_recommend') }}</p>
                                 @endif
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">是否显示</div>
-                                    <input type="checkbox" name="is_show" value="1"
-                                           data-on-text="显示" data-off-text="隐藏"
-                                           @if($article->is_show) checked @endif />
+                                    <input type="checkbox" name="is_show" value="1" data-on-text="显示" data-off-text="隐藏" @if($article->is_show) checked @endif />
                                 </div>
-                                @if($errors->first('is_join'))
-                                    <p class="bg-danger">{{ $errors->first('is_join') }}</p>
+                                @if($errors->first('is_show'))
+                                    <p class="bg-danger">{{ $errors->first('is_show') }}</p>
                                 @endif
                                 <div class="input-group">
-                                    <div class="input-group-addon">栏目封面</div>
+                                    <div class="input-group-addon">文章封面</div>
                                     <input type="text" class="form-control" name="cover" id="CPIC"
                                            value="{{ $article->cover }}" readonly>
                                     <input type="hidden" class="form-control" name="thumb" id="CPCP" value="{{ $article->thumb }}" readonly>
@@ -150,7 +146,7 @@
                                 @endif
                                 <div class="input-group col-sm-12">
                                     <button type="submit" class="btn btn-primary pull-left">保存文章</button>
-                                    <a href="{{ url('admin/projects') }}" class="btn btn-warning pull-right">返回列表</a>
+                                    <a href="{{ url('admin/articles') }}" class="btn btn-warning pull-right">返回列表</a>
                                 </div>
                             </form>
                         </div>

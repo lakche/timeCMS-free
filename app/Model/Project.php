@@ -5,6 +5,8 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Model\Person;
+
 class Project extends Model
 {
   use SoftDeletes;
@@ -35,5 +37,19 @@ class Project extends Model
       $this->cover;
     }
   }
+
+  public function getPersonName()
+  {
+    $person_id = $this->person_id;
+    $person_name = [];
+    foreach(json_decode($person_id) as $id){
+      $person = Person::where('id',$id)->first();
+      if($person){
+        $person_name[] = $person->name;
+      }
+    }
+    return implode(',',$person_name);
+  }
+
 
 }

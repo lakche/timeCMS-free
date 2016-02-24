@@ -16,7 +16,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('title')->comment('项目名称');
             $table->string('info')->comment('项目简介');
-            $table->text('description')->comment('项目详情');
+            $table->text('text')->comment('项目详情');
             $table->string('cover')->comment('项目封面');
             $table->string('thumb')->comment('项目封面微缩图');
             $table->unsignedInteger('category_id')->comment('分类ID');
@@ -26,6 +26,9 @@ class CreateProjectsTable extends Migration
             $table->integer('is_show')->comment('是否显示');
             $table->integer('views')->comment('浏览量');
             $table->string('url')->comment('外链网址');
+
+            $table->string('keywords')->comment('seo关键字');
+            $table->string('description')->comment('seo描述');
 
             $table->json('speed')->comment('项目进度');
             $table->double('cost', 11, 2)->comment('项目费用');

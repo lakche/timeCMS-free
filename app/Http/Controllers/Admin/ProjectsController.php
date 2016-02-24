@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Project;
 use App\Model\Category;
+use App\Model\Person;
 use App\Libs\Uploader;
 use App\Libs\Plupload;
 use Response;
@@ -39,11 +40,15 @@ class ProjectsController extends Controller
     $project->is_show = 1;
     $project->sort = 0;
     $project->views = 0;
+    $project->cost = 0;
+    $project->period = 0;
     $project->category_id = 1;
     $project->tag = json_encode([]);
+    $project->person_id = json_encode([]);
     $types = Category::sortByDesc('id')->get();
     $categoryTree = $this->categoryTree();
-    return Theme::view('admin.projects.show',compact(['project','areas','types','categoryTree']));
+    $persons = Person::sortByDesc('point')->get();
+    return Theme::view('admin.projects.show',compact(['project','areas','types','categoryTree','persons']));
   }
 
   public function getEdit($id)
@@ -55,7 +60,8 @@ class ProjectsController extends Controller
 
     $types = Category::sortByDesc('id')->get();
     $categoryTree = $this->categoryTree();
-    return Theme::view('admin.projects.show',compact(['project','types','categoryTree']));
+    $persons = Person::sortByDesc('point')->get();
+    return Theme::view('admin.projects.show',compact(['project','types','categoryTree','persons']));
   }
 
   public function postSave($id = 0)
@@ -66,6 +72,8 @@ class ProjectsController extends Controller
         'category_id' => 'required|integer|exists:categories,id',
         'sort' => 'required|integer',
         'views' => 'required|integer',
+        'cost' => 'required|integer',
+        'period' => 'required|integer',
     ];
     $messages = [
         'required' => ':attribute不能为空.',
@@ -76,26 +84,27 @@ class ProjectsController extends Controller
         'min' => ':attribute太小.',
     ];
     $attributes = array(
-        "title" => '文章标题',
-        'category_id' => '文章分类',
-        'sort' => '文章排序',
-        'gallery_id' => '封面图',
+        "title" => '项目名称',
+        'category_id' => '项目分类',
+        'sort' => '项目排序',
         'views' => '浏览量',
+        "tag" => '项目标签',
         'is_recommend' => '是否推荐',
         'is_show' => '是否显示',
-        "info" => '文章简介',
-        "tag" => '文章标签',
-        "url" => '外链网址',
         "cover" => '封面图',
         "thumb" => '封面微缩图',
-        'text' => '文章详情',
-        'subtitle' => '副标题',
-        'author' => '文章作者',
-        'source' => '文章来源',
+        "cost" => '项目费用',
+        "period" => '项目周期',
+        "person_id" => '参与人员',
+        "info" => '项目简介',
+        "url" => '外链网址',
         'keywords' => 'seo关键字',
         'description' => 'seo描述',
+        'text' => '项目详情',
+        'time' => '进度时间',
+        'event' => '进度事件',
     );
-    $input = Request::only(['title','category_id','sort','gallery_id','views','is_recommend','is_show','info','tag','url','text','cover','thumb','subtitle','author','source','keywords','description']);
+    $input = Request::only(['title','category_id','sort','views','tag','is_recommend','is_show','cover','thumb','cost','period','person_id','info','url','keywords','description','text','time','event']);
 
     $validator = Validator::make($input, $rules, $messages,$attributes);
     if ($validator->fails()) {
@@ -109,6 +118,15 @@ class ProjectsController extends Controller
       } else {
         $project = new Project;
       }
+      $speed = [];
+      foreach($input['time'] as $key => $value){
+        if($input['time'][$key] != '') {
+          $speed[] = ['time' => strip_tags($input['time'][$key]), 'event' => strip_tags($input['event'][$key])];
+        }
+      }
+      $speed = array_sort($speed, function ($value) {
+        return $value['time'];
+      });
       $project->title = strip_tags($input['title']);
       $project->category_id = $input['category_id'];
       $project->sort = $input['sort'];
@@ -116,25 +134,26 @@ class ProjectsController extends Controller
       $project->tag = json_encode(explode(',',strip_tags($input['tag'])));
       $project->is_recommend = $input['is_recommend'] ? 1 : 0;
       $project->is_show = $input['is_show'] ? 1 : 0;
-      $project->info = strip_tags($input['info']);
-      $project->url = strip_tags($input['url']);
       $project->cover = strip_tags($input['cover']);
       $project->thumb = strip_tags($input['thumb']);
-      $project->text = $input['text'] ? $input['text'] : '';
-      $project->subtitle = strip_tags($input['subtitle']);
-      $project->author = strip_tags($input['author']);
-      $project->source = strip_tags($input['source']);
+      $project->cost = $input['cost'];
+      $project->period = $input['period'];
+      $project->person_id = json_encode(explode(',',strip_tags($input['person_id'])));
+      $project->info = strip_tags($input['info']);
+      $project->url = strip_tags($input['url']);
       $project->keywords = strip_tags($input['keywords']);
       $project->description = strip_tags($input['description']);
+      $project->text = $input['text'] ? $input['text'] : '';
+      $project->speed = json_encode($speed);
       $project->save();
     }
 
-    $message = '文章发布成功，请选择操作！';
+    $message = '项目发布成功，请选择操作！';
     $url = [];
-    $url['返回文章列表'] = ['url'=>url('admin/projects')];
-    if($article->category_id > 0) $url['返回栏目文章列表'] = ['url'=>url('admin/projects/type',$project->category_id)];
+    $url['返回项目列表'] = ['url'=>url('admin/projects')];
+    if($project->category_id > 0) $url['返回栏目项目列表'] = ['url'=>url('admin/projects/type',$project->category_id)];
     $url['继续编辑'] = ['url'=>url('admin/projects/edit',$project->id)];
-    $url['查看文章'] = ['url'=>url('project',$project->id)];
+    $url['查看项目'] = ['url'=>url('project',$project->id)];
     return Theme::view('admin.message.show',compact(['message','url']));
   }
 
