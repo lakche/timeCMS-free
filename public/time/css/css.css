@@ -75,7 +75,6 @@ footer a { color: #666;}
 #person h3 { margin:6px 6px 10px;}
 #person .pic { height: 240px; overflow: hidden; position: relative; background: #eee; border-radius: 50%;}
 #person .pic p{ height:240px; line-height:240px; text-align: center;}
-#person .pic p:before{ content:"."; margin-left:-5px; font-size:10px; visibility:hidden;}
 #person .pic p img{ *margin-top:expression((240 - this.height )/2); display: inline;}
 #person .pic span { position: absolute; top: 44%; left: 0; width: 100%;}
 #person .pic span s { background: #000; width: 100%; height: 30px; position: absolute; top: 0; left: 0; filter:alpha(opacity=50); -moz-opacity:0.5; opacity:0.5;}

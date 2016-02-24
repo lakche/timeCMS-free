@@ -40,7 +40,7 @@
         <div class="container">
             <div class="row">
                 @foreach($types as $tp)
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">{{ $tp->title }}<span class="pull-right"><a href="{{ url('category',$tp->id) }}">更多>></a></span></div>
                             <div class="panel-body">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 @endforeach
-                    <div class="col-md-12" id="person">
+                    <div class="col-sm-12 col-md-12" id="person">
                         <div class="panel panel-primary">
                             <div class="panel-heading">荣誉殿堂
                                 <span class="pull-right"><a href="{{ url('person') }}">更多>></a></span>
