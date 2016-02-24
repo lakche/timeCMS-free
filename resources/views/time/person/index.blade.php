@@ -12,13 +12,13 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="thumbnail">
                                                 <div class="pic">
-                                                    <a href="{{ url('person',$person->id) }}"><img src="{{ $person->getHead() }}" alt="{{ $person->name }}"></a>
+                                                    <p><a href="{{ url('person',$person->id) }}"><img src="{{ $person->getHead() }}" alt="{{ $person->name }}"></a></p>
                                                     <span><s></s><div>{{ $person->point }}</div></span>
                                                 </div>
                                                 <div class="caption text-center">
                                                     <a href="{{ url('person',$person->id) }}"><h3>{{ $person->name }}</h3></a>
-                                                    <p>{{ $person->title }}</p>
-                                                    <p>{{ str_limit($person->info,20,'...') }}</p>
+                                                    <p>{{ $person->title == '' ? '　' : $person->title }}</p>
+                                                    <p>{{ $person->info == '' ? '　' : str_limit($person->info,20,'...') }}</p>
                                                 </div>
                                             </div>
                                         </div>

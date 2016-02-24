@@ -39,8 +39,8 @@
     <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-sm-9">
-                    @foreach($types as $tp)
+                @foreach($types as $tp)
+                    <div class="col-sm-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">{{ $tp->title }}<span class="pull-right"><a href="{{ url('category',$tp->id) }}">更多>></a></span></div>
                             <div class="panel-body">
@@ -53,11 +53,67 @@
                                 @endif
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                <div class="col-sm-3">
-                    @include($theme.'.category.right')
-                </div>
+                    </div>
+                @endforeach
+                    <div class="col-md-12" id="person">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">荣誉殿堂
+                                <span class="pull-right"><a href="{{ url('person') }}">更多>></a></span>
+                            </div>
+                            <div class="panel-body">
+                                @foreach($persons as $person)
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="thumbnail">
+                                            <div class="pic">
+                                                <p><a href="{{ url('person',$person->id) }}">
+                                                    <img src="{{ $person->getHead() }}" alt="{{ $person->name }}">
+                                                </a></p>
+                                                <span><s></s><div>{{ $person->point }}</div></span>
+                                            </div>
+                                            <div class="caption text-center">
+                                                <a href="{{ url('person',$person->id) }}"><h3>{{ $person->name }}</h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-12 col-md-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">关于荣誉殿堂</div>
+                                <div class="panel-body">
+                                    <p class="info">凡是帮助我改进本系统或提出意见被采纳者，均可以加入荣誉殿堂，展示您的风采。</p>
+                                    <p>
+                                        <a href="https://git.oschina.net/lakche/timeCMS-free.git" target="_blank" class="btn btn-default">开源中国仓库</a>
+                                        <a href="https://github.com/lakche/timeCMS-free.git" target="_blank" class="btn btn-default pull-right">github仓库</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">关于静思堂</div>
+                                <div class="panel-body">
+                                    <p class="info">在这里你可以把烦恼记录下来，经过一个星期的沉淀之后，你会发现一切都是浮云。</p>
+                                    <p><a href="{{ url('page/building') }}" class="btn btn-default btn-block">开始静思</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">关于通天塔</div>
+                                <div class="panel-body">
+                                    <p class="info">美丽的灵魂已安息在天堂，我们的思绪却久久不能平静，即使无数的岁月，总有一些人值得缅怀。</p>
+                                    <p><a href="{{ url('page/building') }}" class="btn btn-default btn-block">开始缅怀</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
