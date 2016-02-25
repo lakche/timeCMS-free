@@ -13,10 +13,10 @@
                     <div class="list-group">
                         <a class="list-group-item" href="{{ url('category',1) }}">技术漫谈</a>
                         <a class="list-group-item" href="{{ url('category',2) }}">说天道地</a>
-                        <a class="list-group-item" href="#">荣誉殿堂</a>
-                        <a class="list-group-item" href="#">作品展示</a>
-                        <a class="list-group-item" href="#">静思堂</a>
-                        <a class="list-group-item" href="#">通天塔</a>
+                        <a class="list-group-item" href="{{ url('person') }}">荣誉殿堂</a>
+                        <a class="list-group-item" href="{{ url('project') }}">作品展示</a>
+                        <a class="list-group-item" href="{{ url('page/building') }}">静思堂</a>
+                        <a class="list-group-item" href="{{ url('page/building') }}">通天塔</a>
                     </div>
                 </div>
                 <div class="col-sm-6">

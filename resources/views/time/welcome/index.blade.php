@@ -12,7 +12,7 @@
                     <div class="item active text-center">
                         <h1>obday {{ config('system.title') }}</h1>
                         <p>这里是timeCMS官方站点</p>
-                        <p><a class="btn btn-primary" href="">使用说明</a></p>
+                        <p><a class="btn btn-primary" href="{{ url('article',2) }}">使用说明</a></p>
                     </div>
                     <div class="item text-center">
                         <h1>时光CMS timeCMS</h1>
