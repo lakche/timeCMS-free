@@ -3,10 +3,12 @@
     <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-9" id="article">
                     <div class="page-header text-center">
                         <h2>{{ $project->title }}</h2>
-                        <span>项目分类：<a href="{{ url('project/type',$project->category_id) }}">{{ $project->category->title }}</a> 发布时间：{{ $project->updated_at->format('Y-m-d') }} 浏览量：{{ $project->views }}</span>
+                        <span>项目分类：</span><a href="{{ url('project/type',$project->category_id) }}">{{ $project->category->title }}</a>
+                        <span>发布时间：</span>{{ $project->updated_at->format('Y-m-d') }}
+                        <span>浏览量：</span>{{ $project->views }}</span>
                     </div>
                     <div class="page-body" id="project">
                         <div class="info">
