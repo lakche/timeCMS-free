@@ -13,7 +13,7 @@
                             <div class="btn btn-primary">从业时间 <span class="badge">{{ $person->age }}</span></div>
                             <div class="btn btn-primary">贡献 <span class="badge">{{ $person->point }}</span></div><br>
                             @if($person->tag != '[""]')
-                                @foreach( json_decode($person->tag) as $tag )<div class="btn btn-primary">{{ $tag }}</div>@endforeach
+                                <div class="btn btn-default">特长：</div>@foreach( json_decode($person->tag) as $tag )<div class="btn btn-primary">{{ $tag }}</div>@endforeach
                             @endif
                         </div>
                         {!! $person->text !!}

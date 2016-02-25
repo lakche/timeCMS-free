@@ -66,7 +66,7 @@
                                     <p class="bg-danger">{{ $errors->first('views') }}</p>
                                 @endif
                                 <div class="input-group">
-                                    <div class="input-group-addon">项目标签</div>
+                                    <div class="input-group-addon">文章标签</div>
                                     <input type="text" class="form-control" name="tag" value="{{ old('tag') ? old('tag') : implode(',',json_decode($article->tag)) }}">
                                 </div>
                                 @if($errors->first('tag'))

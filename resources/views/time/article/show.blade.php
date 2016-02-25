@@ -9,7 +9,10 @@
                         @if($article->subtitle != '')
                             <h4>{{ $article->subtitle }}</h4>
                         @endif
-                        <span>作者：{{ $article->author }} 来源：{{ $article->source }} 发布时间：{{ $article->updated_at->format('Y-m-d') }} 浏览量：{{ $article->views }}</span>
+                        <span>作者：</span>{{ $article->author }}
+                        <span>来源：</span>{{ $article->source }}
+                        <span>发布时间：</span>{{ $article->updated_at->format('Y-m-d') }}
+                        <span>浏览量：</span>{{ $article->views }}
                     </div>
                     <div class="page-body">
                         {!! $article->text !!}
