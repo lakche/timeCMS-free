@@ -13,7 +13,7 @@
                             <div class="btn btn-primary">项目费用 <span class="badge">{{ $project->cost }}元</span></div>
                             <div class="btn btn-primary">项目周期 <span class="badge">{{ $project->period }}天</span></div><br>
                             @if($project->tag != '[""]')
-                                @foreach( json_decode($project->tag) as $tag )<div class="btn btn-primary">{{ $tag }}</div>@endforeach
+                                <div class="btn btn-default">特点：</div>@foreach( json_decode($project->tag) as $tag )<div class="btn btn-primary">{{ $tag }}</div>@endforeach
                             @endif
                         </div>
                         {!! $project->text !!}
