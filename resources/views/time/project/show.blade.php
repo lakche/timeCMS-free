@@ -16,6 +16,9 @@
                                 <div class="btn btn-default">特点：</div>@foreach( json_decode($project->tag) as $tag )<div class="btn btn-primary">{{ $tag }}</div>@endforeach
                             @endif
                         </div>
+                        @if($project->cover != '')
+                            <div class="cover text-center"><img src="{{ $project->cover }}" alt="{{ $project->title }}"></div>
+                        @endif
                         {!! $project->text !!}
                     </div>
                     <div class="panel panel-primary" id="person">

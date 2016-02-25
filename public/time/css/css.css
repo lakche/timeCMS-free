@@ -89,4 +89,5 @@ footer a { color: #666;}
 #project .pic p img{ *margin-top:expression((240 - this.height )/2); display: inline;}
 #project .info { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ccc; color: #666; font-size: 16px;}
 #project .info div.btn { margin: 4px !important;}
+#project .cover { margin-bottom: 10px;}
 .speed span { margin: 0 10px; color: #ccc;}
