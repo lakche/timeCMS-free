@@ -72,7 +72,7 @@ class ProjectsController extends Controller
         'category_id' => 'required|integer|exists:categories,id',
         'sort' => 'required|integer',
         'views' => 'required|integer',
-        'cost' => 'required|integer',
+        'cost' => 'required|numeric',
         'period' => 'required|integer',
     ];
     $messages = [
