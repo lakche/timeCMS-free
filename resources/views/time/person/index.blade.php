@@ -8,6 +8,7 @@
                             <div class="panel-heading">荣誉殿堂</div>
                             <div class="panel-body" id="person">
                                 <div class="row">
+                                    @if($persons = Theme::person_data(999,byPoint))
                                     @foreach($persons as $person)
                                         <div class="col-sm-6 col-md-4">
                                             <div class="thumbnail">
@@ -23,6 +24,7 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                    @endif
                                 </div>
 
                             </div>

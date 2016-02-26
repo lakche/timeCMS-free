@@ -10,8 +10,7 @@ class PersonController extends Controller
 {
   public function index()
   {
-    $persons = Person::sortByDesc('point')->get();
-    return Theme::view('person.index',compact(['persons']));
+    return Theme::view('person.index',[]);
   }
 
   public function show($id = 0)

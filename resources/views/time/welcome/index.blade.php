@@ -44,7 +44,7 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading">{{ $tp->title }}<span class="pull-right"><a href="{{ url('category',$tp->id) }}">更多>></a></span></div>
                             <div class="panel-body">
-                                @if($articles = $tp->articles->sortByDesc('id')->take(9))
+                                @if($articles = Theme::article_data(5,byId,findCategory,$tp->id))
                                     <div class="list-group">
                                         @foreach($articles as $article)
                                             <a href="{{ url('article',$article->id) }}" class="list-group-item">{{ $article->title }}<span class="pull-right">{{ $article->updated_at->format('Y-m-d') }}</span></a>
@@ -61,6 +61,7 @@
                                 <span class="pull-right"><a href="{{ url('person') }}">更多>></a></span>
                             </div>
                             <div class="panel-body">
+                                @if($persons = Theme::person_data(4,byPoint))
                                 @foreach($persons as $person)
                                     <div class="col-sm-6 col-md-3">
                                         <div class="thumbnail">
@@ -77,6 +78,7 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -86,6 +88,7 @@
                                 <span class="pull-right"><a href="{{ url('project') }}">更多>></a></span>
                             </div>
                             <div class="panel-body" id="project">
+                                @if($projects = Theme::project_data(4,bySort))
                                 @foreach($projects as $project)
                                     <div class="col-sm-6 col-md-3">
                                         <div class="thumbnail">
@@ -104,6 +107,7 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
