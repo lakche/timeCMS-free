@@ -18,6 +18,9 @@
     php artisan up 关闭维护模式
     维护模式下网站任何页面均将显示503错误模板
 
+    本系统已自带debug工具，在开发模式下，屏幕最下方将出现debug工具条，可以查看项目信息。
+    在生产模式中，不会出现debug工具条，请修改.env文件的APP_DEBUG=false
+
     系统中有很多地方尚未规范，比如部分功能重复，将在基础功能完善之后规范一次代码
 
 ###单元测试：
@@ -67,6 +70,8 @@
          php artisan db:seed
      如果执行种子文件提示类未找到，请执行
          composer dumpautoload -o
+     如果你的IDE支持，比如PhpStorm，可以执行下面指令增强提示功能
+         php artisan ide-helper:generate
      网站架设完成
         默认管理员账户：admin，密码：timecms
 
