@@ -61,8 +61,10 @@ footer a { color: #666;}
 .page-footer { padding: 15px;}
 .page-footer a { display: block; margin-bottom: 6px;}
 #article .page-header span { color: #999;}
+#article .page-body p { text-indent: 2em;}
+#article .page-body p img { margin-left: -2em;}
 
-/*广告*/
+    /*广告*/
 .ads { width: 100%; height: auto; overflow: hidden; margin-bottom: 20px; border-radius: 4px;}
 .ads img { width: 100%; height: auto;}
 
