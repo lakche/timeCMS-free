@@ -11,7 +11,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">系统统计</div>
                         <div class="panel-body">
-                            <p></p>
+                            <p class="clearfix"></p>
                             <div class="col-sm-6">
                                 <a href="{{ url('admin/users') }}" class="list-group-item active">最近五个用户<span class="badge">共{{ $user_num }}个</span></a>
                                 @foreach($users as $user)
@@ -24,6 +24,7 @@
                                     <a href="{{ url('person',$person->id) }}" class="list-group-item" target="_blank">{{ $person->name }}</a>
                                 @endforeach
                             </div>
+                            <p class="clearfix"></p>
                             <div class="col-sm-6">
                                 <a href="{{ url('admin/articles') }}" class="list-group-item active">最近五篇文章<span class="badge">共{{ $article_num }}篇</span></a>
                                 @foreach($articles as $article)

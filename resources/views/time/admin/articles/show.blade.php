@@ -27,7 +27,8 @@
                             <form method="POST" action="{{ url('admin/articles/save',$article->id) }}"
                                   enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
-                                <input type="hidden" name="type" id="UPTYPE" value="article"/>
+                                <input type="hidden" name="attr" id="ATTR" value="article"/>
+                                <input type="hidden" name="hash" id="HASH" value="{{ $article->hash }}"/>
                                 <div class="input-group">
                                     <div class="input-group-addon">文章标题</div>
                                     <input type="text" class="form-control" name="title" value="{{ old('title') ? old('title') : $article->title }}">
@@ -156,7 +157,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        var um = UM.getEditor('content',{imageUrl:"{{ url('admin/projects/update-image') }}"});
+        var um = UM.getEditor('content',{imageUrl:"{{ url('admin/articles/update-image') }}"});
         $.fn.bootstrapSwitch.defaults.onColor = 'primary';
         $.fn.bootstrapSwitch.defaults.offColor = 'danger';
         $("[type='checkbox']").bootstrapSwitch();

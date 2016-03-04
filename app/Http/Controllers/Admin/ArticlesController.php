@@ -12,6 +12,7 @@ use Request;
 use Validator;
 use Redirect;
 use Image;
+use Hash;
 use Theme;
 
 class ArticlesController extends Controller
@@ -41,6 +42,7 @@ class ArticlesController extends Controller
     $article->views = 0;
     $article->category_id = 1;
     $article->tag = json_encode([]);
+    $article->hash = Hash::make(time());
     $types = Category::sortByDesc('id')->get();
     $categoryTree = $this->categoryTree();
     return Theme::view('admin.articles.show',compact(['article','areas','types','categoryTree']));
@@ -149,7 +151,7 @@ class ArticlesController extends Controller
     $up = new Uploader( "upfile" , $config );
     $info = $up->getFileInfo();
 
-    return json_encode($info);
+    return Response::json($info);
   }
 
   public function postSaveCover()

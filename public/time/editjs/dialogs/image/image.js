@@ -143,9 +143,8 @@
             '<form class="edui-image-form" method="post" enctype="multipart/form-data" target="up">' +
             '<input style=\"filter: alpha(opacity=0);\" class="edui-image-file" type="file" hidefocus name="upfile" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/>' +
             '<input type="hidden" name="_token" value="'+$("#TOKEN").val()+'">'+
-        '<input type="hidden" name="type" value="'+$("#UPTYPE").val()+'">'+
-        '<input type="hidden" name="project_id" value="'+$("#PROJECTID").val()+'">'+
-        '<input type="hidden" name="hash" value="'+$("#HASH").val()+'">'+
+            '<input type="hidden" name="attr" value="'+$("#ATTR").val()+'">'+
+            '<input type="hidden" name="hash" value="'+$("#HASH").val()+'">'+
             '</form>' +
 
             '</div>',
@@ -211,6 +210,8 @@
 
                 $('<iframe name="up"  style="display: none"></iframe>').insertBefore(me.dialog).on('load', function(){
                     var r = this.contentWindow.document.body.innerHTML;
+                    r = r.replace(/<[^>].*?>/g,"");
+                    console.log(r);
                     if(r == '')return;
                     me.uploadComplete(r);
                     $(this).unbind('load');
@@ -271,6 +272,9 @@
                             //模拟数据
                             var fd = new FormData();
                             fd.append(me.editor.getOpt('imageFieldName'), f);
+                            fd.append('_token', $("#TOKEN").val());
+                            fd.append('attr', $("#ATTR").val());
+                            fd.append('hash', $("#HASH").val());
 
                             xhr.send(fd);
                             xhr.addEventListener('load', function (e) {
