@@ -13,6 +13,7 @@ use Request;
 use Validator;
 use Redirect;
 use Image;
+use Hash;
 use Theme;
 
 class ProjectsController extends Controller
@@ -45,6 +46,7 @@ class ProjectsController extends Controller
     $project->category_id = 1;
     $project->tag = json_encode([]);
     $project->person_id = json_encode([]);
+    $project->hash = Hash::make(time());
     $types = Category::sortByDesc('id')->get();
     $categoryTree = $this->categoryTree();
     $persons = Person::sortByDesc('point')->get();
@@ -169,7 +171,7 @@ class ProjectsController extends Controller
     $up = new Uploader( "upfile" , $config );
     $info = $up->getFileInfo();
 
-    return json_encode($info);
+    return Response::json($info);
   }
 
   public function postSaveCover()

@@ -27,7 +27,8 @@
                             <form method="POST" action="{{ url('admin/projects/save',$project->id) }}"
                                   enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
-                                <input type="hidden" name="type" id="UPTYPE" value="article"/>
+                                <input type="hidden" name="attr" id="ATTR" value="project"/>
+                                <input type="hidden" name="hash" id="HASH" value="{{ $project->hash }}"/>
                                 <div class="input-group">
                                     <div class="input-group-addon">项目名称</div>
                                     <input type="text" class="form-control" name="title" value="{{ old('title') ? old('title') : $project->title }}">
