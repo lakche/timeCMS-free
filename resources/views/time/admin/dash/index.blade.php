@@ -13,18 +13,30 @@
                         <div class="panel-body">
                             <p></p>
                             <div class="col-sm-6">
-                                <a href="#" class="list-group-item active">最近五个用户<span class="badge">共{{ $user_num }}个</span></a>
+                                <a href="{{ url('admin/users') }}" class="list-group-item active">最近五个用户<span class="badge">共{{ $user_num }}个</span></a>
                                 @foreach($users as $user)
                                     <a href="#" class="list-group-item">{{ $user->name }}</a>
                                 @endforeach
                             </div>
                             <div class="col-sm-6">
-                                <a href="#" class="list-group-item active">最近五篇文章<span class="badge">共{{ $article_num }}篇</span></a>
-                                @foreach($articles as $article)
-                                    <a href="{{ url('article',$article->id) }}" class="list-group-item">{{ str_limit($article->title,32,'...') }}<span class="pull-right">{{ $article->updated_at->format('Y-m-d') }}</span></a>
+                                <a href="{{ url('admin/persons') }}" class="list-group-item active">最近五个人物<span class="badge">共{{ $person_num }}个</span></a>
+                                @foreach($persons as $person)
+                                    <a href="{{ url('person',$person->id) }}" class="list-group-item" target="_blank">{{ $person->name }}</a>
                                 @endforeach
                             </div>
+                            <div class="col-sm-6">
+                                <a href="{{ url('admin/articles') }}" class="list-group-item active">最近五篇文章<span class="badge">共{{ $article_num }}篇</span></a>
+                                @foreach($articles as $article)
+                                    <a href="{{ url('article',$article->id) }}" class="list-group-item" target="_blank">{{ str_limit($article->title,32,'...') }}<span class="pull-right">{{ $article->updated_at->format('Y-m-d') }}</span></a>
+                                @endforeach
                             </div>
+                                    <div class="col-sm-6">
+                                <a href="{{ url('admin/projects') }}" class="list-group-item active">最近五个项目<span class="badge">共{{ $project_num }}篇</span></a>
+                                @foreach($projects as $project)
+                                    <a href="{{ url('project',$project->id) }}" class="list-group-item" target="_blank">{{ str_limit($project->title,32,'...') }}<span class="pull-right">{{ $project->updated_at->format('Y-m-d') }}</span></a>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
