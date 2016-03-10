@@ -261,7 +261,7 @@ class Theme
                 $date .= "<option value='" . $category->id . "'>" . $prefix . $category->title . "</option>";
                 $subs = Category::where('parent_id', $category->id)->get();
                 if ($subs->count() > 0) {
-                    $date .= $this->categoryTree($category->id, $step + 1);
+                    $date .=  Theme::categoryTree($category->id, $step + 1);
                 }
             }
             if ($id == 0 && $step == 0) {

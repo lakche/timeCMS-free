@@ -14,6 +14,7 @@ use App\Http\Requests\ArticleRequest;
 
 use Request;
 use Redirect;
+use Image;
 use Hash;
 use Theme;
 
@@ -72,23 +73,23 @@ class ArticlesController extends Controller
     } else {
       $article = new Article;
     }
-    $article->title = strip_tags($request->get('title'));
+    $article->title = $request->get('title');
     $article->category_id = $request->get('category_id');
     $article->sort = $request->get('sort');
     $article->views = $request->get('views');
     $article->tag = json_encode(explode(',', strip_tags($request->get('tag'))));
     $article->is_recommend = $request->get('is_recommend') ? 1 : 0;
     $article->is_show = $request->get('is_show') ? 1 : 0;
-    $article->info = strip_tags($request->get('info'));
-    $article->url = strip_tags($request->get('url'));
-    $article->cover = strip_tags($request->get('cover'));
-    $article->thumb = strip_tags($request->get('thumb'));
+    $article->info = $request->get('info');
+    $article->url = $request->get('url');
+    $article->cover = $request->get('cover');
+    $article->thumb = $request->get('thumb');
     $article->text = $request->get('text') ? $request->get('text') : '';
-    $article->subtitle = strip_tags($request->get('subtitle'));
-    $article->author = strip_tags($request->get('author'));
-    $article->source = strip_tags($request->get('source'));
-    $article->keywords = strip_tags($request->get('keywords'));
-    $article->description = strip_tags($request->get('description'));
+    $article->subtitle = $request->get('subtitle');
+    $article->author = $request->get('author');
+    $article->source = $request->get('source');
+    $article->keywords = $request->get('keywords');
+    $article->description = $request->get('description');
     $article->save();
 
     $message = '文章发布成功，请选择操作！';
@@ -113,7 +114,7 @@ class ArticlesController extends Controller
     $up = new Uploader( "upfile" , $config );
     $info = $up->getFileInfo();
 
-    return Response::json($info);
+    return $info;
   }
 
   public function postSaveCover()
@@ -122,7 +123,7 @@ class ArticlesController extends Controller
     if (Request::hasFile('file')) {
       $plupload = new Plupload();
       $fileName = date("_YmdHis") . rand(1000, 9999) . '.';
-      $response = $plupload->process('file', function ($file) use (&$fileName,&$filePath) {
+      $info = $plupload->process('file', function ($file) use (&$fileName,&$filePath) {
         $fileName = $fileName . $file->getClientOriginalExtension();
         $file->move(public_path($filePath), $fileName);
       });
@@ -132,12 +133,12 @@ class ArticlesController extends Controller
       $img = Image::make(public_path($filePath) . $fileName);
       $imgMime = explode('/', $img->mime());
       if ($imgMime[0] != 'image') {
-        $response['result'] = false;
-        return Response::json($response);
+        $info['result'] = false;
+        return $info;
       }
     } else {
-      $response['result'] = false;
-      return Response::json($response);
+      $info['result'] = false;
+      return $info;
     }
 
     $img->resize(300, null, function ($constraint) {
@@ -146,10 +147,11 @@ class ArticlesController extends Controller
     });
     $img->save(public_path($filePath) . 'thumb' . $fileName);
 
-    $response['result'] = true;
-    $response['cover'] = $filePath . $fileName;
-    $response['thumb'] = $filePath . 'thumb' . $fileName;
-    return Response::json($response);
+    $info['result'] = true;
+    $info['cover'] = $filePath . $fileName;
+    $info['thumb'] = $filePath . 'thumb' . $fileName;
+
+    return $info;
   }
 
   public function postDelete($id)
