@@ -59,4 +59,5 @@ class Category extends Model
       $this->cover;
     }
   }
+
 }

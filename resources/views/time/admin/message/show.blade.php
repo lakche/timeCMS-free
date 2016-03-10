@@ -13,7 +13,7 @@
                             <div class="alert alert-danger text-center" role="alert">{{ $message }}</div>
                             <div class="text-center">
                                 @foreach($url as $key => $value)
-                                    <a href="{{ $value['url'] }}" class="btn btn-{{ $value['style'] or 'default' }}">{{ $key }}</a>
+                                    <a href="{{ $value['url'] }}" class="btn btn-{{ $value['style'] or 'default' }}" {{ isset($value['target']) ? 'target='.$value['target'] : '' }}>{{ $key }}</a>
                                 @endforeach
                             </div>
                         </div>

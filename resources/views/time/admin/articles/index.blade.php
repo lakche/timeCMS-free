@@ -28,7 +28,7 @@
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
                                                 <li><a href="{{ url('admin/articles') }}">全部</a></li>
-                                                @foreach($categories as $category)
+                                                @foreach(Theme::categories() as $category)
                                                     <li><a href="{{ url('admin/articles/type',$category->id) }}">{{ $category->title }}</a></li>
                                                 @endforeach
                                             </ul>

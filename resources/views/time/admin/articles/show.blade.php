@@ -46,7 +46,7 @@
                                 <div class="input-group">
                                     <div class="input-group-addon">文章分类</div>
                                     <select name="category_id" id="category_id" class="form-control">
-                                        {!! $categoryTree !!}
+                                        {!! Theme::categoryTree() !!}
                                     </select>
                                 </div>
                                 @if($errors->first('category_id'))

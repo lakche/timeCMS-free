@@ -21,6 +21,8 @@ define('bySort', 1); //按sort排序(排序字段)
 define('byViews', 2); //按浏览量排序，人物无该参数
 define('byCost', 3); //按花费排序，仅项目有该参数
 define('byPoint', 4); //按贡献排序，仅人物有该参数
+define('noShowHide', 1); //不显示隐藏分类
+define('showHide', 0); //显示隐藏分类
 
 /**模板功能
  * 实现快速切换主题模板功能
@@ -214,6 +216,58 @@ class Theme
             }
             $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
             Cache::add($key, $date, $expiresAt);
+            return $date;
+        }
+    }
+
+    /**获取子分类*/
+    public static function categories($parent_id = 0, $show_type = noShowHide){
+        $parent_id = intval($parent_id);
+        $show_type = intval($show_type);
+        $key = 'categories_'.$parent_id.'_'.$show_type;
+        if (Cache::has($key)) {
+            $date = Cache::get($key);
+            return $date;
+        } else {
+            $date = Category::where('is_nav_show','>=',$show_type )->where('parent_id',$parent_id)->sortByDesc('id')->get();
+            $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
+            Cache::add($key, $date, $expiresAt);
+            return $date;
+        }
+    }
+
+    /**分类树*/
+    public static function categoryTree($id = 0, $step = 0){
+        $key = 'categoryTree';
+        $id = intval($id);
+        $step = intval($step);
+        if (Cache::has($key) && $id == 0 && $step == 0) {
+            $date = Cache::get($key);
+            return $date;
+        } else {
+            $categories = Category::where('parent_id', $id)->get();
+            if ($step == 0) {
+                $date = '';
+                $prefix = '';
+            } else {
+                $date = '';
+                $prefix = '';
+                for ($i = 0; $i < $step; $i++) {
+                    $prefix .= '　';
+                }
+                $prefix .= '┖';
+            }
+            foreach ($categories as $category) {
+                $date .= "<option value='" . $category->id . "'>" . $prefix . $category->title . "</option>";
+                $subs = Category::where('parent_id', $category->id)->get();
+                if ($subs->count() > 0) {
+                    $date .= $this->categoryTree($category->id, $step + 1);
+                }
+            }
+            if ($id == 0 && $step == 0) {
+                $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
+                Cache::add($key, $date, $expiresAt);
+            }
             return $date;
         }
     }
