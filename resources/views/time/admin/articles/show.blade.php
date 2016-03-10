@@ -89,14 +89,14 @@
                                 @endif
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">是否推荐</div>
-                                    <input type="checkbox" name="is_recommend" value="1" data-on-text="推荐中" data-off-text="不推荐" @if($article->is_recommend) checked @endif />
+                                    <input type="checkbox" name="is_recommend" value="1" data-on-text="推荐中" data-off-text="不推荐" @if(old('is_recommend', $article->is_recommend)) checked @endif />
                                 </div>
                                 @if($errors->first('is_recommend'))
                                     <p class="bg-danger">{{ $errors->first('is_recommend') }}</p>
                                 @endif
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">是否显示</div>
-                                    <input type="checkbox" name="is_show" value="1" data-on-text="显示" data-off-text="隐藏" @if($article->is_show) checked @endif />
+                                    <input type="checkbox" name="is_show" value="1" data-on-text="显示" data-off-text="隐藏" @if(old('is_show', $article->is_show)) checked @endif />
                                 </div>
                                 @if($errors->first('is_show'))
                                     <p class="bg-danger">{{ $errors->first('is_show') }}</p>

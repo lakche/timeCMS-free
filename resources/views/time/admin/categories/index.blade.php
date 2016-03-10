@@ -28,23 +28,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($types as $type)
+                                @foreach($categories as $category)
                                     <tr>
-                                        <td>{{ $type->id }}</td>
-                                        <td>{{ $type->title }}</td>
-                                        <td class="text-center"><a href="{{ url('admin/categories/subs',$type->id) }}" class="btn btn-primary btn-xs">查看 <span class="badge">{{ $type->subs->count() }}</span></a></td>
+                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $category->title }}</td>
+                                        <td class="text-center"><a href="{{ url('admin/categories/subs',$category->id) }}" class="btn btn-primary btn-xs">查看 <span class="badge">{{ $category->subs->count() }}</span></a></td>
                                         <td class="text-center">
-                                            @if($type->is_nav_show)
+                                            @if($category->is_nav_show)
                                                 <i class="glyphicon glyphicon-ok text-primary"></i>
                                             @else
                                                 <i class="glyphicon glyphicon-remove text-danger"></i>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/categories/edit', [$type->id]) }}">
+                                            <a href="{{ url('admin/categories/edit', [$category->id]) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑分类"></i>
                                             </a>
-                                            <a href="javascript:void(0);" data-id="{{ $type->id }}" class="categorie_Del">
+                                            <a href="javascript:void(0);" data-id="{{ $category->id }}" class="categorie_Del">
                                                 <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除分类"></i>
                                             </a>
                                         </td>
