@@ -90,7 +90,7 @@ class CategoriesController extends Controller
     $url['继续添加'] = ['url'=>url('admin/categories/add')];
     $url['继续编辑'] = ['url'=>url('admin/categories/edit',$category->id)];
     $url['查看栏目'] = ['url'=>url('category',$category->id),'target'=>'_blank'];
-    return Theme::view('admin.message.show',compact(['message','url']));
+    return Theme::view('admin.message.show',compact('message','url'));
   }
 
   public function postSaveCover()
@@ -132,7 +132,7 @@ class CategoriesController extends Controller
   public function postDelete($id)
   {
     Category::destroy($id);
-    return Response::json(['error' => 0, 'message' => '删除成功！']);
+    return ['error' => 0, 'message' => '删除成功！'];
   }
 
 }

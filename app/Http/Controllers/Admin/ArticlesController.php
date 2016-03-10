@@ -23,7 +23,7 @@ class ArticlesController extends Controller
   public function getIndex()
   {
     $articles = Article::sortByDesc('id')->paginate(20);
-    return Theme::view('admin.articles.index',compact(['articles']));
+    return Theme::view('admin.articles.index',compact('articles'));
   }
 
   public function getType($id)
@@ -35,7 +35,7 @@ class ArticlesController extends Controller
 
     $articles = Article::where('category_id',$id)->sortByDesc('id')->paginate(20);
 
-    return Theme::view('admin.articles.index',compact(['articles','type']));
+    return Theme::view('admin.articles.index',compact('articles','type'));
   }
 
   public function getAdd()
@@ -48,7 +48,7 @@ class ArticlesController extends Controller
     $article->category_id = 1;
     $article->tag = json_encode([]);
     $article->hash = Hash::make(time());
-    return Theme::view('admin.articles.show',compact(['article']));
+    return Theme::view('admin.articles.show',compact('article'));
   }
 
   public function getEdit($id)
@@ -58,7 +58,7 @@ class ArticlesController extends Controller
     $article = Article::find($id);
     if(!$article) return Redirect::to('/admin/articles');
 
-    return Theme::view('admin.articles.show',compact(['article']));
+    return Theme::view('admin.articles.show',compact('article'));
   }
 
   public function postSave(ArticleRequest $request, $id = 0)
@@ -99,7 +99,7 @@ class ArticlesController extends Controller
     $url['继续添加'] = ['url'=>url('admin/articles/add')];
     $url['继续编辑'] = ['url'=>url('admin/articles/edit',$article->id)];
     $url['查看文章'] = ['url'=>url('article',$article->id),'target'=>'_blank'];
-    return Theme::view('admin.message.show',compact(['message','url']));
+    return Theme::view('admin.message.show',compact('message','url'));
   }
 
   public function postUpdateImage()
@@ -157,7 +157,7 @@ class ArticlesController extends Controller
   public function postDelete($id)
   {
     Article::destroy($id);
-    return Response::json(['error' => 0, 'message' => '删除成功！']);
+    return ['error' => 0, 'message' => '删除成功！'];
   }
 
 }

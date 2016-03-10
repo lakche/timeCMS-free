@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Model\Page;
+
 use App\Libs\Plupload;
-use Response;
-use Validator;
-use Redirect;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PageRequest;
+
 use Request;
+use Redirect;
 use Image;
+use Hash;
 use Theme;
 
 class PagesController extends Controller
@@ -17,7 +21,7 @@ class PagesController extends Controller
   public function getIndex()
   {
     $pages = Page::sortByDesc('id')->paginate(20);
-    return Theme::view('admin.pages.index',compact(['pages']));
+    return Theme::view('admin.pages.index',compact('pages'));
   }
 
   public function getAdd()
@@ -26,71 +30,47 @@ class PagesController extends Controller
     $page->id = 0;
     $page->views = 0;
     $page->is_open = 1;
-    return Theme::view('admin.pages.show',compact(['page']));
+    return Theme::view('admin.pages.show',compact('page'));
   }
 
   public function getEdit($id)
   {
-    $id = intval($id);
-    $page = Page::find($id);
+    if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
+    $page = Page::find($id);
     if(!$page) return Redirect::to('/admin/pages');
 
-    return Theme::view('admin.pages.show',compact(['page']));
+    return Theme::view('admin.pages.show',compact('page'));
   }
 
-  public function postSave($id = 0)
+  public function postSave(PageRequest $request, $id = 0)
   {
-    $id = intval($id);
-    $rules = [
-        'url' => 'required',
-        'views' => 'required|integer',
-        'view' => 'required_without_all:openurl',
-    ];
-    $messages = [
-        'required' => ':attribute不能为空.',
-        'integer' => ':attribute只能为整数.',
-        'required_without_all' => '对应模板和外链网址必选一项填写',
-    ];
-    $attributes = array(
-        "url" => '访问路径',
-        'view' => '对应模板',
-        'openurl' => '外链网址',
-        'views' => '浏览量',
-        'is_open' => '开放浏览',
-        'cover' => '封面',
-        "thumb" => '封面微缩图',
-    );
-    $input = Request::only(['url','view','openurl','views','is_open','cover','thumb']);
+    if(!preg_match("/^[0-9]\d*$/",$id)) return Redirect::to('/');
 
-    $validator = Validator::make($input, $rules, $messages,$attributes);
-    if ($validator->fails()) {
-      return Redirect::back()->withErrors($validator)->withInput();
-    } else {
-      if ($id>0) {
-        $page = Page::find($id);
-        if(!$page){
-          $page = new Page;
-        }
-      } else {
+    if ($id > 0) {
+      $page = Page::find($id);
+      if (!$page) {
         $page = new Page;
       }
-      $page->url = strip_tags($input['url']);
-      $page->view = strip_tags($input['view']);
-      $page->views = $input['views'];
-      $page->is_open = $input['is_open'] ? 1 : 0;
-      $page->openurl = strip_tags($input['openurl']);
-      $page->cover = strip_tags($input['cover']);
-      $page->thumb = strip_tags($input['thumb']);
-      $page->save();
+    } else {
+      $page = new Page;
     }
+    $page->url = $request->get('url');
+    $page->view = $request->get('view');
+    $page->views = $request->get('views');
+    $page->is_open = $request->get('is_open') ? 1 : 0;
+    $page->openurl = $request->get('openurl');
+    $page->cover = $request->get('cover');
+    $page->thumb = $request->get('thumb');
+    $page->save();
 
     $message = '单页发布成功，请选择操作！';
     $url = [];
     $url['返回单页列表'] = ['url'=>url('admin/pages')];
+    $url['继续添加'] = ['url'=>url('admin/pages/add')];
     $url['继续编辑'] = ['url'=>url('admin/pages/edit',$page->id)];
-    $url['查看单页'] = ['url'=>url('page',$page->url)];
-    return Theme::view('admin.message.show',compact(['message','url']));
+    $url['查看单页'] = ['url'=>url('page',$page->url),'target'=>'_blank'];
+    return Theme::view('admin.message.show',compact('message','url'));
   }
 
   public function postSaveCover()
@@ -99,7 +79,7 @@ class PagesController extends Controller
     if (Request::hasFile('file')) {
       $plupload = new Plupload();
       $fileName = date("_YmdHis") . rand(1000, 9999) . '.';
-      $response = $plupload->process('file', function ($file) use (&$fileName,&$filePath) {
+      $info = $plupload->process('file', function ($file) use (&$fileName,&$filePath) {
         $fileName = $fileName . $file->getClientOriginalExtension();
         $file->move(public_path($filePath), $fileName);
       });
@@ -109,12 +89,12 @@ class PagesController extends Controller
       $img = Image::make(public_path($filePath) . $fileName);
       $imgMime = explode('/', $img->mime());
       if ($imgMime[0] != 'image') {
-        $response['result'] = false;
-        return Response::json($response);
+        $info['result'] = false;
+        return $info;
       }
     } else {
-      $response['result'] = false;
-      return Response::json($response);
+      $info['result'] = false;
+      return $info;
     }
 
     $img->resize(300, null, function ($constraint) {
@@ -123,21 +103,16 @@ class PagesController extends Controller
     });
     $img->save(public_path($filePath) . 'thumb' . $fileName);
 
-    $response['result'] = true;
-    $response['cover'] = $filePath . $fileName;
-    $response['thumb'] = $filePath . 'thumb' . $fileName;
-    return Response::json($response);
+    $info['result'] = true;
+    $info['cover'] = $filePath . $fileName;
+    $info['thumb'] = $filePath . 'thumb' . $fileName;
+    return $info;
   }
 
   public function postDelete($id)
   {
-    $id = intval($id);
-    $page = Page::find($id);
-
-    if(!$page) return Redirect::to('/admin/pages');
-
-    $page->delete();
-    return Response::json(['error' => 0, 'message' => '删除成功！']);
+    Page::destroy($id);
+    return ['error' => 0, 'message' => '删除成功！'];
   }
 
 }

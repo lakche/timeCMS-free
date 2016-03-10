@@ -24,43 +24,43 @@
                                 <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
                                 <div class="input-group">
                                     <div class="input-group-addon">访问路径</div>
-                                    <input type="text" class="form-control" name="url" value="{{ old('url') ? old('url') : $page->url }}">
+                                    <input type="text" class="form-control" name="url" value="{{ old('url', $page->url) }}">
                                 </div>
                                 @if($errors->first('url'))
                                     <p class="bg-danger">{{ $errors->first('url') }}</p>
                                 @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">对应模板</div>
-                                    <input type="text" class="form-control" name="view" value="{{ old('view') ? old('view') : $page->view }}">
+                                    <input type="text" class="form-control" name="view" value="{{ old('view', $page->view) }}">
                                 </div>
                                 @if($errors->first('view'))
                                     <p class="bg-danger">{{ $errors->first('view') }}</p>
                                 @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">外链网址</div>
-                                    <input type="text" class="form-control" name="openurl" value="{{ old('openurl') ? old('openurl') : $page->openurl }}">
+                                    <input type="text" class="form-control" name="openurl" value="{{ old('openurl', $page->openurl) }}">
                                 </div>
                                 @if($errors->first('openurl'))
                                     <p class="bg-danger">{{ $errors->first('openurl') }}</p>
                                 @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">　浏览量</div>
-                                    <input type="number" class="form-control" name="views" value="{{ old('views') ? old('views') : $page->views }}">
+                                    <input type="number" class="form-control" name="views" value="{{ old('views', $page->views) }}">
                                 </div>
                                 @if($errors->first('views'))
                                     <p class="bg-danger">{{ $errors->first('views') }}</p>
                                 @endif
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">开放浏览</div>
-                                    <input type="checkbox" name="is_open" value="1" data-on-text="开放" data-off-text="关闭" @if($page->is_open) checked @endif />
+                                    <input type="checkbox" name="is_open" value="1" data-on-text="开放" data-off-text="关闭" @if(old('is_open', $page->is_open)) checked @endif />
                                 </div>
                                 @if($errors->first('is_open'))
                                     <p class="bg-danger">{{ $errors->first('is_open') }}</p>
                                 @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">单页封面</div>
-                                    <input type="text" class="form-control" name="cover" id="CPIC" value="{{ $page->cover }}" readonly>
-                                    <input type="hidden" class="form-control" name="thumb" id="CPCP" value="{{ $page->thumb }}" readonly>
+                                    <input type="text" class="form-control" name="cover" id="CPIC" value="{{ old('cover', $page->cover) }}" readonly>
+                                    <input type="hidden" class="form-control" name="thumb" id="CPCP" value="{{ old('thumb', $page->thumb) }}" readonly>
 
                                     <div class="input-group-addon btn btn-primary" id="page_cover">上传封面</div>
                                 </div>
