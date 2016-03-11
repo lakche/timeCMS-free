@@ -56,5 +56,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
         'postAdmin' => 'admin.users.admin',
     ]);
     Route::controller('persons', 'PersonsController');
-    Route::controller('projects', 'ProjectsController');
+    Route::controller('projects', 'ProjectsController',[
+        'getIndex' => 'admin.projects',
+        'getType' => 'admin.projects.type',
+        'getAdd' => 'admin.projects.add',
+        'getEdit' => 'admin.projects.edit',
+        'postSave' => 'admin.projects.save',
+        'postUpdateImage' => 'admin.projects.updateimage',
+        'postSaveCover' => 'admin.projects.savecover',
+        'postDelete' => 'admin.projects.delete',
+    ]);
 });

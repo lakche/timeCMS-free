@@ -92,7 +92,7 @@ class ArticlesController extends Controller
     $article->description = $request->get('description');
     $article->save();
 
-    $message = '文章发布成功，请选择操作！';
+    $message = '文章提交成功，请选择操作！';
     $url = [];
     $url['返回文章列表'] = ['url'=>route('admin.articles')];
     if($article->category_id > 0) $url['返回栏目文章列表'] = ['url'=>route('admin.articles.type',$article->category_id)];

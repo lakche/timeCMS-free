@@ -27,9 +27,9 @@
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li><a href="{{ url('admin/projects') }}">全部</a></li>
-                                                @foreach($categories as $category)
-                                                    <li><a href="{{ url('admin/projects/type',$category->id) }}">{{ $category->title }}</a></li>
+                                                <li><a href="{{ route('admin.projects') }}">全部</a></li>
+                                                @foreach(Theme::categories() as $category)
+                                                    <li><a href="{{ route('admin.projects.type',$category->id) }}">{{ $category->title }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -41,11 +41,11 @@
                                 @foreach($projects as $project)
                                     <tr>
                                         <td>{{ $project->id }}</td>
-                                        <td><a href="{{ url('project', [$project->id]) }}"
+                                        <td><a href="{{ route('project.show', [$project->id]) }}"
                                                target="_blank">{{ $project->title }}</a></td>
-                                        <td><a href="{{ url('admin/projects/type',$project->category_id) }}">{{ $project->category->title }}</a></td>
+                                        <td><a href="{{ route('admin.projects.type',$project->category_id) }}">{{ $project->category->title }}</a></td>
                                         <td>
-                                            <a href="{{ url('admin/projects/edit', [$project->id]) }}">
+                                            <a href="{{ route('admin.projects.edit', [$project->id]) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑项目"></i>
                                             </a>
                                             <a href="javascript:void(0);" data-id="{{ $project->id }}" class="project_Del">
@@ -63,7 +63,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ url('admin/projects/add') }}"
+                                    <td colspan="8"><a href="{{ route('admin.projects.add') }}"
                                                        class="btn btn-info pull-right">添加项目</a></td>
                                 </tr>
                                 </tfoot>
