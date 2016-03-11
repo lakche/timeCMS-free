@@ -61,6 +61,24 @@ return [
             'connection' => 'default',
         ],
 
+        /**自定义仓库*/
+        'person' => [
+            'driver' => 'file',
+            'path'   => storage_path('framework/cache/person'),
+        ],
+        'category' => [
+            'driver' => 'file',
+            'path'   => storage_path('framework/cache/category'),
+        ],
+        'article' => [
+            'driver' => 'file',
+            'path'   => storage_path('framework/cache/article'),
+        ],
+        'project' => [
+            'driver' => 'file',
+            'path'   => storage_path('framework/cache/project'),
+        ],
+
     ],
 
     /*

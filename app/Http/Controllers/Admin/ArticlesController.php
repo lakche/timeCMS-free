@@ -16,6 +16,7 @@ use Request;
 use Redirect;
 use Image;
 use Hash;
+use Cache;
 use Theme;
 
 class ArticlesController extends Controller
@@ -92,6 +93,8 @@ class ArticlesController extends Controller
     $article->description = $request->get('description');
     $article->save();
 
+    Cache::store('article')->flush();
+
     $message = '文章提交成功，请选择操作！';
     $url = [];
     $url['返回文章列表'] = ['url'=>route('admin.articles')];
@@ -157,6 +160,7 @@ class ArticlesController extends Controller
   public function postDelete($id)
   {
     Article::destroy($id);
+    Cache::store('article')->flush();
     return ['error' => 0, 'message' => '删除成功！'];
   }
 

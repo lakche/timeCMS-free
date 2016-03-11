@@ -16,6 +16,7 @@ use Request;
 use Redirect;
 use Image;
 use Hash;
+use Cache;
 use Theme;
 
 class ProjectsController extends Controller
@@ -108,6 +109,7 @@ class ProjectsController extends Controller
     $project->speed = json_encode($speed);
     $project->save();
 
+    Cache::store('project')->flush();
 
     $message = '项目提交成功，请选择操作！';
     $url = [];
@@ -173,6 +175,7 @@ class ProjectsController extends Controller
   public function postDelete($id)
   {
     Project::destroy($id);
+    Cache::store('project')->flush();
     return ['error' => 0, 'message' => '删除成功！'];
   }
 

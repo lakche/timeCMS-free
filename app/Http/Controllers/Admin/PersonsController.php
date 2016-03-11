@@ -14,6 +14,7 @@ use App\Http\Requests\PersonRequest;
 use Request;
 use Redirect;
 use Image;
+use Cache;
 use Theme;
 
 class PersonsController extends Controller
@@ -78,6 +79,8 @@ class PersonsController extends Controller
     $person->text = $request->get('text') ? $request->get('text') : '';
     $person->save();
 
+    Cache::store('person')->flush();
+
     $message = '人物发布成功，请选择操作！';
     $url = [];
     $url['返回人物列表'] = ['url'=>route('admin.persons')];
@@ -141,6 +144,7 @@ class PersonsController extends Controller
   public function postDelete($id)
   {
     Person::destroy($id);
+    Cache::store('person')->flush();
     return ['error' => 0, 'message' => '删除成功！'];
   }
 

@@ -84,11 +84,7 @@ class CategoriesController extends Controller
     $category->templet_article = $request->get('templet_article');
     $category->save();
 
-    Cache::forget('categoryTree');
-    Cache::forget('categories_'.$old_parent_id.'_0');
-    Cache::forget('categories_'.$old_parent_id.'_1');
-    Cache::forget('categories_'.$parent_id.'_0');
-    Cache::forget('categories_'.$parent_id.'_1');
+    Cache::store('category')->flush();
 
     $message = '栏目设置成功，请选择操作！';
     $url = [];
@@ -139,6 +135,7 @@ class CategoriesController extends Controller
   public function postDelete($id)
   {
     Category::destroy($id);
+    Cache::store('category')->flush();
     return ['error' => 0, 'message' => '删除成功！'];
   }
 

@@ -49,12 +49,12 @@ class Theme
         }
 
         $key_type = 'categories_info';
-        if (Cache::has($key_type)) {
-            $types = Cache::get($key_type);
+        if (Cache::store('category')->has($key_type)) {
+            $types = Cache::store('category')->get($key_type);
         } else {
             $types = Category::where('parent_id',0)->isNavShow()->sortByDesc('sort')->get();
             $expiresAt = Carbon::now()->addMinutes(60);
-            Cache::add($key_type, $types, $expiresAt);
+            Cache::store('category')->put($key_type, $types, $expiresAt);
         }
 
         if(!isset($system['theme'])) $system['theme'] = '';
@@ -78,8 +78,8 @@ class Theme
         $num = intval($num);
         $offset = intval($offset);
         $key = 'article_'.$num.'_'.$order.'_'.$where.'_'.$type.'_'.$offset;
-        if (Cache::has($key)) {
-            $date = Cache::get($key);
+        if (Cache::store('article')->has($key)) {
+            $date = Cache::store('article')->get($key);
             return $date;
         } else {
             switch ($order) {
@@ -112,7 +112,7 @@ class Theme
                     break;
             }
             $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
-            Cache::add($key, $date, $expiresAt);
+            Cache::store('article')->put($key, $date, $expiresAt);
             return $date;
         }
     }
@@ -130,8 +130,8 @@ class Theme
         $num = intval($num);
         $offset = intval($offset);
         $key = 'project_'.$num.'_'.$order.'_'.$where.'_'.$type.'_'.$offset;
-        if (Cache::has($key)) {
-            $date = Cache::get($key);
+        if (Cache::store('project')->has($key)) {
+            $date = Cache::store('project')->get($key);
             return $date;
         } else {
             switch ($order) {
@@ -167,7 +167,7 @@ class Theme
                     break;
             }
             $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
-            Cache::add($key, $date, $expiresAt);
+            Cache::store('project')->put($key, $date, $expiresAt);
             return $date;
         }
     }
@@ -185,8 +185,8 @@ class Theme
         $num = intval($num);
         $offset = intval($offset);
         $key = 'person_'.$num.'_'.$order.'_'.$where.'_'.$type.'_'.$offset;
-        if (Cache::has($key)) {
-            $date = Cache::get($key);
+        if (Cache::store('person')->has($key)) {
+            $date = Cache::store('person')->get($key);
             return $date;
         } else {
             switch ($order) {
@@ -215,7 +215,7 @@ class Theme
                     break;
             }
             $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
-            Cache::add($key, $date, $expiresAt);
+            Cache::store('person')->put($key, $date, $expiresAt);
             return $date;
         }
     }
@@ -225,13 +225,13 @@ class Theme
         $parent_id = intval($parent_id);
         $show_type = intval($show_type);
         $key = 'categories_'.$parent_id.'_'.$show_type;
-        if (Cache::has($key)) {
-            $date = Cache::get($key);
+        if (Cache::store('category')->has($key)) {
+            $date = Cache::store('category')->get($key);
             return $date;
         } else {
             $date = Category::where('is_nav_show','>=',$show_type )->where('parent_id',$parent_id)->sortByDesc('id')->get();
             $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
-            Cache::add($key, $date, $expiresAt);
+            Cache::store('category')->put($key, $date, $expiresAt);
             return $date;
         }
     }
@@ -241,8 +241,8 @@ class Theme
         $key = 'categoryTree';
         $id = intval($id);
         $step = intval($step);
-        if (Cache::has($key) && $id == 0 && $step == 0) {
-            $date = Cache::get($key);
+        if (Cache::store('category')->has($key) && $id == 0 && $step == 0) {
+            $date = Cache::store('category')->get($key);
             return $date;
         } else {
             $categories = Category::where('parent_id', $id)->get();
@@ -266,7 +266,7 @@ class Theme
             }
             if ($id == 0 && $step == 0) {
                 $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
-                Cache::add($key, $date, $expiresAt);
+                Cache::store('category')->put($key, $date, $expiresAt);
             }
             return $date;
         }
