@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Project;
 use App\Model\Category;
-use App\Model\Person;
 
 use App\Libs\Uploader;
 use App\Libs\Plupload;

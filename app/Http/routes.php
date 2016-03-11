@@ -55,7 +55,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
         'postDelete' => 'admin.users.delete',
         'postAdmin' => 'admin.users.admin',
     ]);
-    Route::controller('persons', 'PersonsController');
+    Route::controller('persons', 'PersonsController',[
+        'getIndex' => 'admin.persons',
+        'getAdd' => 'admin.persons.add',
+        'getEdit' => 'admin.persons.edit',
+        'postSave' => 'admin.persons.save',
+        'postUpdateImage' => 'admin.persons.updateimage',
+        'postSaveCover' => 'admin.persons.savecover',
+        'postDelete' => 'admin.persons.delete',
+    ]);
     Route::controller('projects', 'ProjectsController',[
         'getIndex' => 'admin.projects',
         'getType' => 'admin.projects.type',

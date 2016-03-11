@@ -30,12 +30,12 @@
                                 @foreach($persons as $person)
                                     <tr>
                                         <td>{{ $person->id }}</td>
-                                        <td><a href="{{ url('person', [$person->id]) }}" target="_blank">{{ $person->name }}</a></td>
+                                        <td><a href="{{ route('person.show', $person->id) }}" target="_blank">{{ $person->name }}</a></td>
                                         <td>@if($person->sex == Male) 男 @else 女 @endif</td>
                                         <td>{{ $person->title }}</td>
                                         <td>{{ $person->point }}</td>
                                         <td>
-                                            <a href="{{ url('admin/persons/edit', [$person->id]) }}">
+                                            <a href="{{ route('admin.persons.edit', $person->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑人物"></i>
                                             </a>
                                             <a href="javascript:void(0);" data-id="{{ $person->id }}" class="person_Del">
@@ -53,7 +53,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ url('admin/persons/add') }}" class="btn btn-info pull-right">添加人物</a></td>
+                                    <td colspan="8"><a href="{{ route('admin.persons.add') }}" class="btn btn-info pull-right">添加人物</a></td>
                                 </tr>
                                 </tfoot>
                             </table>

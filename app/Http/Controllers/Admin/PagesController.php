@@ -13,7 +13,6 @@ use App\Http\Requests\PageRequest;
 use Request;
 use Redirect;
 use Image;
-use Hash;
 use Theme;
 
 class PagesController extends Controller
