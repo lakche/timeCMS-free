@@ -38,7 +38,7 @@ class PagesController extends Controller
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
     $page = Page::find($id);
-    if(!$page) return Redirect::to('/admin/pages');
+    if(!$page) return Redirect::to(route('admin.pages'));
 
     return Theme::view('admin.pages.show',compact('page'));
   }
@@ -66,10 +66,10 @@ class PagesController extends Controller
 
     $message = '单页发布成功，请选择操作！';
     $url = [];
-    $url['返回单页列表'] = ['url'=>url('admin/pages')];
-    $url['继续添加'] = ['url'=>url('admin/pages/add')];
-    $url['继续编辑'] = ['url'=>url('admin/pages/edit',$page->id)];
-    $url['查看单页'] = ['url'=>url('page',$page->url),'target'=>'_blank'];
+    $url['返回单页列表'] = ['url'=>route('admin.pages')];
+    $url['继续添加'] = ['url'=>route('admin.pages.add')];
+    $url['继续编辑'] = ['url'=>route('admin.pages.edit',$page->id)];
+    $url['查看单页'] = ['url'=>route('page.show',$page->url),'target'=>'_blank'];
     return Theme::view('admin.message.show',compact('message','url'));
   }
 

@@ -24,7 +24,7 @@
                             项目管理
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ url('admin/articles/save',$article->id) }}"
+                            <form method="POST" action="{{ route('admin.articles.save',$article->id) }}"
                                   enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
                                 <input type="hidden" name="attr" id="ATTR" value="article"/>
@@ -146,7 +146,7 @@
                                 @endif
                                 <div class="input-group col-sm-12">
                                     <button type="submit" class="btn btn-primary pull-left">保存文章</button>
-                                    <a href="{{ url('admin/articles') }}" class="btn btn-warning pull-right">返回列表</a>
+                                    <a href="{{ route('admin.articles') }}" class="btn btn-warning pull-right">返回列表</a>
                                 </div>
                             </form>
                         </div>
@@ -156,10 +156,10 @@
         </div>
     </div>
     <script type="text/javascript">
-        var um = UM.getEditor('content',{imageUrl:"{{ url('admin/articles/update-image') }}"});
+        var um = UM.getEditor('content',{imageUrl:"{{ route('admin.articles.updateimage') }}"});
         $.fn.bootstrapSwitch.defaults.onColor = 'primary';
         $.fn.bootstrapSwitch.defaults.offColor = 'danger';
         $("[type='checkbox']").bootstrapSwitch();
-        $("#category_id").val({{ $article->category_id }});
+        $("#category_id").val({{ old('category_id', $article->category_id) }});
     </script>
 @endsection

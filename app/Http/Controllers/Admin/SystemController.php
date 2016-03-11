@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\System;
 use Request;
-use Redirect;
 use Theme;
 
 class SystemController extends Controller

@@ -29,7 +29,7 @@
                                 @foreach($pages as $page)
                                     <tr>
                                         <td>{{ $page->id }}</td>
-                                        <td><a href="{{ url('page', [$page->url]) }}" target="_blank">{{ $page->url }}</a></td>
+                                        <td><a href="{{ route('page.show', $page->url) }}" target="_blank">{{ $page->url }}</a></td>
                                         <td>{{ $page->view }}</td>
                                         <td>
                                             @if($page->is_open)
@@ -39,7 +39,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/pages/edit', [$page->id]) }}">
+                                            <a href="{{ route('admin.pages.edit', $page->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑单页"></i>
                                             </a>
                                             <a href="javascript:void(0);" data-id="{{ $page->id }}" class="page_Del">
@@ -57,7 +57,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ url('admin/pages/add') }}"
+                                    <td colspan="8"><a href="{{ route('admin.pages.add') }}"
                                                        class="btn btn-info pull-right">添加单页</a></td>
                                 </tr>
                                 </tfoot>

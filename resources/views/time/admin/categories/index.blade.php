@@ -32,7 +32,7 @@
                                     <tr>
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->title }}</td>
-                                        <td class="text-center"><a href="{{ url('admin/categories/subs',$category->id) }}" class="btn btn-primary btn-xs">查看 <span class="badge">{{ $category->subs->count() }}</span></a></td>
+                                        <td class="text-center"><a href="{{ route('admin.categories.subs',$category->id) }}" class="btn btn-primary btn-xs">查看 <span class="badge">{{ $category->subs->count() }}</span></a></td>
                                         <td class="text-center">
                                             @if($category->is_nav_show)
                                                 <i class="glyphicon glyphicon-ok text-primary"></i>
@@ -41,7 +41,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/categories/edit', [$category->id]) }}">
+                                            <a href="{{ route('admin.categories.edit', $category->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑分类"></i>
                                             </a>
                                             <a href="javascript:void(0);" data-id="{{ $category->id }}" class="categorie_Del">
@@ -56,16 +56,16 @@
                                     <td colspan="5">
                                     @if(isset($parent))
                                         @if($parent->parent_id > 0)
-                                            <a href="{{ url('admin/categories/subs',$parent->parent_id) }}"
+                                            <a href="{{ route('admin.categories.subs',$parent->parent_id) }}"
                                                                class="btn btn-warning">返回上级</a>
                                             @else
-                                                <a href="{{ url('admin/categories/') }}"
+                                                <a href="{{ route('admin.categories') }}"
                                                    class="btn btn-warning">返回根分类</a>
                                         @endif
-                                        <a href="{{ url('admin/categories/add',$parent->id) }}"
+                                        <a href="{{ route('admin.categories.add',$parent->id) }}"
                                                            class="btn btn-primary pull-right">添加下级分类</a>
                                     @else
-                                        <a href="{{ url('admin/categories/add') }}"
+                                        <a href="{{ route('admin.categories.add') }}"
                                                            class="btn btn-primary pull-right">添加分类</a>
                                     @endif
                                     </td>

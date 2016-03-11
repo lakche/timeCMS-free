@@ -20,7 +20,7 @@
                             单页管理
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ url('admin/pages/save',$page->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.pages.save',$page->id) }}" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
                                 <div class="input-group">
                                     <div class="input-group-addon">访问路径</div>
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="input-group col-sm-12">
                                     <button type="submit" class="btn btn-primary pull-left">保存单页</button>
-                                    <a href="{{ url('admin/articles') }}" class="btn btn-warning pull-right">返回列表</a>
+                                    <a href="{{ route('admin.pages') }}" class="btn btn-warning pull-right">返回列表</a>
                                 </div>
                             </form>
                         </div>

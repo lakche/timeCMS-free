@@ -13,7 +13,7 @@ use App\Http\Requests\CategoryRequest;
 use Request;
 use Redirect;
 use Image;
-use Hash;
+use Cache;
 use Theme;
 
 class CategoriesController extends Controller
@@ -29,7 +29,7 @@ class CategoriesController extends Controller
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
     $parent = Category::find($id);
-    if(!$parent) return Redirect::to('/admin/categories');
+    if(!$parent) return Redirect::to(route('admin.categories'));
 
     $categories = Category::where('parent_id',$id)->get();
     return Theme::view('admin.categories.index',compact('categories','parent'));
@@ -52,7 +52,7 @@ class CategoriesController extends Controller
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
     $category = Category::find($id);
-    if(!$category) return Redirect::to('/admin/categories');
+    if(!$category) return Redirect::to(route('admin.categories'));
 
     return Theme::view('admin.categories.show',compact('category'));
   }
@@ -68,6 +68,7 @@ class CategoriesController extends Controller
     }
     if (!$category) $category = new Category;
     $parent_id = intval($request->get('parent_id'));
+    $old_parent_id = $category->parent_id;
 
     $category->title = $request->get('title');
     $category->info = $request->get('info');
@@ -83,13 +84,19 @@ class CategoriesController extends Controller
     $category->templet_article = $request->get('templet_article');
     $category->save();
 
+    Cache::forget('categoryTree');
+    Cache::forget('categories_'.$old_parent_id.'_0');
+    Cache::forget('categories_'.$old_parent_id.'_1');
+    Cache::forget('categories_'.$parent_id.'_0');
+    Cache::forget('categories_'.$parent_id.'_1');
+
     $message = '栏目设置成功，请选择操作！';
     $url = [];
-    $url['返回根栏目'] = ['url'=>url('admin/categories')];
-    if($parent_id > 0) $url['返回子栏目'] = ['url'=>url('admin/categories/subs',$category->parent_id)];
-    $url['继续添加'] = ['url'=>url('admin/categories/add')];
-    $url['继续编辑'] = ['url'=>url('admin/categories/edit',$category->id)];
-    $url['查看栏目'] = ['url'=>url('category',$category->id),'target'=>'_blank'];
+    $url['返回根栏目'] = ['url'=>route('admin.categories')];
+    if($parent_id > 0) $url['返回子栏目'] = ['url'=>route('admin.categories.subs',$category->parent_id)];
+    $url['继续添加'] = ['url'=>route('admin.categories.add')];
+    $url['继续编辑'] = ['url'=>route('admin.categories.edit',$category->id)];
+    $url['查看栏目'] = ['url'=>route('category.show',$category->id),'target'=>'_blank'];
     return Theme::view('admin.message.show',compact('message','url'));
   }
 

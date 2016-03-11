@@ -31,7 +31,7 @@ class ArticlesController extends Controller
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
     $type = Category::find($id);
-    if(!$type) return Redirect::to('/admin/articles');
+    if(!$type) return Redirect::to(route('admin.articles'));
 
     $articles = Article::where('category_id',$id)->sortByDesc('id')->paginate(20);
 
@@ -56,7 +56,7 @@ class ArticlesController extends Controller
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
     $article = Article::find($id);
-    if(!$article) return Redirect::to('/admin/articles');
+    if(!$article) return Redirect::to(route('admin.articles'));
 
     return Theme::view('admin.articles.show',compact('article'));
   }
@@ -94,11 +94,11 @@ class ArticlesController extends Controller
 
     $message = '文章发布成功，请选择操作！';
     $url = [];
-    $url['返回文章列表'] = ['url'=>url('admin/articles')];
-    if($article->category_id > 0) $url['返回栏目文章列表'] = ['url'=>url('admin/articles/type',$article->category_id)];
-    $url['继续添加'] = ['url'=>url('admin/articles/add')];
-    $url['继续编辑'] = ['url'=>url('admin/articles/edit',$article->id)];
-    $url['查看文章'] = ['url'=>url('article',$article->id),'target'=>'_blank'];
+    $url['返回文章列表'] = ['url'=>route('admin.articles')];
+    if($article->category_id > 0) $url['返回栏目文章列表'] = ['url'=>route('admin.articles.type',$article->category_id)];
+    $url['继续添加'] = ['url'=>route('admin.articles.add')];
+    $url['继续编辑'] = ['url'=>route('admin.articles.edit',$article->id)];
+    $url['查看文章'] = ['url'=>route('article.show',$article->id),'target'=>'_blank'];
     return Theme::view('admin.message.show',compact('message','url'));
   }
 

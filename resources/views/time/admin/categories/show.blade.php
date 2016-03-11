@@ -20,7 +20,7 @@
                             文章分类管理 @if($category->parent_id > 0) - {{ $category->parent->title or '' }} @endif
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ url('admin/categories/save',$category->id) }}">
+                            <form method="POST" action="{{ route('admin.categories.save',$category->id) }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                                 <div class="input-group">
                                     <div class="input-group-addon">栏目标题</div>
@@ -79,9 +79,9 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-left">保存分类</button>
                                 @if($category->parent_id > 0)
-                                    <a href="{{ url('admin/categories/subs',$category->parent_id) }}" class="btn btn-warning pull-right">返回上级</a>
+                                    <a href="{{ route('admin.categories.subs',$category->parent_id) }}" class="btn btn-warning pull-right">返回上级</a>
                                 @else
-                                    <a href="{{ url('admin/categories/') }}" class="btn btn-warning pull-right">返回根分类</a>
+                                    <a href="{{ route('admin.categories') }}" class="btn btn-warning pull-right">返回根分类</a>
                                 @endif
                             </form>
                         </div>
