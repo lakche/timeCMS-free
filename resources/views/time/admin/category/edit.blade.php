@@ -23,6 +23,7 @@
                             <form method="POST" action="{{ route('admin.category.update',$category->id) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('put') }}
+                                <input type="hidden" name="hash" value="{{ $category->hash }}">
                                 <div class="input-group">
                                     <div class="input-group-addon">栏目标题</div>
                                     <input type="text" class="form-control" name="title" value="{{ old('title', $category->title) }}">
@@ -53,10 +54,10 @@
                                 @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">栏目封面</div>
-                                    <input type="text" class="form-control" name="cover" id="CPIC" value="{{ old('cover', $category->cover) }}" readonly>
-                                    <input type="hidden" class="form-control" name="thumb" id="CPCP" value="{{ old('thumb', $category->thumb) }}" readonly>
+                                    <input type="text" class="form-control" name="cover" id="image-default" value="{{ old('cover', $category->cover) }}" readonly>
+                                    <input type="hidden" class="form-control" name="thumb" id="image-thumb" value="{{ old('thumb', $category->thumb) }}" readonly>
 
-                                    <div class="input-group-addon btn btn-primary" id="categorie_cover">上传封面</div>
+                                    <div class="input-group-addon btn btn-primary" data-class="category" data-type="cover" id="image-upload">上传封面</div>
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-addon">seo关键字</div>

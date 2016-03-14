@@ -11,7 +11,7 @@ class Category extends Model
 
   protected $hidden = ['deleted_at', 'created_at'];
 
-  protected $fillable = ['title', 'info', 'sort', 'parent_id', 'cover', 'thumb', 'is_nav_show', 'keywords', 'description', 'templet_all', 'templet_nosub', 'templet_article'];
+  protected $fillable = ['title', 'info', 'sort', 'parent_id', 'cover', 'thumb', 'is_nav_show', 'keywords', 'description', 'templet_all', 'templet_nosub', 'templet_article', 'hash'];
 
   public function setIsNavShowAttribute($value)
   {

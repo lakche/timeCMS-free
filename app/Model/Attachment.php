@@ -11,6 +11,8 @@ class Attachment extends Model
 
   protected $hidden = ['deleted_at', 'created_at'];
 
+  protected $fillable = ['url', 'name', 'thumb', 'sort', 'is_recommend', 'is_show', 'is_cover', 'type', 'attr', 'hash', 'project_id'];
+
   public function scopeSortByDesc($query,$key)
   {
     if($key != 'id') return $query->orderBy($key,'desc')->orderBy('id','desc');

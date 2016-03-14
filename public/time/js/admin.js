@@ -1,16 +1,17 @@
 $(function () {
-    var t =$("input[name='_token']").val();
+    var t = $("input[name='_token']").val();
 
-    //栏目封面上传
-    if( $("#categorie_cover").length > 0 ) {
+    //图片上传
+    if( $("#image-upload").length > 0 ) {
         var uploaderPic = new plupload.Uploader({
             runtimes: 'html5,flash,silverlight,html4',
-            browse_button: 'categorie_cover',
-            container: document.getElementById('CPIC'),
+            browse_button: 'image-upload',
+            container: document.getElementById('image-default'),
             url: '/admin/attachment',
             flash_swf_url: '../js/Moxie.swf',
             silverlight_xap_url: '../js/Moxie.xap',
-            multipart_params: { _token: t },
+            multipart_params: { _token: t, class: $('#image-upload').attr('data-class'), type: $('#image-upload').attr('data-type'), hash: $("input[name='hash']").val()},
+            headers: { 'X-Requested-With': 'XMLHttpRequest'},
             multi_selection: true,
             chunk_size: "1024kb",
             filters: {
@@ -33,11 +34,15 @@ $(function () {
                 FileUploaded: function (uploaderPic, file, info) {
                     var obj = JSON.parse(info.response);
                     if (obj.result) {
-                        $('#CPIC').val(obj.cover);
-                        $('#CPCP').val(obj.thumb);
+                        $('#image-default').val(obj.cover);
+                        $('#image-thumb').val(obj.thumb);
                         alert('图片上传成功.');
                     } else {
-                        alert('图片上传失败.');
+                        $msg = '图片上传失败\n';
+                        $.each(obj,function(n,value) {
+                            $msg = $msg + value + '\n';
+                        });
+                        alert($msg);
                     }
                 }
             }

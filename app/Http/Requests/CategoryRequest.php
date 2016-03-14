@@ -2,9 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Model\Category;
-use Validator;
-
 class CategoryRequest extends Request
 {
     public function authorize()
@@ -14,23 +11,18 @@ class CategoryRequest extends Request
 
     public function rules()
     {
-        Validator::extend('null_or_exist', function($attribute, $value, $parameters)
-        {
-            if($value == ''){
-                return true;
-            } elseif(Category::find($value)) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-
-        return [
+        $rules = [
             'title' => 'required',
             'sort' => 'integer',
             'is_nav_show' => 'boolean',
-            'parent_id' => 'nullOrExist',
+            'hash' => 'required',
         ];
+
+        if(Request::get('parent_id') != ''){
+            $rules[] = ['parent_id' => 'exists:categories,id'];
+        }
+
+        return $rules;
     }
 
     public function attributes()
@@ -48,6 +40,7 @@ class CategoryRequest extends Request
             'templet_all' => '带子分类模板',
             'templet_nosub' => '不带子分类模板',
             'templet_article' => '文章模板',
+            'hash' => 'HASH值',
         ];
     }
 
@@ -57,7 +50,7 @@ class CategoryRequest extends Request
             'required' => ':attribute不能为空.',
             'integer' => ':attribute只能为整数.',
             'boolean' => ':attribute格式错误.',
-            'nullOrExist' => ':attribute不存在.',
+            'exists' => ':attribute不存在.',
         ];
     }
 }
