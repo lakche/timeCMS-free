@@ -66,7 +66,9 @@ class CategoryController extends Controller
     ]);
 
     if ($category) {
+        //清理缓存
         Cache::store('category')->flush();
+        //附件归档
         Attachment::where(['hash' => $category->hash, 'project_id' => 0])->update(['project_id' => $category->id]);
         $message = '栏目添加成功，请选择操作！';
         $url = [];
@@ -101,7 +103,9 @@ class CategoryController extends Controller
     ]);
 
     if ($category) {
+        //清理缓存
         Cache::store('category')->flush();
+        //附件归档
         Attachment::where(['hash' => $category->hash, 'project_id' => 0])->update(['project_id' => $category->id]);
         $message = '栏目修改成功，请选择操作！';
         $url = [];

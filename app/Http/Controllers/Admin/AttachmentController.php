@@ -45,7 +45,7 @@ class AttachmentController extends Controller
     $attachment = Attachment::create([
         'url' => $filePath . $fileName,
         'name' => '',
-        'thumb' => $filePath . 'thumb' . $fileName,
+        'thumb' => $imgMime[0] == 'image' ? $filePath . 'thumb' . $fileName : '',
         'sort' => 0,
         'is_recommend' => 0,
         'is_show' => 0,
