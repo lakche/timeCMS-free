@@ -7,7 +7,7 @@ $(function () {
             runtimes: 'html5,flash,silverlight,html4',
             browse_button: 'categorie_cover',
             container: document.getElementById('CPIC'),
-            url: '/admin/categories/save-cover',
+            url: '/admin/attachment',
             flash_swf_url: '../js/Moxie.swf',
             silverlight_xap_url: '../js/Moxie.xap',
             multipart_params: { _token: t },
@@ -50,8 +50,8 @@ $(function () {
         if(confirm("是否删除")){
             $.ajax({
                 type: 'POST',
-                url: "/admin/categories/delete/" + $(this).attr("data-id"),
-                data: { _token: t },
+                url: "/admin/category/" + $(this).attr("data-id"),
+                data: { _method: 'DELETE', _token: t },
                 success: function (data) {
                     alert(data.message);
                     if(data.error==0){

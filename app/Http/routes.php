@@ -19,15 +19,9 @@ Route::get('page/{id}', ['as' => 'page.show'], 'PageController@show');
 //管理系统
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth','isadmin']], function () {
     Route::get('', 'DashController@index');
-    Route::controller('categories', 'CategoriesController',[
-        'getIndex' => 'admin.categories',
-        'getSubs' => 'admin.categories.subs',
-        'getAdd' => 'admin.categories.add',
-        'getEdit' => 'admin.categories.edit',
-        'postSave' => 'admin.categories.save',
-        'postSaveCover' => 'admin.categories.savecover',
-        'postDelete' => 'admin.categories.delete',
-    ]);
+    Route::resource('attachment', 'AttachmentController',['only'=>['store']]);
+    Route::resource('category', 'CategoryController');
+    Route::resource('category/sub', 'CategorySubController',['only'=>['show']]);
     Route::controller('articles', 'ArticlesController',[
         'getIndex' => 'admin.articles',
         'getType' => 'admin.articles.type',

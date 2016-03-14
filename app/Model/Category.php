@@ -11,6 +11,13 @@ class Category extends Model
 
   protected $hidden = ['deleted_at', 'created_at'];
 
+  protected $fillable = ['title', 'info', 'sort', 'parent_id', 'cover', 'thumb', 'is_nav_show', 'keywords', 'description', 'templet_all', 'templet_nosub', 'templet_article'];
+
+  public function setIsNavShowAttribute($value)
+  {
+    $this->attributes['is_nav_show'] = intval($value);
+  }
+
   public function scopeSortByDesc($query,$key)
   {
     return $query->orderBy($key,'desc');

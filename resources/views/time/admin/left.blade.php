@@ -2,7 +2,7 @@
     <a class="list-group-item active">控制面板</a>
     <a class="list-group-item" href="{{ url('admin') }}">系统统计</a>
     <a class="list-group-item" href="{{ route('admin.system') }}">系统设置</a>
-    <a class="list-group-item" href="{{ route('admin.categories') }}">分类管理</a>
+    <a class="list-group-item" href="{{ route('admin.category.index') }}">分类管理</a>
     <a class="list-group-item" href="{{ route('admin.articles') }}">文章管理</a>
     <a class="list-group-item" href="{{ route('admin.projects') }}">项目管理</a>
     <a class="list-group-item" href="{{ url('admin/persons') }}">人物管理</a>

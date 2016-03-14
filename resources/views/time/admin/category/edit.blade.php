@@ -17,11 +17,12 @@
                 <div class="col-sm-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            文章分类管理 @if($category->parent_id > 0) - {{ $category->parent->title or '' }} @endif
+                            文章分类修改
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ route('admin.categories.save',$category->id) }}">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                            <form method="POST" action="{{ route('admin.category.update',$category->id) }}">
+                                {{ csrf_field() }}
+                                {{ method_field('put') }}
                                 <div class="input-group">
                                     <div class="input-group-addon">栏目标题</div>
                                     <input type="text" class="form-control" name="title" value="{{ old('title', $category->title) }}">
@@ -36,6 +37,9 @@
                                         {!! Theme::categoryTree() !!}
                                     </select>
                                 </div>
+                                @if($errors->first('parent_id'))
+                                    <p class="bg-danger">{{ $errors->first('parent_id') }}</p>
+                                @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">栏目简介</div>
                                     <input type="text" class="form-control" name="info" value="{{ old('info', $category->info) }}">
@@ -44,6 +48,9 @@
                                     <div class="input-group-addon">栏目排序</div>
                                     <input type="number" class="form-control" name="sort" value="{{ old('sort', $category->sort) }}">
                                 </div>
+                                @if($errors->first('sort'))
+                                    <p class="bg-danger">{{ $errors->first('sort') }}</p>
+                                @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">栏目封面</div>
                                     <input type="text" class="form-control" name="cover" id="CPIC" value="{{ old('cover', $category->cover) }}" readonly>
@@ -77,12 +84,11 @@
                                            data-on-text="显示" data-off-text="隐藏"
                                            @if(old('is_nav_show', $category->is_nav_show)) checked @endif />
                                 </div>
-                                <button type="submit" class="btn btn-primary pull-left">保存分类</button>
-                                @if($category->parent_id > 0)
-                                    <a href="{{ route('admin.categories.subs',$category->parent_id) }}" class="btn btn-warning pull-right">返回上级</a>
-                                @else
-                                    <a href="{{ route('admin.categories') }}" class="btn btn-warning pull-right">返回根分类</a>
+                                @if($errors->first('is_nav_show'))
+                                    <p class="bg-danger">{{ $errors->first('is_nav_show') }}</p>
                                 @endif
+                                <a href="{{ route('admin.category.index') }}" class="btn btn-warning">返回根分类</a>
+                                <button type="submit" class="btn btn-primary pull-right">保存分类</button>
                             </form>
                         </div>
                     </div>
