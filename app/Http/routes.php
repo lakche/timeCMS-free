@@ -31,10 +31,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
         'postSaveCover' => 'admin.articles.savecover',
         'postDelete' => 'admin.articles.delete',
     ]);
-    Route::controller('system', 'SystemController',[
-        'getIndex' => 'admin.system',
-        'postSave' => 'admin.system.save',
-    ]);
+    Route::resource('system', 'SystemController',['only'=>['index','store']]);
     Route::resource('pages', 'PagesController');
     Route::controller('users', 'UsersController',[
         'getIndex' => 'admin.users',

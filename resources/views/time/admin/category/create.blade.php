@@ -2,7 +2,7 @@
 @section('content')
     <link rel="stylesheet" type="text/css" href="{{ asset($theme.'/css/admin.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset($theme.'/css/bootstrap-switch.min.css') }}"/>
-    <script src="{{ asset($theme.'/js/bootstrap-switch.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset($theme.'/js/bootstrap-switch.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset($theme.'/js/plupload/plupload.full.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset($theme.'/js/plupload/i18n/zh_CN.js') }}"></script>
     <script type="text/javascript" src="{{ asset($theme.'/js/admin.js') }}"></script>

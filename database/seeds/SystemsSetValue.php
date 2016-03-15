@@ -16,6 +16,7 @@ class SystemsSetValue extends Seeder
             'is_open'=>1,
             'qq'=>'402227052',
             'wechat'=>'lakche',
+            'wechatcode'=>'',
             'weibo'=>'332121900',
             'theme'=>'time',
             'subtitle'=>'时光如水'

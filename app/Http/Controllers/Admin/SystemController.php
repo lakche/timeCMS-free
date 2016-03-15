@@ -10,15 +10,15 @@ use Theme;
 
 class SystemController extends Controller
 {
-    public function getIndex()
+    public function index()
     {
         $system = System::getValue();
         return Theme::view('admin.system.index',compact('system'));
     }
 
-    public function postSave()
+    public function store()
     {
-        $input = Request::only(['title','keywords','description','copyright','record','is_open','qq','wechat','weibo','theme','subtitle']);
+        $input = Request::only(['title','keywords','description','copyright','record','is_open','qq','wechat','wechatcode','weibo','theme','subtitle']);
         $input['is_open'] = $input['is_open'] ? 1 : 0;
 
         System::saveValue($input);

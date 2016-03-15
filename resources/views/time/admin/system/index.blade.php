@@ -3,6 +3,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset($theme.'/css/admin.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset($theme.'/css/bootstrap-switch.min.css') }}"/>
     <script type="text/javascript" src="{{ asset($theme.'/js/bootstrap-switch.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset($theme.'/js/plupload/plupload.full.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset($theme.'/js/plupload/i18n/zh_CN.js') }}"></script>
+    <script type="text/javascript" src="{{ asset($theme.'/js/admin.js') }}"></script>
     <div class="container-fluid" id="main">
         <div class="container">
             <div class="row">
@@ -19,9 +22,9 @@
                                     <strong>{{ $message }}</strong>
                                 </div>
                             @endif
-                            <form method="POST" action="{{ url('admin/system/save') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.system.store') }}" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
-
+                                <input type="hidden" name="hash" value="system">
                                 <div class="input-group">
                                     <div class="input-group-addon">网站标题</div>
                                     <input type="text" class="form-control" name="title"
@@ -61,6 +64,13 @@
                                     <div class="input-group-addon">微信号</div>
                                     <input type="text" class="form-control" name="wechat"
                                            value="{{ $system['wechat'] or '' }}">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">微信二维码</div>
+                                    <input type="text" class="form-control" name="wechatcode" id="image-default" value="{{ $system['wechatcode'] or '' }}" readonly>
+                                    <input type="hidden" class="form-control" name="thumb" id="image-thumb" value="" readonly>
+
+                                    <div class="input-group-addon btn btn-primary" data-class="system" data-type="image" id="image-upload">上传二维码</div>
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-addon">微博号</div>

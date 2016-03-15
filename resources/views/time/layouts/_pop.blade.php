@@ -35,12 +35,27 @@
                     <div class="list-group">
                         <a class="list-group-item" href="tencent://message/?uin={{ $system['qq'] }}&amp;Site=www.obday.com&amp;Menu=yes" target="_blank">官方QQ：{{ $system['qq'] }}</a>
                         <a class="list-group-item" href="http://weibo.com/{{ $system['weibo'] }}" target="_blank">官方微博：[点击打开]</a>
-                        <a class="list-group-item" href="#">微信号：{{ $system['wechat'] }}</a>
+                        <a class="list-group-item" href="#" data-toggle="modal" data-target="#wechatcode-box">微信号：{{ $system['wechat'] }}</a>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bs-example-modal-lg" id="wechatcode-box" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">请扫描微信二维码</h4>
+            </div>
+            <div class="modal-body clearfix text-center">
+                @if($system['wechatcode'] != '')
+                    <img src="{{ $system['wechatcode'] }}" alt="请扫描微信二维码">
+                @endif
             </div>
         </div>
     </div>
