@@ -13,7 +13,7 @@
                         <div class="panel-body">
                             <p class="clearfix"></p>
                             <div class="col-sm-6">
-                                <a href="{{ route('admin.users') }}" class="list-group-item active">最近五个用户<span class="badge">共{{ $user_num }}个</span></a>
+                                <a href="{{ route('admin.users.index') }}" class="list-group-item active">最近五个用户<span class="badge">共{{ $user_num }}个</span></a>
                                 @foreach($users as $user)
                                     <a href="#" class="list-group-item">{{ $user->name }}</a>
                                 @endforeach

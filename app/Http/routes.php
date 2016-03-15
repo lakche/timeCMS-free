@@ -33,11 +33,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
     ]);
     Route::resource('system', 'SystemController',['only'=>['index','store']]);
     Route::resource('pages', 'PagesController');
-    Route::controller('users', 'UsersController',[
-        'getIndex' => 'admin.users',
-        'postDelete' => 'admin.users.delete',
-        'postAdmin' => 'admin.users.admin',
-    ]);
+    Route::resource('users', 'UsersController',['only'=>['index','update','destroy']]);
     Route::controller('persons', 'PersonsController',[
         'getIndex' => 'admin.persons',
         'getAdd' => 'admin.persons.add',

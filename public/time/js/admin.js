@@ -134,33 +134,13 @@ $(function () {
         uploaderPic.init();
     }
 
-    //删除账户
-    $(".user_Del").on("click", function(){
-        if(confirm("是否删除")){
-            $.ajax({
-                type: 'POST',
-                url: "/admin/users/delete/" + $(this).attr("data-id"),
-                data: { _token: t },
-                success: function (data) {
-                    alert(data.message);
-                    if(data.error==0){
-                        location.reload();
-                    }
-                },
-                error: function (data) {
-                    alert(data.message);
-                }
-            });
-        }
-    });
-
     //设置管理员
-    $(".user_IsAdmin").on("click", function(){
+    $(".set-admin").on("click", function(){
         if(confirm("是否设置为管理员")){
             $.ajax({
                 type: 'POST',
-                url: "/admin/users/admin/" + $(this).attr("data-id"),
-                data: { _token: t },
+                url: "/admin/users/" + $(this).attr("data-id"),
+                data: { _method: 'PUT', _token: t, attr: 'admin' },
                 success: function (data) {
                     alert(data.message);
                     if(data.error==0){
@@ -175,12 +155,12 @@ $(function () {
     });
 
     //取消管理员
-    $(".user_NoAdmin").on("click", function(){
+    $(".set-no-admin").on("click", function(){
         if(confirm("是否取消管理员")){
             $.ajax({
                 type: 'POST',
-                url: "/admin/users/admin/" + $(this).attr("data-id"),
-                data: { _token: t },
+                url: "/admin/users/" + $(this).attr("data-id"),
+                data: { _method: 'PUT', _token: t, attr: 'admin' },
                 success: function (data) {
                     alert(data.message);
                     if(data.error==0){
