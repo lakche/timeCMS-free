@@ -20,8 +20,10 @@
                             单页管理
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ route('admin.pages.save',$page->id) }}" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
+                            <form method="POST" action="{{ route('admin.pages.update',$page->id) }}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                {{ method_field('put') }}
+                                <input type="hidden" name="hash" value="{{ $page->hash }}">
                                 <div class="input-group">
                                     <div class="input-group-addon">访问路径</div>
                                     <input type="text" class="form-control" name="url" value="{{ old('url', $page->url) }}">
@@ -59,14 +61,14 @@
                                 @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">单页封面</div>
-                                    <input type="text" class="form-control" name="cover" id="CPIC" value="{{ old('cover', $page->cover) }}" readonly>
-                                    <input type="hidden" class="form-control" name="thumb" id="CPCP" value="{{ old('thumb', $page->thumb) }}" readonly>
+                                    <input type="text" class="form-control" name="cover" id="image-default" value="{{ old('cover', $page->cover) }}" readonly>
+                                    <input type="hidden" class="form-control" name="thumb" id="image-thumb" value="{{ old('thumb', $page->thumb) }}" readonly>
 
-                                    <div class="input-group-addon btn btn-primary" id="page_cover">上传封面</div>
+                                    <div class="input-group-addon btn btn-primary" data-class="page" data-type="cover" id="image-upload">上传封面</div>
                                 </div>
                                 <div class="input-group col-sm-12">
-                                    <button type="submit" class="btn btn-primary pull-left">保存单页</button>
-                                    <a href="{{ route('admin.pages') }}" class="btn btn-warning pull-right">返回列表</a>
+                                    <button type="submit" class="btn btn-primary pull-right">保存单页</button>
+                                    <a href="{{ route('admin.pages.index') }}" class="btn btn-warning">返回列表</a>
                                 </div>
                             </form>
                         </div>

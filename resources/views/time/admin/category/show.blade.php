@@ -32,7 +32,7 @@
                                     <tr>
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->title }}</td>
-                                        <td class="text-center"><a href="{{ route('admin.category.sub.show',$category->id) }}" class="btn btn-primary btn-xs">查看 <span class="badge">{{ $category->subs->count() }}</span></a></td>
+                                        <td class="text-center"><a href="{{ route('admin.category.show',$category->id) }}" class="btn btn-primary btn-xs">查看 <span class="badge">{{ $category->subs->count() }}</span></a></td>
                                         <td class="text-center">
                                             @if($category->is_nav_show)
                                                 <i class="glyphicon glyphicon-ok text-primary"></i>
@@ -54,7 +54,7 @@
                                 <tfoot>
                                 <tr>
                                     <td colspan="5">
-                                        <a href="{{ $parent->parent_id > 0 ? route('admin.category.sub.show',$parent->parent_id) : route('admin.category.index') }}" class="btn btn-warning">返回上级</a>
+                                        <a href="{{ $parent->parent_id > 0 ? route('admin.category.show',$parent->parent_id) : route('admin.category.index') }}" class="btn btn-warning">返回上级</a>
                                         <a href="{{ route('admin.category.create') }}?parent_id={{ $parent->id }}" class="btn btn-primary pull-right">添加分类</a>
                                     </td>
                                 </tr>

@@ -42,7 +42,7 @@
                                             <a href="{{ route('admin.pages.edit', $page->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑单页"></i>
                                             </a>
-                                            <a href="javascript:void(0);" data-id="{{ $page->id }}" class="page_Del">
+                                            <a href="javascript:void(0);" data-id="{{ $page->id }}" data-class="pages" class="option-del">
                                                 <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除单页"></i>
                                             </a>
                                         </td>
@@ -52,13 +52,11 @@
                                 <tfoot>
                                 <tr>
                                     <td colspan="8">
-                                        <div class="pagination"
-                                             style="text-align:center;">{!! $pages->render() !!}</div>
+                                        <div class="pagination" style="text-align:center;">{!! $pages->render() !!}</div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ route('admin.pages.add') }}"
-                                                       class="btn btn-info pull-right">添加单页</a></td>
+                                    <td colspan="8"><a href="{{ route('admin.pages.create') }}" class="btn btn-info pull-right">添加单页</a></td>
                                 </tr>
                                 </tfoot>
                             </table>

@@ -78,6 +78,10 @@ return [
             'driver' => 'file',
             'path'   => storage_path('framework/cache/project'),
         ],
+        'page' => [
+            'driver' => 'file',
+            'path'   => storage_path('framework/cache/page'),
+        ],
 
     ],
 

@@ -15,6 +15,8 @@ class PageRequest extends Request
             'url' => 'required',
             'views' => 'required|integer',
             'view' => 'required_without_all:openurl',
+            'is_open' => 'boolean',
+            'hash' => 'required',
         ];
     }
 
@@ -28,6 +30,7 @@ class PageRequest extends Request
             'is_open' => '开放浏览',
             'cover' => '封面',
             "thumb" => '封面微缩图',
+            'hash' => 'HASH值',
         ];
     }
 
@@ -37,6 +40,8 @@ class PageRequest extends Request
             'required' => ':attribute不能为空.',
             'integer' => ':attribute只能为整数.',
             'required_without_all' => '对应模板和外链网址必选一项填写',
+            'boolean' => ':attribute格式错误.',
+            'unique' => ':attribute已存在.',
         ];
     }
 }

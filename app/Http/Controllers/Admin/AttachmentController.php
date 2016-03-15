@@ -23,29 +23,30 @@ class AttachmentController extends Controller
         $fileName = $fileName . $file->getClientOriginalExtension();
         $file->move(public_path($filePath), $fileName);
       });
-    }
-    //如果是图片，生成微缩图
-    if (file_exists(public_path($filePath) . $fileName)) {
-      $img = Image::make(public_path($filePath) . $fileName);
-      $imgMime = explode('/', $img->mime());
-      if ($imgMime[0] != 'image') {
-        $info['result'] = false;
-        return $info;
-      }
     } else {
       $info['result'] = false;
       return $info;
     }
-    $img->resize(300, null, function ($constraint) {
-      $constraint->aspectRatio();
-      $constraint->upsize();
-    });
-    $img->save(public_path($filePath) . 'thumb' . $fileName);
+    //如果是图片，生成微缩图
+    $thumbUrl = '';
+    $fullPath = public_path($filePath) . $fileName;
+    if (file_exists($fullPath)) {
+      $img = Image::make($fullPath);
+      $imgMime = explode('/', $img->mime());
+      if ($imgMime[0] == 'image') {
+        $img->resize(300, null, function ($constraint) {
+          $constraint->aspectRatio();
+          $constraint->upsize();
+        });
+        $img->save(public_path($filePath) . 'thumb' . $fileName);
+        $thumbUrl = $filePath . 'thumb' . $fileName;
+      }
+    }
     //附件入库
     $attachment = Attachment::create([
         'url' => $filePath . $fileName,
         'name' => '',
-        'thumb' => $imgMime[0] == 'image' ? $filePath . 'thumb' . $fileName : '',
+        'thumb' => $thumbUrl,
         'sort' => 0,
         'is_recommend' => 0,
         'is_show' => 0,
@@ -61,9 +62,8 @@ class AttachmentController extends Controller
       }
     //返回json
     $info['result'] = true;
-    $info['cover'] = $filePath . $fileName;
-    $info['thumb'] = $filePath . 'thumb' . $fileName;
-
+    $info['file'] = $filePath . $fileName;
+    $info['thumb'] = $thumbUrl;
     return $info;
   }
 }

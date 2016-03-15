@@ -32,7 +32,7 @@
                                     <tr>
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->title }}</td>
-                                        <td class="text-center"><a href="{{ route('admin.category.sub.show',$category->id) }}" class="btn btn-primary btn-xs">查看 <span class="badge">{{ $category->subs->count() }}</span></a></td>
+                                        <td class="text-center"><a href="{{ route('admin.category.show',$category->id) }}" class="btn btn-primary btn-xs">查看 <span class="badge">{{ $category->subs->count() }}</span></a></td>
                                         <td class="text-center">
                                             @if($category->is_nav_show)
                                                 <i class="glyphicon glyphicon-ok text-primary"></i>
@@ -44,7 +44,7 @@
                                             <a href="{{ route('admin.category.edit', $category->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑分类"></i>
                                             </a>
-                                            <a href="javascript:void(0);" data-id="{{ $category->id }}" class="categorie_Del">
+                                            <a href="javascript:void(0);" data-id="{{ $category->id }}" data-class="category" class="option-del">
                                                 <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除分类"></i>
                                             </a>
                                         </td>
