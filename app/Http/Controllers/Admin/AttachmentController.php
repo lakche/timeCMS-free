@@ -30,10 +30,12 @@ class AttachmentController extends Controller
     //如果是图片，生成微缩图
     $thumbUrl = '';
     $fullPath = public_path($filePath) . $fileName;
+    $fileMime = '';
     if (file_exists($fullPath)) {
       $img = Image::make($fullPath);
       $imgMime = explode('/', $img->mime());
-      if ($imgMime[0] == 'image') {
+      $fileMime = $imgMime[0];
+      if ($fileMime == 'image') {
         $img->resize(300, null, function ($constraint) {
           $constraint->aspectRatio();
           $constraint->upsize();
@@ -41,6 +43,9 @@ class AttachmentController extends Controller
         $img->save(public_path($filePath) . 'thumb' . $fileName);
         $thumbUrl = $filePath . 'thumb' . $fileName;
       }
+    } else {
+      $info['result'] = false;
+      return $info;
     }
     //附件入库
     $attachment = Attachment::create([
@@ -51,7 +56,7 @@ class AttachmentController extends Controller
         'is_recommend' => 0,
         'is_show' => 0,
         'is_cover' => 0,
-        'type' => $imgMime[0],
+        'type' => $fileMime,
         'attr' => $request->get('class'),
         'hash' => $request->get('hash'),
         'project_id' => 0,

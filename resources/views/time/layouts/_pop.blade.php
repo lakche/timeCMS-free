@@ -35,7 +35,7 @@
                     <div class="list-group">
                         <a class="list-group-item" href="tencent://message/?uin={{ $system['qq'] }}&amp;Site=www.obday.com&amp;Menu=yes" target="_blank">官方QQ：{{ $system['qq'] }}</a>
                         <a class="list-group-item" href="http://weibo.com/{{ $system['weibo'] }}" target="_blank">官方微博：[点击打开]</a>
-                        <a class="list-group-item" href="#" data-toggle="modal" data-target="#wechatcode-box">微信号：{{ $system['wechat'] }}</a>
+                        <a class="list-group-item" href="#" data-toggle="modal" data-target="#wechatcode-box">微信号：{{ $system['wechat'] }}[点击扫码]</a>
                     </div>
                 </div>
             </div>
