@@ -21,16 +21,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
     Route::get('', 'DashController@index');
     Route::resource('attachment', 'AttachmentController',['only'=>['store']]);
     Route::resource('category', 'CategoryController');
-    Route::controller('articles', 'ArticlesController',[
-        'getIndex' => 'admin.articles',
-        'getType' => 'admin.articles.type',
-        'getAdd' => 'admin.articles.add',
-        'getEdit' => 'admin.articles.edit',
-        'postSave' => 'admin.articles.save',
-        'postUpdateImage' => 'admin.articles.updateimage',
-        'postSaveCover' => 'admin.articles.savecover',
-        'postDelete' => 'admin.articles.delete',
-    ]);
+    Route::resource('articles', 'ArticlesController');
     Route::resource('system', 'SystemController',['only'=>['index','store']]);
     Route::resource('pages', 'PagesController');
     Route::resource('users', 'UsersController',['only'=>['index','update','destroy']]);

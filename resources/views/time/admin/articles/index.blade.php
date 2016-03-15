@@ -12,7 +12,7 @@
                 <div class="col-sm-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            文章管理 @if(isset($type)) - {{ $type->title }} @endif
+                            文章管理
                         </div>
                         <div class="panel-body">
                             <table class="table table-striped">
@@ -27,9 +27,9 @@
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li><a href="{{ route('admin.articles') }}">全部</a></li>
+                                                <li><a href="{{ route('admin.articles.index') }}">全部</a></li>
                                                 @foreach(Theme::categories() as $category)
-                                                    <li><a href="{{ route('admin.articles.type',$category->id) }}">{{ $category->title }}</a></li>
+                                                    <li><a href="{{ route('admin.articles.show',$category->id) }}">{{ $category->title }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -43,12 +43,12 @@
                                         <td>{{ $article->id }}</td>
                                         <td><a href="{{ route('article.show', $article->id) }}"
                                                target="_blank">{{ $article->title }}</a></td>
-                                        <td><a href="{{ route('admin.articles.type',$article->category_id) }}">{{ $article->category->title }}</a></td>
+                                        <td><a href="{{ route('admin.articles.show',$article->category_id) }}">{{ $article->category->title }}</a></td>
                                         <td>
                                             <a href="{{ route('admin.articles.edit', $article->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑文章"></i>
                                             </a>
-                                            <a href="javascript:void(0);" data-id="{{ $article->id }}" class="article_Del">
+                                            <a href="javascript:void(0);" data-id="{{ $article->id }}" data-class="articles" class="option-del">
                                                 <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除文章"></i>
                                             </a>
                                         </td>
@@ -63,7 +63,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ route('admin.articles.add') }}"
+                                    <td colspan="8"><a href="{{ route('admin.articles.create') }}"
                                                        class="btn btn-info pull-right">添加文章</a></td>
                                 </tr>
                                 </tfoot>
