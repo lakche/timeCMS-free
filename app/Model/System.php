@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cache;
 
 class System extends Model
 {
@@ -30,6 +31,7 @@ class System extends Model
         $option->value = strip_tags($value);
         $option->save();
       }
+      Cache::forget('system_info');
     }
   }
 
