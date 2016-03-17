@@ -8,7 +8,7 @@
  */
 namespace App\Libs;
 
-use \Request;
+use Request;
 
 class Uploader
 {

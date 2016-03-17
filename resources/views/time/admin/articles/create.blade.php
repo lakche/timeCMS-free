@@ -154,7 +154,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        var um = UM.getEditor('content',{imageUrl:"{{ route('admin.attachment.store') }}"});
+        var um = UM.getEditor('content',{imageUrl: "{{ route('admin.attachment.store') }}", _token: $("input[name='_token']").val(), class: $('#image-upload').attr('data-class'), type: 'image', hash: $("input[name='hash']").val()});
         $.fn.bootstrapSwitch.defaults.onColor = 'primary';
         $.fn.bootstrapSwitch.defaults.offColor = 'danger';
         $("[type='checkbox']").bootstrapSwitch();

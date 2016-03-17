@@ -26,7 +26,7 @@
                             </div>
                             <p class="clearfix"></p>
                             <div class="col-sm-6">
-                                <a href="{{ route('admin.articles') }}" class="list-group-item active">最近五篇文章<span class="badge">共{{ $article_num }}篇</span></a>
+                                <a href="{{ route('admin.articles.index') }}" class="list-group-item active">最近五篇文章<span class="badge">共{{ $article_num }}篇</span></a>
                                 @foreach(Theme::article_data(5) as $article)
                                     <a href="{{ url('article',$article->id) }}" class="list-group-item" target="_blank">{{ str_limit($article->title,32,'...') }}<span class="pull-right">{{ $article->updated_at->format('Y-m-d') }}</span></a>
                                 @endforeach

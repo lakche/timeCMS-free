@@ -12,7 +12,7 @@ class AttachmentRequest extends Request
     public function rules()
     {
         return [
-            'file' => 'required',
+            'file' => 'required_without:upfile',
             'class' => 'required|in:category,article,page,person,project,user,system',
             'type' => 'required|in:image,cover,file',
             'hash' => 'required',

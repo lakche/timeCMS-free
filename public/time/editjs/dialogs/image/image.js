@@ -142,11 +142,11 @@
             '<span class="edui-image-icon"></span>' +
             '<form class="edui-image-form" method="post" enctype="multipart/form-data" target="up">' +
             '<input style=\"filter: alpha(opacity=0);\" class="edui-image-file" type="file" hidefocus name="upfile" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/>' +
-            '<input type="hidden" name="_token" value="'+$("#TOKEN").val()+'">'+
-            '<input type="hidden" name="attr" value="'+$("#ATTR").val()+'">'+
-            '<input type="hidden" name="hash" value="'+$("#HASH").val()+'">'+
+            '<input type="hidden" name="_token" value="">'+
+            '<input type="hidden" name="class" value="">'+
+            '<input type="hidden" name="type" value="">'+
+            '<input type="hidden" name="hash" value="">'+
             '</form>' +
-
             '</div>',
         init: function (editor, $w) {
             var me = this;
@@ -155,6 +155,10 @@
             me.dialog = $w;
             me.render(".edui-image-local", 1);
             me.config(".edui-image-upload1");
+            $(".edui-image-form input[name='_token']").val(me.editor.options._token);
+            $(".edui-image-form input[name='class']").val(me.editor.options.class);
+            $(".edui-image-form input[name='type']").val(me.editor.options.type);
+            $(".edui-image-form input[name='hash']").val(me.editor.options.hash);
             me.submit();
             me.drag();
 
@@ -211,7 +215,6 @@
                 $('<iframe name="up"  style="display: none"></iframe>').insertBefore(me.dialog).on('load', function(){
                     var r = this.contentWindow.document.body.innerHTML;
                     r = r.replace(/<[^>].*?>/g,"");
-                    console.log(r);
                     if(r == '')return;
                     me.uploadComplete(r);
                     $(this).unbind('load');
@@ -272,9 +275,10 @@
                             //模拟数据
                             var fd = new FormData();
                             fd.append(me.editor.getOpt('imageFieldName'), f);
-                            fd.append('_token', $("#TOKEN").val());
-                            fd.append('attr', $("#ATTR").val());
-                            fd.append('hash', $("#HASH").val());
+                            fd.append('_token', me.editor.options._token);
+                            fd.append('class', me.editor.options.class);
+                            fd.append('type', me.editor.options.type);
+                            fd.append('hash', me.editor.options.hash);
 
                             xhr.send(fd);
                             xhr.addEventListener('load', function (e) {

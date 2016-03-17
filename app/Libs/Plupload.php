@@ -10,27 +10,19 @@ namespace App\Libs;
 
 use Closure;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use \Request;
+use Request;
 
 class Plupload
 {
 
-  /**
-   * @var Illuminate\Filesystem\Filesystem
-   */
   protected $storage;
-  private $maxFileAge = 3600; //600 secondes
+  private $maxFileAge = 3600;
 
   public function __construct()
   {
     $this->storage = app('files');
   }
 
-  /**
-   * Get chuck upload path
-   *
-   * @return string
-   */
   public function getChunkPath()
   {
     $path = public_path('uploads/');
@@ -40,14 +32,6 @@ class Plupload
     return $path;
   }
 
-  /**
-   * Process uploaded files
-   *
-   * @param string $name
-   * @param closure $closure
-   *
-   * @return array
-   */
   public function process($name, Closure $closure)
   {
     $response = [];
@@ -61,14 +45,6 @@ class Plupload
     return $response;
   }
 
-  /**
-   * Handle single uploaded file
-   *
-   * @param string $name
-   * @param closure $closure
-   *
-   * @return mixed
-   */
   public function single($name, Closure $closure)
   {
     if (Request::hasFile($name)) {
@@ -76,14 +52,6 @@ class Plupload
     }
   }
 
-  /**
-   * Handle single uploaded file
-   *
-   * @param string $name
-   * @param closure $closure
-   *
-   * @return mixed
-   */
   public function chunks($name, Closure $closure)
   {
     $result = false;
@@ -104,9 +72,6 @@ class Plupload
     return $result;
   }
 
-  /**
-   * Remove old chunks
-   */
   protected function removeOldData($filePath)
   {
     if ($this->storage->exists($filePath) && ($this->storage->lastModified($filePath) < time() - $this->maxFileAge)) {
@@ -114,9 +79,6 @@ class Plupload
     }
   }
 
-  /**
-   * Merge chunks
-   */
   protected function appendData($filePathPartial, UploadedFile $file)
   {
     if (!$out = @fopen($filePathPartial, "ab")) {
@@ -133,11 +95,6 @@ class Plupload
     @fclose($in);
   }
 
-  /**
-   * Check if request has chunks
-   *
-   * @return bool
-   */
   public function hasChunks()
   {
     return (bool)Request::get('chunks', false);
