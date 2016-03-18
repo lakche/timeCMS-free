@@ -13,6 +13,38 @@ class Project extends Model
 
   protected $hidden = ['deleted_at', 'created_at'];
 
+  protected $fillable = ['title', 'category_id', 'sort', 'views', 'tag', 'is_recommend', 'is_show', 'cover', 'thumb', 'cost', 'period', 'person_id', 'info', 'url', 'keywords', 'description', 'text', 'speed', 'hash'];
+
+  public function setIsRecommendAttribute($value)
+  {
+    $this->attributes['is_recommend'] = intval($value);
+  }
+
+  public function setIsShowAttribute($value)
+  {
+    $this->attributes['is_show'] = intval($value);
+  }
+
+  public function setTagAttribute($value)
+  {
+    $this->attributes['tag'] = json_encode(explode(',', strip_tags($value)));
+  }
+
+  public function setPersonIdAttribute($value)
+  {
+    $this->attributes['person_id'] = json_encode(explode(',', strip_tags($value)));
+  }
+
+  public function setDescriptionAttribute($value)
+  {
+    $this->attributes['description'] = $value ? $value : '';
+  }
+
+  public function setTextAttribute($value)
+  {
+    $this->attributes['text'] = $value ? $value : '';
+  }
+
   public function scopeSortByDesc($query,$key)
   {
     if($key != 'id') return $query->orderBy($key,'desc')->orderBy('id','desc');

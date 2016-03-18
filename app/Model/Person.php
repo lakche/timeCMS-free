@@ -16,6 +16,33 @@ class Person extends Model
 
   protected $hidden = ['deleted_at', 'created_at'];
 
+  protected $fillable = ['name', 'title', 'sex', 'sort', 'point', 'age', 'tag', 'is_recommend', 'is_show', 'head', 'head_thumbnail', 'url', 'keywords', 'description', 'info', 'text', 'hash'];
+
+  public function setIsRecommendAttribute($value)
+  {
+    $this->attributes['is_recommend'] = intval($value);
+  }
+
+  public function setIsShowAttribute($value)
+  {
+    $this->attributes['is_show'] = intval($value);
+  }
+
+  public function setTagAttribute($value)
+  {
+    $this->attributes['tag'] = json_encode(explode(',', strip_tags($value)));
+  }
+
+  public function setSexAttribute($value)
+  {
+    $this->attributes['sex'] = $value ? Female : Male;
+  }
+
+  public function setTextAttribute($value)
+  {
+    $this->attributes['text'] = $value ? $value : '';
+  }
+
   public function scopeSortByDesc($query,$key)
   {
     if($key != 'id') return $query->orderBy($key,'desc')->orderBy('id','desc');

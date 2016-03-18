@@ -4,8 +4,8 @@
     <a class="list-group-item" href="{{ route('admin.system.index') }}">系统设置</a>
     <a class="list-group-item" href="{{ route('admin.category.index') }}">分类管理</a>
     <a class="list-group-item" href="{{ route('admin.articles.index') }}">文章管理</a>
-    <a class="list-group-item" href="{{ route('admin.projects') }}">项目管理</a>
-    <a class="list-group-item" href="{{ url('admin/persons') }}">人物管理</a>
+    <a class="list-group-item" href="{{ route('admin.projects.index') }}">项目管理</a>
+    <a class="list-group-item" href="{{ route('admin.persons.index') }}">人物管理</a>
     <a class="list-group-item" href="{{ route('admin.pages.index') }}">单页管理</a>
     <a class="list-group-item" href="{{ route('admin.users.index') }}">用户管理</a>
     <a class="list-group-item" href="{{ url('auth/logout') }}">退出</a>

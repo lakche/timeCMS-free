@@ -38,7 +38,7 @@
                                             <a href="{{ route('admin.persons.edit', $person->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑人物"></i>
                                             </a>
-                                            <a href="javascript:void(0);" data-id="{{ $person->id }}" class="person_Del">
+                                            <a href="javascript:void(0);" data-id="{{ $person->id }}" data-class="persons" class="option-del">
                                                 <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除人物"></i>
                                             </a>
                                         </td>
@@ -53,7 +53,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ route('admin.persons.add') }}" class="btn btn-info pull-right">添加人物</a></td>
+                                    <td colspan="8"><a href="{{ route('admin.persons.create') }}" class="btn btn-info pull-right">添加人物</a></td>
                                 </tr>
                                 </tfoot>
                             </table>

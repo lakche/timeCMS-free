@@ -18,6 +18,8 @@ class ProjectRequest extends Request
             'views' => 'required|integer',
             'cost' => 'required|numeric',
             'period' => 'required|integer',
+            'is_recommend' => 'boolean',
+            'is_show' => 'boolean',
         ];
     }
 
@@ -53,8 +55,7 @@ class ProjectRequest extends Request
             'integer' => ':attribute只能为整数.',
             'exists' => ':attribute不存在.',
             'numeric' => ':attribute只能为数字.',
-            'max' => ':attribute太大.',
-            'min' => ':attribute太小.',
+            'boolean' => ':attribute格式错误.',
         ];
     }
 }

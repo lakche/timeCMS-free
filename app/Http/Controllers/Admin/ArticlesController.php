@@ -8,7 +8,6 @@ use App\Model\Attachment;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
-use Request;
 use Redirect;
 use Hash;
 use Cache;
@@ -27,7 +26,7 @@ class ArticlesController extends Controller
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
     $type = Category::find($id);
-    if(!$type) return Redirect::to(route('admin.articles'));
+    if(!$type) return Redirect::to(route('admin.articles.index'));
 
     $articles = Article::where('category_id',$id)->sortByDesc('id')->paginate(20);
     return Theme::view('admin.articles.show',compact('articles','type'));
@@ -41,7 +40,7 @@ class ArticlesController extends Controller
     $article->sort = 0;
     $article->views = 0;
     $article->category_id = 1;
-    $article->tag = json_encode([]);
+    $article->tag = '';
     $article->hash = Hash::make(time());
     return Theme::view('admin.articles.create',compact('article'));
   }
@@ -51,7 +50,7 @@ class ArticlesController extends Controller
       if (!preg_match("/^[1-9]\d*$/", $id)) return Redirect::to('/');
 
       $article = Article::find($id);
-      if (!$article) return Redirect::to(route('admin.articles'));
+      if (!$article) return Redirect::to(route('admin.articles.index'));
 
       if ($article->hash == '') {
           $article->hash = Hash::make(time() . rand(1000, 9999));

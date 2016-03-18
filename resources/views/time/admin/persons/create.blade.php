@@ -20,11 +20,11 @@
                 </div>
                 <div class="col-sm-10">
                     <div class="panel panel-default">
-                        <div class="panel-heading">人物管理</div>
+                        <div class="panel-heading">人物创建</div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ route('admin.persons.save',$person->id) }}" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" id="TOKEN" value="{{ csrf_token() }}"/>
-                                <input type="hidden" name="type" id="UPTYPE" value="person"/>
+                            <form method="POST" action="{{ route('admin.persons.store') }}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="hash" value="{{ $person->hash }}">
                                 <div class="input-group">
                                     <div class="input-group-addon">　　姓名</div>
                                     <input type="text" class="form-control" name="name" value="{{ old('name', $person->name) }}">
@@ -94,9 +94,9 @@
                                 @endif
                                 <div class="input-group">
                                     <div class="input-group-addon">　　头像</div>
-                                    <input type="text" class="form-control" name="head" id="CPIC" value="{{ old('head', $person->head) }}" readonly>
-                                    <input type="hidden" class="form-control" name="head_thumbnail" id="CPCP" value="{{ old('head_thumbnail', $person->head_thumbnail) }}" readonly>
-                                    <div class="input-group-addon btn btn-primary" id="person_head">上传头像</div>
+                                    <input type="text" class="form-control" name="head" id="image-default" value="{{ old('head', $person->head) }}" readonly>
+                                    <input type="hidden" class="form-control" name="head_thumbnail" id="image-thumb" value="{{ old('head_thumbnail', $person->head_thumbnail) }}" readonly>
+                                    <div class="input-group-addon btn btn-primary" data-class="person" data-type="cover" id="image-upload">上传头像</div>
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-addon"><span data-toggle="tooltip" data-placement="bottom" title="添加外链网址则直接跳转到该网址">外链网址</span></div>
@@ -134,8 +134,8 @@
                                     <p class="bg-danger">{{ $errors->first('text') }}</p>
                                 @endif
                                 <div class="input-group col-sm-12">
-                                    <button type="submit" class="btn btn-primary pull-left">保存人物</button>
-                                    <a href="{{ route('admin.persons') }}" class="btn btn-warning pull-right">返回列表</a>
+                                    <button type="submit" class="btn btn-primary pull-right">保存人物</button>
+                                    <a href="{{ route('admin.persons.index') }}" class="btn btn-warning">返回列表</a>
                                 </div>
                             </form>
                         </div>
@@ -145,7 +145,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        var um = UM.getEditor('content',{imageUrl:"{{ url('admin/persons/update-image') }}"});
+        var um = UM.getEditor('content',{imageUrl: "{{ route('admin.attachment.store') }}", _token: $("input[name='_token']").val(), class: $('#image-upload').attr('data-class'), type: 'image', hash: $("input[name='hash']").val()});
         $.fn.bootstrapSwitch.defaults.onColor = 'primary';
         $.fn.bootstrapSwitch.defaults.offColor = 'danger';
         $("[type='checkbox']").bootstrapSwitch();

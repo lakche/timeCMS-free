@@ -25,23 +25,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
     Route::resource('system', 'SystemController',['only'=>['index','store']]);
     Route::resource('pages', 'PagesController');
     Route::resource('users', 'UsersController',['only'=>['index','update','destroy']]);
-    Route::controller('persons', 'PersonsController',[
-        'getIndex' => 'admin.persons',
-        'getAdd' => 'admin.persons.add',
-        'getEdit' => 'admin.persons.edit',
-        'postSave' => 'admin.persons.save',
-        'postUpdateImage' => 'admin.persons.updateimage',
-        'postSaveCover' => 'admin.persons.savecover',
-        'postDelete' => 'admin.persons.delete',
-    ]);
-    Route::controller('projects', 'ProjectsController',[
-        'getIndex' => 'admin.projects',
-        'getType' => 'admin.projects.type',
-        'getAdd' => 'admin.projects.add',
-        'getEdit' => 'admin.projects.edit',
-        'postSave' => 'admin.projects.save',
-        'postUpdateImage' => 'admin.projects.updateimage',
-        'postSaveCover' => 'admin.projects.savecover',
-        'postDelete' => 'admin.projects.delete',
-    ]);
+    Route::resource('persons', 'PersonsController');
+    Route::resource('projects', 'ProjectsController');
 });

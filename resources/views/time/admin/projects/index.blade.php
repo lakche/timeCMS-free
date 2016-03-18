@@ -12,7 +12,7 @@
                 <div class="col-sm-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            项目管理 @if(isset($type)) - {{ $type->title }} @endif
+                            项目管理
                         </div>
                         <div class="panel-body">
                             <table class="table table-striped">
@@ -27,9 +27,9 @@
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li><a href="{{ route('admin.projects') }}">全部</a></li>
+                                                <li><a href="{{ route('admin.projects.index') }}">全部</a></li>
                                                 @foreach(Theme::categories() as $category)
-                                                    <li><a href="{{ route('admin.projects.type',$category->id) }}">{{ $category->title }}</a></li>
+                                                    <li><a href="{{ route('admin.projects.show',$category->id) }}">{{ $category->title }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -43,12 +43,12 @@
                                         <td>{{ $project->id }}</td>
                                         <td><a href="{{ route('project.show', [$project->id]) }}"
                                                target="_blank">{{ $project->title }}</a></td>
-                                        <td><a href="{{ route('admin.projects.type',$project->category_id) }}">{{ $project->category->title }}</a></td>
+                                        <td><a href="{{ route('admin.projects.show',$project->category_id) }}">{{ $project->category->title }}</a></td>
                                         <td>
                                             <a href="{{ route('admin.projects.edit', [$project->id]) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑项目"></i>
                                             </a>
-                                            <a href="javascript:void(0);" data-id="{{ $project->id }}" class="project_Del">
+                                            <a href="javascript:void(0);" data-id="{{ $project->id }}" data-class="projects" class="option-del">
                                                 <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除项目"></i>
                                             </a>
                                         </td>
@@ -63,7 +63,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ route('admin.projects.add') }}"
+                                    <td colspan="8"><a href="{{ route('admin.projects.create') }}"
                                                        class="btn btn-info pull-right">添加项目</a></td>
                                 </tr>
                                 </tfoot>

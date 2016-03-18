@@ -16,6 +16,9 @@ class PersonRequest extends Request
             'sort' => 'required|integer',
             'point' => 'required|integer',
             'age' => 'required|integer',
+            'is_recommend' => 'boolean',
+            'is_show' => 'boolean',
+            'sex' => 'boolean',
         ];
     }
 
@@ -46,10 +49,7 @@ class PersonRequest extends Request
         return [
             'required' => ':attribute不能为空.',
             'integer' => ':attribute只能为整数.',
-            'exists' => ':attribute不存在.',
-            'numeric' => ':attribute只能为数字.',
-            'max' => ':attribute太大.',
-            'min' => ':attribute太小.',
+            'boolean' => ':attribute格式错误.',
         ];
     }
 }

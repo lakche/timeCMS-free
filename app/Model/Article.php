@@ -28,6 +28,16 @@ class Article extends Model
     $this->attributes['tag'] = json_encode(explode(',', strip_tags($value)));
   }
 
+  public function setDescriptionAttribute($value)
+  {
+    $this->attributes['description'] = $value ? $value : '';
+  }
+
+  public function setTextAttribute($value)
+  {
+    $this->attributes['text'] = $value ? $value : '';
+  }
+
   public function scopeSortByDesc($query,$key)
   {
     if($key != 'id') return $query->orderBy($key,'desc')->orderBy('id','desc');
