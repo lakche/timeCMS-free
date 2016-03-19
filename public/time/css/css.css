@@ -109,7 +109,7 @@ footer a { color: #666;}
 #projects .info { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ccc; color: #666; font-size: 16px;}
 #projects .info div.btn { margin: 4px !important;}
 
-#project .left { background-color: #f6f6f6; text-align: center;}
+#project .left { background-color: #f6f6f6; text-align: center; overflow: hidden;}
 #project .left h2 { margin: 24px 0; font-size: 18px; font-weight: bold;}
 #project .left .info { margin: 12px 0; text-align: left;}
 #project .left .info div { display: block; border-top: 1px solid #ddd; padding: 6px 0 6px 12px; color: #666;}
@@ -127,3 +127,4 @@ footer a { color: #666;}
 #project .right .page-footer { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd;}
 #project .cover { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #ddd;}
 
+#wechatcode-box img { max-width: 100%;}
