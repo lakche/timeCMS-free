@@ -14,7 +14,7 @@ Route::resource('article', 'ArticleController',['only'=>['index','show']]);
 Route::resource('person', 'PersonController',['only'=>['index','show']]);
 Route::get('project/type/{id}', 'ProjectController@getType');
 Route::resource('project', 'ProjectController',['only'=>['index','show']]);
-Route::get('page/{id}', 'PageController@show');
+Route::get('page/{id}', ['as' => 'page.show' ,'uses' => 'PageController@show']);
 
 //管理系统
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth','isadmin']], function () {
