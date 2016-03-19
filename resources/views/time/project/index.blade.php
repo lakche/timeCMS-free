@@ -6,7 +6,7 @@
                 <div class="col-sm-9">
                         <div class="panel panel-primary">
                             <div class="panel-heading">@if(isset($type)) {{ $type->title }} @else 全部项目 @endif</div>
-                            <div class="panel-body" id="project">
+                            <div class="panel-body" id="projects">
                                 @if(isset($type) && $type->info != '')
                                     <div class="alert alert-success" role="alert">{{ $type->info }}</div>
                                 @endif

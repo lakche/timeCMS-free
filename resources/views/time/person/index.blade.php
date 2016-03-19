@@ -6,7 +6,7 @@
                 <div class="col-sm-9">
                         <div class="panel panel-primary">
                             <div class="panel-heading">荣誉殿堂</div>
-                            <div class="panel-body" id="person">
+                            <div class="panel-body" id="persons">
                                 <div class="row">
                                     @if($persons = Theme::person_data(999,byPoint))
                                     @foreach($persons as $person)
