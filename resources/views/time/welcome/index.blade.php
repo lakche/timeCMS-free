@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 @endforeach
-                    <div class="col-sm-12 col-md-12" id="person">
+                    <div class="col-sm-12 col-md-12" id="persons">
                         <div class="panel panel-primary">
                             <div class="panel-heading">荣誉殿堂
                                 <span class="pull-right"><a href="{{ url('person') }}">更多>></a></span>

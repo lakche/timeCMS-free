@@ -98,6 +98,7 @@ footer a { color: #666;}
 #person .left .tag div { display: block; padding: 6px; border-bottom: 1px solid #ddd; text-align: left}
 #person .left .tag div i { color: #ff0000; margin: 0 12px;}
 #person .right { background-color: #ffffff; padding: 15px;}
+#person .right img { max-width: 98%;}
 #person .right h2 { margin-bottom: 20px;}
 #person .right h2 i { color:#ccc; margin-right: 12px;}
 
@@ -121,6 +122,7 @@ footer a { color: #666;}
 #project .left .speed p { text-align: left;}
 #project .left .speed span { margin: 0 10px; color: #ccc;}
 #project .right { background-color: #ffffff; padding: 15px;}
+#project .right img { max-width: 98%;}
 #project .right h2 { margin-bottom: 20px;}
 #project .right h2 i { color:#ccc; margin-right: 12px;}
 #project .right .page-footer { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd;}
