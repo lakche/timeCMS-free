@@ -13,7 +13,7 @@ class AttachmentRequest extends Request
     {
         return [
             'file' => 'required_without:upfile',
-            'class' => 'required|in:category,article,page,person,project,user,system',
+            'class' => 'required|in:category,article,page,person,project,user,system,friendLink',
             'type' => 'required|in:image,cover,file',
             'hash' => 'required',
         ];

@@ -11,3 +11,6 @@
 #main .alert-dismissible { margin-top: 20px;}
 
 #person_clear { cursor: pointer;}
+
+#friendLink .table td { vertical-align: middle;}
+#friendLink .table td img { height: 40px;}

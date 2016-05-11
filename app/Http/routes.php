@@ -15,6 +15,7 @@ Route::resource('person', 'PersonController',['only'=>['index','show']]);
 Route::get('project/type/{id}', 'ProjectController@getType');
 Route::resource('project', 'ProjectController',['only'=>['index','show']]);
 Route::get('page/{id}', ['as' => 'page.show' ,'uses' => 'PageController@show']);
+Route::get('friendLink/{id}', 'FriendLinkController@show');
 
 //管理系统
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth','isadmin']], function () {
@@ -27,4 +28,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth'
     Route::resource('users', 'UsersController',['only'=>['index','update','destroy']]);
     Route::resource('persons', 'PersonsController');
     Route::resource('projects', 'ProjectsController');
+    Route::resource('friendLinks', 'FriendLinksController');
 });
