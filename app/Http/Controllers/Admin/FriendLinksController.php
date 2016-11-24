@@ -16,7 +16,7 @@ class FriendLinksController extends Controller
   public function index()
   {
     $friendLinks = FriendLink::sortByDesc('id')->paginate(20);
-    return Theme::view('admin.friendLinks.index',compact('friendLinks'));
+    return Theme::view('admin.friendlinks.index',compact('friendLinks'));
   }
 
   public function create()
@@ -27,7 +27,7 @@ class FriendLinksController extends Controller
     $friendLink->sort = 0;
     $friendLink->is_open = 1;
     $friendLink->hash = Hash::make(time() . rand(1000, 9999));
-    return Theme::view('admin.friendLinks.create',compact('friendLink'));
+    return Theme::view('admin.friendlinks.create',compact('friendLink'));
   }
 
   public function edit($id)
@@ -41,7 +41,7 @@ class FriendLinksController extends Controller
       $friendLink->hash = Hash::make(time() . rand(1000, 9999));
     }
 
-    return Theme::view('admin.friendLinks.edit',compact('friendLink'));
+    return Theme::view('admin.friendlinks.edit',compact('friendLink'));
   }
 
   public function store(FriendLinkRequest $request)
