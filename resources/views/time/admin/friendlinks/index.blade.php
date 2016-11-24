@@ -46,10 +46,10 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.friendLinks.edit', $friendLink->id) }}">
-                                                <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑赞助商"></i>
+                                                <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑友情链接"></i>
                                             </a>
                                             <a href="javascript:void(0);" data-id="{{ $friendLink->id }}" data-class="friendLinks" class="option-del">
-                                                <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除赞助商"></i>
+                                                <i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除友情链接"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -62,7 +62,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><a href="{{ route('admin.friendLinks.create') }}" class="btn btn-info pull-right">添加赞助商</a></td>
+                                    <td colspan="8"><a href="{{ route('admin.friendLinks.create') }}" class="btn btn-info pull-right">添加友情链接</a></td>
                                 </tr>
                                 </tfoot>
                             </table>
