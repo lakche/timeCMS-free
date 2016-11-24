@@ -82,6 +82,16 @@
                                     <input type="text" class="form-control" name="theme"
                                            value="{{ $system['theme'] or '' }}">
                                 </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">工信部备案</div>
+                                    <input type="text" class="form-control" name="miitbeian"
+                                           value="{{ $system['miitbeian'] or '' }}">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon">网安备案</div>
+                                    <input type="text" class="form-control" name="beian"
+                                           value="{{ $system['beian'] or '' }}">
+                                </div>
                                 <div class="input-group checkbox">
                                     <div class="input-group-addon">网站是否开放</div>
                                     <input type="checkbox" name="is_open" value="1"

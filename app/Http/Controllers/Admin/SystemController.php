@@ -17,7 +17,7 @@ class SystemController extends Controller
 
     public function store()
     {
-        $input = Request::only(['title','keywords','description','copyright','record','is_open','qq','wechat','wechatcode','weibo','theme','subtitle']);
+        $input = Request::only(['title','keywords','description','copyright','record','is_open','qq','wechat','wechatcode','weibo','theme','subtitle','miitbeian','beian']);
         $input['is_open'] = $input['is_open'] ? 1 : 0;
 
         System::saveValue($input);
