@@ -4,7 +4,14 @@
         <p>
             {{ $system['copyright'] or '' }} {{ $system['record'] or '' }}
             <a href="http://www.miitbeian.gov.cn/" target="_blank">{{ $system['miitbeian'] or '' }}</a>
-            <a href="http://www.beian.gov.cn/portal/recordQuery" target="_blank">{{ $system['beian'] or '' }}</a>
+            @if (preg_match('|(\d+)|',$system['beian'],$beian))
+            <div style="width:300px;margin:0 auto; padding:20px 0;">
+                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode={{ $beian[0] }}" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+                    <img src="{{ asset('time/images/beian.png') }}" style="float:left;"/>
+                    <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">{{ $system['beian'] or '' }}</p>
+                </a>
+            </div>
+            @endif
         </p>
         <ul class="bs-docs-footer-links text-muted">
             <li>本项目源码受 <a rel="license" href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>开源协议保护</li>
