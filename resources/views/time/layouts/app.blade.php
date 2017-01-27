@@ -8,7 +8,7 @@
     <meta name="description" content="{{ $description or $system['description'] }}" />
     <link rel="stylesheet" href="{{ asset($theme.'/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset($theme.'/css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ asset($theme.'/css/css.css') }}">
+    <link rel="stylesheet" href="{{ asset($theme.'/css/css.css') }}?{{ rand(1000, 9999) }}">
     <script src="{{ asset($theme.'/js/jquery.min.js') }}"></script>
     <script src="{{ asset($theme.'/js/bootstrap.min.js') }}"></script>
 </head>
