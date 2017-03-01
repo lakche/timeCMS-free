@@ -17,7 +17,7 @@ class PersonController extends Controller
   {
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
-    $person = Person::find($id);
+    $person = Person::where('id',$id)->where('is_show','>',0)->first();
     if(empty($person)) return Redirect::to('/');
 
     $keywords = $person->keywords;

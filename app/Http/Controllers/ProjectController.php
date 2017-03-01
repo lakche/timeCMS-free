@@ -11,7 +11,7 @@ class ProjectController extends Controller
 {
   public function index()
   {
-    $projects = Project::sortByDesc('id')->paginate(20);
+    $projects = Project::where('is_show','>',0)->sortByDesc('id')->paginate(20);
     return Theme::view('project.index',compact('projects'));
   }
 
@@ -25,15 +25,15 @@ class ProjectController extends Controller
     $keywords = $type->keywords;
     $description = $type->description;
 
-    $projects = Project::where('category_id',$id)->sortByDesc('id')->paginate(20);
-    return Theme::view('project.index',compact(['projects','type','keywords','description']));
+    $projects = Project::where('category_id',$id)->where('is_show','>',0)->sortByDesc('id')->paginate(20);
+    return Theme::view('project.index',compact('projects','type','keywords','description'));
   }
 
   public function show($id = 0)
   {
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
-    $project = Project::find($id);
+    $project = Project::where('id',$id)->where('is_show','>',0)->first();
     if(empty($project)) return Redirect::to('/');
 
     $type = Category::find($project->category_id);

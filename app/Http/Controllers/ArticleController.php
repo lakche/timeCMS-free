@@ -18,7 +18,7 @@ class ArticleController extends Controller
   {
     if(!preg_match("/^[1-9]\d*$/",$id)) return Redirect::to('/');
 
-    $article = Article::find($id);
+    $article = Article::where('id',$id)->where('is_show','>',0)->first();
     if(empty($article)) return Redirect::to('/');
 
     $type = Category::find($article->category_id);

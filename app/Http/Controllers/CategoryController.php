@@ -33,7 +33,7 @@ class CategoryController extends Controller
     } else {
       $templet = 'show';
       if($type->templet_nosub != '') $templet = $type->templet_nosub;
-      $articles = Article::where('category_id',$id)->sortByDesc('id')->paginate(20);
+      $articles = Article::where('category_id',$id)->where('is_show','>',0)->sortByDesc('id')->paginate(20);
       return Theme::view('category.'.$templet,compact('type','articles','keywords','description'));
     }
   }
