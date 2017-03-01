@@ -35,10 +35,10 @@
                                             {{ $user->is_admin ? '管理员' : '普通用户' }}
                                         </td>
                                         <td>
-                                            @if($user->is_admin)
-                                                <a href="javascript:void(0);" data-id="{{ $user->id }}" class="set-admin"><i class="glyphicon glyphicon-king text-danger" data-toggle="tooltip" data-placement="top" title="设为管理员"></i></a>
+                                            @if(!$user->is_admin)
+                                                <a href="javascript:void(0);" data-id="{{ $user->id }}" class="set-admin"><i class="glyphicon glyphicon-king" data-toggle="tooltip" data-placement="top" title="设为管理员"></i></a>
                                             @else
-                                                <a href="javascript:void(0);" data-id="{{ $user->id }}" class="set-no-admin"><i class="glyphicon glyphicon-king" data-toggle="tooltip" data-placement="top" title="取消管理员"></i></a>
+                                                <a href="javascript:void(0);" data-id="{{ $user->id }}" class="set-no-admin"><i class="glyphicon glyphicon-king text-danger" data-toggle="tooltip" data-placement="top" title="取消管理员"></i></a>
                                             @endif
                                             <a href="javascript:void(0);" data-id="{{ $user->id }}" data-class="users" class="option-del"><i class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" data-placement="top" title="删除账户"></i></a>
                                         </td>

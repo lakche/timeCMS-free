@@ -34,6 +34,8 @@
                                             </ul>
                                         </div>
                                     </th>
+                                    <th class="text-center operation">推荐</th>
+                                    <th class="text-center operation">显示</th>
                                     <th class="operation">操作</th>
                                 </tr>
                                 </thead>
@@ -44,6 +46,20 @@
                                         <td><a href="{{ route('article.show', $article->id) }}"
                                                target="_blank">{{ $article->title }}</a></td>
                                         <td><a href="{{ route('admin.articles.show',$article->category_id) }}">{{ $article->category->title }}</a></td>
+                                        <td class="text-center">
+                                            @if($article->is_recommend)
+                                                <i class="glyphicon glyphicon-ok text-primary"></i>
+                                            @else
+                                                <i class="glyphicon glyphicon-remove text-danger"></i>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if($article->is_show)
+                                                <i class="glyphicon glyphicon-ok text-primary"></i>
+                                            @else
+                                                <i class="glyphicon glyphicon-remove text-danger"></i>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ route('admin.articles.edit', $article->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑文章"></i>

@@ -23,6 +23,8 @@
                                     <th>性别</th>
                                     <th>头衔</th>
                                     <th>贡献度</th>
+                                    <th class="text-center operation">推荐</th>
+                                    <th class="text-center operation">显示</th>
                                     <th class="operation">操作</th>
                                 </tr>
                                 </thead>
@@ -34,6 +36,20 @@
                                         <td>@if($person->sex == Male) 男 @else 女 @endif</td>
                                         <td>{{ $person->title }}</td>
                                         <td>{{ $person->point }}</td>
+                                        <td class="text-center">
+                                            @if($person->is_recommend)
+                                                <i class="glyphicon glyphicon-ok text-primary"></i>
+                                            @else
+                                                <i class="glyphicon glyphicon-remove text-danger"></i>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if($person->is_show)
+                                                <i class="glyphicon glyphicon-ok text-primary"></i>
+                                            @else
+                                                <i class="glyphicon glyphicon-remove text-danger"></i>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ route('admin.persons.edit', $person->id) }}">
                                                 <i class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="编辑人物"></i>
