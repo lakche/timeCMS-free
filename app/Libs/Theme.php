@@ -23,6 +23,8 @@ define('byCost', 3); //按花费排序，仅项目有该参数
 define('byPoint', 4); //按贡献排序，仅人物有该参数
 define('noShowHide', 1); //不显示隐藏分类
 define('showHide', 0); //显示隐藏分类
+define('findText', 1); //读取文字友情链接
+define('findImg', 2); //读取图片友情链接
 
 /**模板功能
  * 实现快速切换主题模板功能
@@ -37,7 +39,7 @@ define('showHide', 0); //显示隐藏分类
 
 class Theme
 {
-    public static function view($view, $data = array())
+    public static function view($view, $data = array(),$theme = '')
     {
         $key_system = 'system_info';
         if (Cache::has($key_system)) {
@@ -57,8 +59,8 @@ class Theme
             Cache::store('category')->put($key_type, $types, $expiresAt);
         }
 
-        if(!isset($system['theme'])) $system['theme'] = '';
-        $theme = $system['theme'] == '' ? 'time' : $system['theme'];
+        if(!isset($system['theme'])) $system['theme'] = 'time';
+        $theme = $theme != '' ? $theme : $system['theme'];
         $data['theme'] = $theme;
         $data['system'] = $system;
         $data['types'] = $types;
@@ -99,16 +101,16 @@ class Theme
             $type = intval($type);
             switch ($where) {
                 case findAll:
-                    $date = Article::sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Article::where('is_show','>',0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
                 case findRecommend:
-                    $date = Article::where('is_recommend', '>', 0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Article::where('is_show','>',0)->where('is_recommend', '>', 0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
                 case findCategory:
-                    $date = Article::where('category_id', $type)->orderBy($order_str, 'desc')->take($num)->Offset($offset)->get();
+                    $date = Article::where('is_show','>',0)->where('category_id', $type)->orderBy($order_str, 'desc')->take($num)->Offset($offset)->get();
                     break;
                 default:
-                    $date = Article::sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Article::where('is_show','>',0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
             }
             $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
@@ -154,16 +156,16 @@ class Theme
             $type = intval($type);
             switch ($where) {
                 case findAll:
-                    $date = Project::sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Project::where('is_show','>',0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
                 case findRecommend:
-                    $date = Project::where('is_recommend', '>', 0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Project::where('is_show','>',0)->where('is_recommend', '>', 0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
                 case findCategory:
-                    $date = Project::where('category_id', $type)->orderBy($order_str, 'desc')->take($num)->Offset($offset)->get();
+                    $date = Project::where('is_show','>',0)->where('category_id', $type)->orderBy($order_str, 'desc')->take($num)->Offset($offset)->get();
                     break;
                 default:
-                    $date = Project::sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Project::where('is_show','>',0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
             }
             $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
@@ -205,13 +207,13 @@ class Theme
             }
             switch ($where) {
                 case findAll:
-                    $date = Person::sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Person::where('is_show','>',0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
                 case findRecommend:
-                    $date = Person::where('is_recommend', '>', 0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Person::where('is_show','>',0)->where('is_recommend', '>', 0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
                 default:
-                    $date = Person::sortByDesc($order_str)->take($num)->Offset($offset)->get();
+                    $date = Person::where('is_show','>',0)->sortByDesc($order_str)->take($num)->Offset($offset)->get();
                     break;
             }
             $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
@@ -268,6 +270,49 @@ class Theme
                 $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
                 Cache::store('category')->put($key, $date, $expiresAt);
             }
+            return $date;
+        }
+    }
+
+    /**调用友情链接
+     * @param $num 查询数量
+     * @param $order 排序规则
+     * @param $where 查询条件
+     * 返回项目数组
+     */
+    public static function friend_data($num,$order = null,$where = null)
+    {
+        $num = intval($num);
+        $key = 'friend_'.$num.'_'.$order.'_'.$where;
+        if (Cache::store('friend')->has($key)) {
+            $date = Cache::store('friend')->get($key);
+            return $date;
+        } else {
+            switch ($order) {
+                case byId:
+                    $order_str = 'id';
+                    break;
+                case bySort:
+                    $order_str = 'sort';
+                    break;
+                default:
+                    $order_str = 'id';
+                    break;
+            }
+            switch ($where) {
+                case findText:
+                    $date = FriendLink::where('is_open','>',0)->where('cover', '')->sortByDesc($order_str)->take($num)->get();
+                    break;
+                case findImg:
+                    $date = FriendLink::where('is_open','>',0)->where('cover', '!=', '')->sortByDesc($order_str)->take($num)->get();
+                    break;
+                case findAll:
+                default:
+                    $date = FriendLink::where('is_open','>',0)->sortByDesc($order_str)->take($num)->get();
+                    break;
+            }
+            $expiresAt = Carbon::now()->addMinutes(60);//设置缓存时间
+            Cache::store('friend')->put($key, $date, $expiresAt);
             return $date;
         }
     }
