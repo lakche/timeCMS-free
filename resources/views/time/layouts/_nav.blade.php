@@ -7,7 +7,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{{ url('/') }}" class="navbar-brand">{{ $system['title'] }}</a>
+            <a href="{{ url('/') }}" class="navbar-brand">
+                <img src="{{ asset($theme.'/images/logo.png') }}" alt="{{ $system['title'] }}">
+                {{ $system['title'] }}
+            </a>
         </div>
         <nav id="bs-navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
